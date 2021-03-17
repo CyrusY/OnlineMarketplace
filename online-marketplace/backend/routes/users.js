@@ -16,7 +16,6 @@ router.route('/add').post((req, res) => {   // post request ,  could be tested i
     const description = req.body.description;    // by default: "No description."
     //const rating = Number(req.body.rating);    // by default: 0
   
-
     function validateEmail(test) {
         const emailRegexp = /^[^ ]+@[^]+\.[a-z]{2,3}$/;
         if (test.match(emailRegexp))
