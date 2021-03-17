@@ -63,20 +63,21 @@ export default class Registration extends Component {
       validPassword: this.state.validPassword,
     }
 
-    alert('Account created! Welcome, ' + this.state.displayName + '!');
-
     console.log(user);
 
     axios.post('http://localhost:5000/users/add', user)
           .then(res => console.log(res.data));
 
         this.setState({
-            username:'',
-            email:'',
-            password:'',
-            validPassword:'',
-            displayName:''
-        }); 
+          username: '',
+          displayName: '',
+          email: '',
+          password: '',
+          validPassword:''
+        });
+        window.location = '/';
+        alert('Account created! Welcome, ' + this.state.displayName + '!');
+
   }
 
 render() {

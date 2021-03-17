@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;     //mongoose schema start same
 
 const userSchema = new Schema({     //user schema with one field
   username: { type: String, required: true, unique: true, trim: true, minlength: 3},
-  email: { type: String, required: true, unique: true, defaultValue: false},     // TODO:  '@'type
+  email: { type: String, required: true, unique: true, defaultValue: false, lowercase: true},
   password: { type: String, required: true, minlength: 5},        // TODO: increase security (ie. include number)
   displayName: { type: String, required: true},
   rating: { type: Number, default: 0, min:0 , max:5 },

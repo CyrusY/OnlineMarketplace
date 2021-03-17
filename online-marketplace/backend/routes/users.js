@@ -9,7 +9,7 @@ router.route('/').get((req, res) => {       //  get request: 'localhost5000/user
 
 router.route('/add').post((req, res) => {   // post request ,  could be tested in insomnia 
     const username = req.body.username;
-    const email = req.body.email.toLowerCase();     // lowercase email
+    const email = req.body.email;
     const password = req.body.password;             // can increase the security level by using bcrypt
     const validPassword = req.body.validPassword;
     const displayName = req.body.displayName;
