@@ -1,5 +1,62 @@
 const router = require('express').Router();     // express routers
+const express = require('express');
+
+const session = require('express-session');
+/*
+const hbs = require('express-handlebar');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+
 let User = require('../models/user.model');     // required models
+const { eventNames } = require('../models/user.model');
+
+/* Middleware *//*
+app.engine('hbs',hbs({extname: '.hbs'})); // extention 
+app.set('view engine', 'hbs');            // set engine
+app.use(express.static(__dirname + '/public'));   // add css/images into public into hbs
+app.use(session({
+    secret: process.env.secret,     // key
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(express.urlencoded({ extended: false}));   // allow express to pass data
+app.use(express.json());
+/* Middleware */
+
+/* passport.json *//*
+app.use(passport.initialize());   // set up passport
+app.use(passport.session());      // stay in the login session
+
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    //setup user model, in "models/user.model.js"
+    User.findById(id, function (err,user) {
+        done(err, user);
+    });
+});
+
+passport.use(new localStrategy(
+  function ( username, password, done) {
+    User.findOne({username: username}, function(err,user) {
+      if(err) { return done(err);}
+      if(!User)  {return done (null,false, {message: 'Incorrent username.'}); }
+
+      bcrypt.compare (password, user.passport, function (err, res) {
+        if(err) { return done(err);}
+        if( res == false)  {
+          return done (null,false, {message: 'Incorrent password.'});
+        }
+
+      });
+    });
+  }
+));
+/* passport.json */
+
 
 router.route('/').get((req, res) => {       //  get request: 'localhost5000/users/' case
   User.find()       //get list of users in mongodb atlas
