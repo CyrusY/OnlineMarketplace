@@ -7,9 +7,9 @@ const hbs = require('express-handlebar');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
-
+*/
 let User = require('../models/user.model');     // required models
-const { eventNames } = require('../models/user.model');
+// const { eventNames } = require('../models/user.model');
 
 /* Middleware *//*
 app.engine('hbs',hbs({extname: '.hbs'})); // extention 
