@@ -75,7 +75,7 @@ export default class Registration extends Component {
           password: '',
           validPassword:''
         });
-        window.location = '/';
+        //window.location = '/';
         alert('Account created! Welcome, ' + this.state.displayName + '!');
 
   }

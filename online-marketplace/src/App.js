@@ -1,6 +1,6 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route} from "react-router-dom"
+import { BrowserRouter as Router, Route,Switch} from "react-router-dom"
 
 import Navbar from "./components/navbar";
 import Homepage from "./components/homepage";
@@ -13,18 +13,25 @@ import ProductList from "./components/product-list";
 function App() {
   return (
     <Router>
-      <div className="container">
-      <Navbar />
-      <br/>
-      <Route path="/" exact component={Homepage} />
-      <Route path="/edit/:id" component={EditUser} />
-      <Route path="/create" component={UploadProduct} />
-      <Route path="/user" component={Registration} />
-      <Route path="/login" component={Login} />
-      <Route path="/product" component={ProductList} />
+      <div className="App">
+        <Navbar />
+        <br/>
+        <div className="content">
+          <Switch>
+            <Route exact path="/" > <Homepage /> </Route> 
+            <Route exact path="/create" > <UploadProduct /> </Route> 
+            <Route exact path="/user" > <Registration /> </Route> 
+            <Route exact path="/login" > <Login /> </Route> 
+            <Route exact path="/product" > <ProductList /> </Route> 
+            <Route exact path="/edit" > <EditUser /> </Route> 
+
+          </Switch>
+        </div>
       </div>
     </Router>
   );
 }
 
 export default App;
+
+
