@@ -2,7 +2,43 @@ import React, { Component } from 'react';
 import {Button} from '../button/button';
 import './navbar.css'
 import '../login'
+<<<<<<< HEAD
 
+=======
+const MenuItemsAfterLogin =[
+  {
+    title: 'Home',
+    url: 'homepage',
+    cName: 'nav-links'
+  },
+  {
+    title: 'Login',
+    url: 'login',
+    cName: 'nav-links'
+  },
+  {
+    title: 'Edit Personal Information',
+    url: 'edit',
+    cName: 'nav-links'
+  },
+  {
+    title: 'Upload Product',
+    url: 'create',
+    cName: 'nav-links'
+  },
+  {
+    title: 'About Us',
+    url: 'aboutus',
+    cName: 'nav-links'
+  },
+  
+  {
+    title: 'Sign up',
+    url: 'user',
+    cName: 'nav-links-mobile'
+}
+]
+>>>>>>> 4f3584c7f753c9db246d691ff6c06afd693562a1
 
 
 class Navbar extends Component {

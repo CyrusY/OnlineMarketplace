@@ -9,6 +9,7 @@ import UploadProduct from "./components/upload-product";
 import Registration from "./components/registration";
 import Login from "./components/login";
 import ProductList from "./components/product-list";
+import AboutUs from "./components/about-us";
 
 function App() {
   const MenuItemsAfterLogin =[
@@ -51,6 +52,10 @@ function App() {
             <Route exact path="/login" > <Login /> </Route> 
             <Route exact path="/product" > <ProductList /> </Route> 
             <Route exact path="/edit" > <EditUser /> </Route> 
+<<<<<<< HEAD
+=======
+            <Route exact path="/aboutus"> <AboutUs /></Route>
+>>>>>>> 4f3584c7f753c9db246d691ff6c06afd693562a1
           </Switch>
         </div>
       </div>
