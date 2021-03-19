@@ -6,9 +6,6 @@ All work programmed in Javascript
 we are using MERN stack to implement. MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
 
 
-    
-    
-
 ## Setup
 In order to run the web application Run locally, you may first clone the main repository. And input the following commends:
 
@@ -20,7 +17,7 @@ cd /backend
 npm install
 nodemon server 
 ```
-next, open a new terminal and write commend:
+Next, open a new terminal and write commend:
 
 ```sh
 open a new terminal and write commend:   
