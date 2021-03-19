@@ -22,7 +22,12 @@ const MenuItems =[
     title: 'Upload Product',
     url: 'create.js',
     cName: 'nav-links'
-  }
+  },
+  {
+    title: 'Sign up',
+    url: '#',
+    cName: 'nav-links-mobile'
+}
 ]
 
 
