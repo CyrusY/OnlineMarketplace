@@ -8,14 +8,14 @@ $cd online-marketplace
 
 Download MongoDB from here: https://docs.mongodb.com/manual/administration/install-community/
 
-$ npm cd backend
-$ npm install
-$ nodemon server
-
-# open new terminal  
-$ cd ..  
+$ npm cd backend  
 $ npm install  
-$ npm start  
+$ nodemon server  
+
+# open new terminal    
+$ cd ..    
+$ npm install  
+$ npm start    
 
 
 
