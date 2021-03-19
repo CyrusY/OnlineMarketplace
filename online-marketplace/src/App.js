@@ -7,16 +7,58 @@ import Homepage from "./components/homepage";
 import EditUser from "./components/edit-user";
 import UploadProduct from "./components/upload-product";
 import Registration from "./components/registration";
-import Login from "./components/login";
+import Login from "./components/login/login";
 import ProductList from "./components/product-list";
 import AboutUs from "./components/about-us";
 
 function App() {
+  const MenuItemsBeforeLogin =[
+    {
+      title: 'Home',
+      url: 'login',
+      cName: 'nav-links'
+    },
+    {
+      title: 'About us',
+      url: 'aboutus',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Sign up',
+      url: 'user',
+      cName: 'nav-links-mobile'
+  }
+  ]
+  const MenuItemsAfterLogin =[
+    {
+      title: 'Home',
+      url: 'homepage',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Edit Personal Information',
+      url: 'edit',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Upload Product',
+      url: 'create',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Logout',
+      url: 'user',
+      cName: 'nav-links-mobile'
+  }
+  ]
+
+
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <br/>
+        <Navbar menuItem={MenuItemsBeforeLogin} login={false} 
+        />
+
         <div className="content">
           <Switch>
             <Route exact path="/" > <Homepage /> </Route> 
