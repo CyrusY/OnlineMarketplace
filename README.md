@@ -1,14 +1,31 @@
-# Google Maps JavaScript API Sample Application
+# OnlineMarketplace
+Group Project for CSCI3100 - Software Engineering (2021 Spring, CUHK)
 
-This sample is generated from @googlemaps/js-samples located at
-https://github.com/googlemaps/js-samples.
+
+All work programmed in Javascript
+we are using MERN stack to implement. MERN stands for MongoDB, Express, React, Node, after the four key technologies that make up the stack.
+
+
+    
+    
 
 ## Setup
+In order to run the web application Run locally, you may first clone the main repository. And input the following commends:
+
 
 ```sh
-npm i
-npm run dev  # development
-npm run build  # production
+cd /online-marketplace
+npm install
+cd /backend
+npm install
+nodemon server 
+```
+next, open a new terminal and write commend:
+
+```sh
+open a new terminal and write commend:   
+cd /online-marketplace  
+npm start  
 ```
 
 The application is currently using the `.env` file to embed the API key in the
@@ -16,7 +33,22 @@ HTML document. This is a temporary key and is not valid for production usage. It
 can be replaced by following these instructions to
 [get an api key](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
-## Feedback
 
-For feedback related to this sample, please open a new issue on
-[GitHub](https://github.com/googlemaps/js-samples/issues).
+### 'PWA function' for mobile device add shortcut to homescreen
+Provide Office notification push and Cached drowser
+
+## Project Structure
+  
+  
+  ### Backend
+  In the initizle stage,  we first implemented the registration and login page.  
+  Registration page is connected to the mongoDB.  
+  * User can input the corresponding data to the page in order to create a account.  
+  Login page is capable to verify the user identity. 
+  * It goes to mongoDB to check match the entities of users.  
+  It is developed using html5 (Bootstrap) and express.
+  
+  ### Frontend
+  Frontend is developed in React.js with css.
+  
+
