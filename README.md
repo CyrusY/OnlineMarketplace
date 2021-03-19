@@ -52,3 +52,4 @@ How to use:
 5. Click the shortcut, and done!!!  
 
 ### More instructions in the ``` readme.md ``` file in each directory. 
+.
