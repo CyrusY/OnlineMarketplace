@@ -61,7 +61,7 @@ function App() {
 
         <div className="content">
           <Switch>
-            <Route exact path="/" > <Homepage /> </Route> 
+            <Route exact path="/" > <Login /> </Route> 
             <Route exact path="/create" > <UploadProduct /> </Route> 
             <Route exact path="/user" > <Registration /> </Route> 
             <Route exact path="/login" > <Login /> </Route> 
