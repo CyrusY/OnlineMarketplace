@@ -7,7 +7,9 @@ In order to run the web application Run locally, you may first clone the main re
 cd /online-marketplace  
 npm install  
 cd /backend  
-nodemon server
+npm install  
+nodemon server  
+
 
 open a new terminal and write commend:   
 cd /online-marketplace  
