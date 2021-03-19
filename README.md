@@ -28,10 +28,7 @@ cd /online-marketplace
 npm start  
 ```
 
-The application is currently using the `.env` file to embed the API key in the
-HTML document. This is a temporary key and is not valid for production usage. It
-can be replaced by following these instructions to
-[get an api key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+The application is currently using the `.env` file to access the mongoDB.
 
 ## Project Structure
   
@@ -57,4 +54,4 @@ How to use:
 4. Back to Home, the Shortcut icon will appear on the home  
 5. Click the shortcut, and done!!!  
 
-###More instructions in the ``` readme.md ``` file in each directory. 
+### More instructions in the ``` readme.md ``` file in each directory. 
