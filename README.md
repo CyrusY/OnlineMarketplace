@@ -10,8 +10,6 @@ Group Project for CSCI3100 - Software Engineering (2021 Spring, CUHK)
 
 
 
-
-
 # Google Maps JavaScript API Sample Application
 
 This sample is generated from @googlemaps/js-samples located at
@@ -23,11 +21,13 @@ In order to run the web application Run locally, you may first clone the main re
 ## Setup
 
 ```sh
-open a new terminal and write commend:   
-cd /online-marketplace  
-npm start  
+cd /online-marketplace
+npm install
+cd /backend
+npm install
+nodemon server 
 ```
-
+next, open a new terminal and write commend:
 
 ```sh
 open a new terminal and write commend:   
