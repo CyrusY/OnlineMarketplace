@@ -1,31 +1,31 @@
 import React, { Component } from 'react'; 
 import {Button} from '../button/button';
 import './navbar.css'
-
+import '../login'
 const MenuItems =[
   {
     title: 'Home',
-    url: '/homepage.js',
+    url: 'homepage',
     cName: 'nav-links'
   },
   {
     title: 'Login',
-    url: '/login.js',
+    url: 'login',
     cName: 'nav-links'
   },
   {
     title: 'Edit Personal Information',
-    url: '/edit.js',
+    url: 'edit',
     cName: 'nav-links'
   },
   {
     title: 'Upload Product',
-    url: 'create.js',
+    url: 'create',
     cName: 'nav-links'
   },
   {
     title: 'Sign up',
-    url: '#',
+    url: 'user',
     cName: 'nav-links-mobile'
 }
 ]
@@ -56,7 +56,10 @@ class Navbar extends Component {
                       )
                   })}
               </ul>
-              <Button>Sign Up</Button>
+              <form action="user">
+                <Button>Sign Up </Button>
+              </form>
+             
           </nav>
       )
   }

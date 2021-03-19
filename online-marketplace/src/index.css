@@ -3,5 +3,6 @@
 /* base styles */
 * {  
   font-family: "Quicksand";
- 
+  background-image: 'url("/online-marketplace/public/img/background.jpg")';
+
 }
