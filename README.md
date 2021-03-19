@@ -42,8 +42,10 @@ Provide Office notification push and Cached drowser
   
   ### Backend
   In the initizle stage,  we first implemented the registration and login page.  
-  Registration page is connected to the mongoDB. User can input the corresponding data to the page in order to create a account.  
-  Login page is capable to verify the user identity. It goes to mongoDB to check match the entities of users.  
+  Registration page is connected to the mongoDB.  
+  *User can input the corresponding data to the page in order to create a account.  
+  Login page is capable to verify the user identity. 
+  *It goes to mongoDB to check match the entities of users.  
   It is developed using html5 (Bootstrap) and express.
   
   ### Frontend
