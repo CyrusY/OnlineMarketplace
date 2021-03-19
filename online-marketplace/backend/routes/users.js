@@ -1,5 +1,7 @@
 const router = require('express').Router();     // express routers
 const express = require('express');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const session = require('express-session');
 /*
@@ -157,5 +159,20 @@ router.route('/changePW/:id').post((req, res) => {    //update data of the objec
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+
+const createActivationToken = (payload) => {
+  return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '5m'})
+}
+
+const createAccessToken = (payload) => {
+  return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15m'})
+}
+
+const createRefreshToken = (payload) => {
+  return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '7d'})
+}
+
+
 
 module.exports = router;    // exporting router
