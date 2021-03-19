@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './registration.css'
 
 export default class Registration extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ export default class Registration extends Component {
 
 render() {
     return (
-      <div>
+      <nav className= "registration">
       <h3>Registration</h3>
       <form onSubmit={this.onSubmit}>
         <div className="form-div"> 
@@ -139,7 +140,7 @@ render() {
           <input type="submit" value="Register" className="btn btn-primary" />
         </div>
       </form>
-    </div>
+    </nav>
     )
   }
 }

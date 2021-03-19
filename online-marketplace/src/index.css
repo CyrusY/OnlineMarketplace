@@ -4,5 +4,9 @@
 * {  
   font-family: "Quicksand";
   background-image: 'url("/online-marketplace/public/img/background.jpg")';
+  
+}
 
+body{
+  margin: 0;
 }

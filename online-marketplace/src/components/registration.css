@@ -1,0 +1,6 @@
+.registration{
+    background-image: url('/src/img/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

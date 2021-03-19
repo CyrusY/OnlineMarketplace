@@ -12,15 +12,27 @@ import ProductList from "./components/product-list";
 import AboutUs from "./components/about-us";
 
 function App() {
-  const MenuItemsAfterLogin =[
+  const MenuItemsBeforeLogin =[
     {
       title: 'Home',
       url: 'homepage',
       cName: 'nav-links'
     },
     {
-      title: 'Login',
-      url: 'login',
+      title: 'About us',
+      url: 'aboutus',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Sign up',
+      url: 'user',
+      cName: 'nav-links-mobile'
+  }
+  ]
+  const MenuItemsAfterLogin =[
+    {
+      title: 'Home',
+      url: 'homepage',
       cName: 'nav-links'
     },
     {
@@ -34,7 +46,7 @@ function App() {
       cName: 'nav-links'
     },
     {
-      title: 'Sign up',
+      title: 'Logout',
       url: 'user',
       cName: 'nav-links-mobile'
   }
@@ -42,8 +54,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar menuItem={MenuItemsAfterLogin}/>
-        <br/>
+        <Navbar menuItem={MenuItemsBeforeLogin} login={false}/>
+
         <div className="content">
           <Switch>
             <Route exact path="/" > <Homepage /> </Route> 
@@ -52,10 +64,7 @@ function App() {
             <Route exact path="/login" > <Login /> </Route> 
             <Route exact path="/product" > <ProductList /> </Route> 
             <Route exact path="/edit" > <EditUser /> </Route> 
-<<<<<<< HEAD
-=======
             <Route exact path="/aboutus"> <AboutUs /></Route>
->>>>>>> 4f3584c7f753c9db246d691ff6c06afd693562a1
           </Switch>
         </div>
       </div>
