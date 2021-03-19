@@ -9,7 +9,7 @@ npm install
 cd /backend  
 nodemon server
 
-'open a new terminal and write commend:   
+open a new terminal and write commend:   
 cd /online-marketplace  
 npm start  
 
