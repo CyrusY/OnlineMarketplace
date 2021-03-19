@@ -1,7 +1,7 @@
 {
   "name": "Easy Trade",
   "short_name": "EasyTrade",
-  "start_url": "/user",
+  "start_url": "/login",
   "display": "standalone",
   "background_color": "#FFE9D2",
   "theme_color": "#FFE1C4",
