@@ -24,6 +24,12 @@ const MenuItemsAfterLogin =[
     cName: 'nav-links'
   },
   {
+    title: 'About Us',
+    url: 'aboutus',
+    cName: 'nav-links'
+  },
+  
+  {
     title: 'Sign up',
     url: 'user',
     cName: 'nav-links-mobile'
