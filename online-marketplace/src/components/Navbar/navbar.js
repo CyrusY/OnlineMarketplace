@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button} from '../button/button';
 import './navbar.css'
 import '../login'
-const MenuItems =[
+const MenuItemsAfterLogin =[
   {
     title: 'Home',
     url: 'homepage',
@@ -46,7 +46,7 @@ class Navbar extends Component {
                   <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
               </div>
               <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
-                  {MenuItems.map((item, index) => {
+                  {MenuItemsAfterLogin.map((item, index) => {
                       return (
                           <li key={index}>
                               <a className={item.cName} href={item.url}>

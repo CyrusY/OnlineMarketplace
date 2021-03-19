@@ -8,13 +8,14 @@
     outline: none;
     border: none;
     cursor: pointer;
+    width: 120px;
 }
 
 .btn:hover {
     padding: 8px 20px;
     transition: all 0.3s ease-out;
-    background: #fff;
-    color: #6568F4;
+    background: #6d76f7;
+    color: #fff;
     transition: 250ms;
 }
 
@@ -26,7 +27,7 @@
     background-color: transparent;
     color: #fff;
     padding: 8px 20px;
-    border-radius: 4px;
+    border-radius: 100px;
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
 }
@@ -36,6 +37,7 @@
     border-radius: 4px;
     font-size: 18px;
     color: #fff;
+    margin-right: 10px;
 }
 
 .btn-large {
