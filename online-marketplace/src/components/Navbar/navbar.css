@@ -1,10 +1,10 @@
 .NavbarItems {
     background:rgb(238, 238, 238) ;   
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 
@@ -24,8 +24,6 @@
     width: 70vw;
     justify-content: end;
     margin-right: 1rem;
-
-
 }
 
 .nav-links {
@@ -41,7 +39,8 @@
 }
 
 .fa-bars {
-    color: #fff;
+    color: rgb(138, 138, 138);
+    top: 1000px;
 }
 
 .nav-links-mobile {
@@ -73,7 +72,7 @@
     .nav-menu.active {
         background:rgb(151, 151, 151) ;
         opacity:0.9;
-        top: 80px; 
+        top: 60px; 
         transition: all 1s  ease-out;
         z-index: 1;
         font-style: italic;
@@ -100,13 +99,12 @@
         position: absolute;
         top: 0;
         left: 0;
-  
     }
 
     .menu-icon {
         display: block;
         position: absolute;
-        top: 0;
+        top:-5px;
         right: 0;
         transform: translate(-100%, 60%);
         font-size: 1.8rem;
@@ -114,8 +112,9 @@
     }
 
     .fa-times {
-        color: #fff;
+        color: rgb(138, 138, 138);
         font-size: 2rem;
+
     }
 
     .nav-links-mobile {

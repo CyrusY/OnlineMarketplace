@@ -11,10 +11,37 @@ import Login from "./components/login";
 import ProductList from "./components/product-list";
 
 function App() {
+  const MenuItemsAfterLogin =[
+    {
+      title: 'Home',
+      url: 'homepage',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Login',
+      url: 'login',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Edit Personal Information',
+      url: 'edit',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Upload Product',
+      url: 'create',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Sign up',
+      url: 'user',
+      cName: 'nav-links-mobile'
+  }
+  ]
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Navbar menuItem={MenuItemsAfterLogin}/>
         <br/>
         <div className="content">
           <Switch>
@@ -24,7 +51,6 @@ function App() {
             <Route exact path="/login" > <Login /> </Route> 
             <Route exact path="/product" > <ProductList /> </Route> 
             <Route exact path="/edit" > <EditUser /> </Route> 
-
           </Switch>
         </div>
       </div>
