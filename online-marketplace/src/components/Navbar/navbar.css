@@ -7,15 +7,13 @@
     font-size: 1.2rem;
 }
 
+
 .navbar-logo {
     color: #fff;
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
 }
-
-
-
 .nav-menu {
     display: grid;
     grid-template-columns: repeat(5, auto);
@@ -63,9 +61,9 @@
         height: 550px;
         position: absolute;
         top: 80px;
-        left: -150%;
+        left: -130%;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: all 0.5s ease-out;
         font-size: 1.5rem;
         
     }
@@ -74,7 +72,7 @@
         background: #6668f4;
         left: 0;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: all 0.5s  ease-out;
         z-index: 1;
     }
 
@@ -120,10 +118,11 @@
         margin: 2rem auto;
         border-radius: 4px;
         width: 80%;
+        left: 2%;
         background: #4ad9e4;
         text-decoration: none;
         color: #fff;
-        font-size: 1.5rem;
+        font-size: 1.5rem; 
     }
 
     .nav-links-mobile:hover {
