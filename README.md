@@ -36,3 +36,11 @@ can be replaced by following these instructions to
 
 ### 'PWA function' for mobile device add shortcut to homescreen
 Provide Office notification push and Cached drowser
+
+## Project Structure
+  
+  
+### Backend
+In the initizle stage,  we first implemented the registration and login page.  
+Registration page is connected to the mongoDB. User can input the corresponding data to the page in order to create a account.  
+
