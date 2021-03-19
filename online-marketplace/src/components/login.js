@@ -24,11 +24,11 @@ function Login() {
 const handleSubmit = async e => {
   e.preventDefault()
   try { 
-      const res = await axios.post('./users/login', {email, password})
-      console.log("sdsggggggggggadadds")     
+      const res = await axios.post('http://localhost:5000/users/login', {email, password})
+     
       setUser({...user, err: '', success: res.data.msg})
       localStorage.setItem('firstLogin', true)
-     console.log("sds")
+    
   } catch (err) {
       err.response.data.msg && 
       setUser({...user, err: err.response.data.msg, success: ''})
