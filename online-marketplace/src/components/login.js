@@ -1,7 +1,6 @@
-import React, { useState} from 'react';
-
-import { Link } from 'react-router-dom'
-
+import React, {useState} from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
 import './login.css'
   const initialState = {
     email: '',
@@ -11,26 +10,48 @@ import './login.css'
 }
   
 function Login() {
-  const [user, setUser] = useState(initialState)
-
-
+  const [user, setUser] = useState(initialState)//Lazy initial state
+  
   const {email, password, err, success} = user
+  
+  const handleChangeInput = e => {
+    const {name, value} = e.target 
+   
+    setUser({...user, [name]:value, err: '', success: ''})
+} // handler the input
+
+
+const handleSubmit = async e => {
+  e.preventDefault()
+  try { 
+      const res = await axios.post('./users/login', {email, password})
+      console.log("sdsggggggggggadadds")     
+      setUser({...user, err: '', success: res.data.msg})
+      localStorage.setItem('firstLogin', true)
+     console.log("sds")
+  } catch (err) {
+      err.response.data.msg && 
+      setUser({...user, err: err.response.data.msg, success: ''})
+  }
+} //handle the submition
+
+
 
     return (
       <div className="login_page">
       
-          <form >
+      <form onSubmit={handleSubmit}>
           
                 <div>
                     <label htmlFor="email">Email Address</label>
                     <input type="text" placeholder="Enter email address" id="email"
-                    value={email} name="email"  />
+                    value={email} name="email"  onChange={handleChangeInput} />
                 </div>
 
                 <div>
                     <label htmlFor="password">Password</label>
                     <input type="password" placeholder="Enter password" id="password"
-                    value={password} name="password"  />
+                    value={password} name="password" onChange={handleChangeInput}  />
                 </div>
 
                 <div className="row">
