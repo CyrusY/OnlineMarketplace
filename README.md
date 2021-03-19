@@ -57,4 +57,4 @@ How to use:
 4. Back to Home, the Shortcut icon will appear on the home  
 5. Click the shortcut, and done!!!  
 
-###More instructions in the ```sh readme.md ``` file in each directory. 
+###More instructions in the ``` readme.md ``` file in each directory. 
