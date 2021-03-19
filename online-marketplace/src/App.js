@@ -51,10 +51,13 @@ function App() {
       cName: 'nav-links-mobile'
   }
   ]
+
+
   return (
     <Router>
       <div className="App">
-        <Navbar menuItem={MenuItemsBeforeLogin} login={false}/>
+        <Navbar menuItem={MenuItemsBeforeLogin} login={false} 
+        />
 
         <div className="content">
           <Switch>

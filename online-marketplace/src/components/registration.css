@@ -19,6 +19,7 @@
     padding: 30px 20px;
     background: rgba(255, 255, 255, 0.836);
     box-shadow: 2px 2px 5px #666;
+    align-items: center;
 }
 
 .main-area {
