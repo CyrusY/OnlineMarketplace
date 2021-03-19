@@ -11,7 +11,7 @@ export default class Registration extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeValidPassword = this.onChangeValidPassword.bind(this);
-    
+
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -19,7 +19,7 @@ export default class Registration extends Component {
       displayName: '',
       email: '',
       password: '',
-      validPassword:''
+      validPassword: ''
     }
   }
 
@@ -67,80 +67,86 @@ export default class Registration extends Component {
     console.log(user);
 
     axios.post('http://localhost:5000/users/add', user)
-          .then(res => console.log(res.data));
+      .then(res => console.log(res.data));
 
-        this.setState({
-          username: '',
-          displayName: '',
-          email: '',
-          password: '',
-          validPassword:''
-        });
-        //window.location = '/';
-        alert('Account created! Welcome, ' + this.state.displayName + '!');
+    this.setState({
+      username: '',
+      displayName: '',
+      email: '',
+      password: '',
+      validPassword: ''
+    });
+    //window.location = '/';
+    alert('Account created! Welcome, ' + this.state.displayName + '!');
 
   }
 
-render() {
+  render() {
     return (
-      <nav className= "registration">
-      <h3>Registration</h3>
-      <form onSubmit={this.onSubmit}>
-        <div className="form-div"> 
-          <input  type="text"
-              required
-              placeholder='Username' 
-              className="form-control form-group"
-              value={this.state.username}
-              onChange={this.onChangeUsername}
-              />
+      <div className="registration-container">
+        <div className="main-area">
+          <div className="form-container">
+            <h3>Registration</h3>
+            <form className="registor-form" onSubmit={this.onSubmit}>
+              <div className="form-div">
+                <input type="text"
+                  required
+                  placeholder='Username'
+                  className="form-control form-group"
+                  value={this.state.username}
+                  onChange={this.onChangeUsername}
+                />
+              </div>
+
+              <div className="form-div">
+                <input type="text"
+                  required
+                  placeholder='Display Name'
+                  className="form-control form-group"
+                  value={this.state.displayName}
+                  onChange={this.onChangeDisplayName}
+                />
+              </div>
+
+              <div className="form-div">
+                <input type="text"
+                  required
+                  placeholder='Email'
+                  className="form-control form-group"
+                  value={this.state.email}
+                  onChange={this.onChangeEmail}
+                />
+              </div>
+
+              <div className="form-div">
+                <input type="text"
+                  required
+                  placeholder='Password'
+                  className="form-control form-group"
+                  value={this.state.passwrod}
+                  onChange={this.onChangePassword}
+                />
+              </div>
+
+              <div className="form-div">
+                <input type="text"
+                  required
+                  placeholder='Re-type Password'
+                  className="form-control form-group"
+                  value={this.state.ValidPassword}
+                  onChange={this.onChangeValidPassword}
+                />
+              </div>
+
+              <div className="form-group">
+                <input type="submit" value="Register" className="btn btn-primary" />
+              </div>
+            </form>
+          </div>
         </div>
 
-        <div className="form-div"> 
-          <input  type="text"
-              required
-              placeholder='Display Name' 
-              className="form-control form-group"
-              value={this.state.displayName}
-              onChange={this.onChangeDisplayName}
-              />
-        </div>
 
-        <div className="form-div"> 
-          <input  type="text"
-              required
-              placeholder='Email' 
-              className="form-control form-group"
-              value={this.state.email}
-              onChange={this.onChangeEmail}
-              />
-        </div>
-
-        <div className="form-div"> 
-          <input  type="text"
-              required
-              placeholder='Password' 
-              className="form-control form-group"
-              value={this.state.passwrod}
-              onChange={this.onChangePassword}
-              />
-        </div>
-
-        <div className="form-div"> 
-          <input  type="text"
-              required
-              placeholder='Re-type Password' 
-              className="form-control form-group"
-              value={this.state.ValidPassword}
-              onChange={this.onChangeValidPassword}
-              />
-        </div>
-
-        <div className="form-group">
-          <input type="submit" value="Register" className="btn btn-primary" />
-        </div>
-      </form>
-    </nav>
+      </div>
     )
   }
 }

@@ -1,6 +1,49 @@
-.registration{
+.registration-container {
     background-image: url('/src/img/background1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    padding: 130px 0 110px 0;
+    position: absolute;
+    top: 5;
+    bottom: 10;
+    left: 0;
+    right: 0;
+    height: 60vh;
+}
+
+.form-container {
+    float: right;
+    max-width: 200px;
+    width: 60%;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.836);
+    box-shadow: 2px 2px 5px #666;
+}
+
+.main-area {
+    width: 800px;
+    margin: auto;
+    color: #333;
+    font-size: 12px;
+}
+
+.form-div {
+    padding: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .registration-container {
+        padding: 80px 0;
+        margin-top: 0;
+        min-height: 400px
+    }
+    .main-area {
+        width: 100%;
+    }
+    .form-container {
+        width: 85%;
+        margin: 0 auto;
+        float: none;
+    }
 }
