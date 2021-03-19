@@ -48,8 +48,8 @@ can be replaced by following these instructions to
   Frontend is developed in React.js with css.
   
 
-### 'PWA function' for mobile device add shortcut to homescreen
-Provide Office notification push and Cached drowser
+### Mobile App: 'PWA function' for mobile device  
+PWA assets users to create a access path from web application to homescreen. Provide office notification push and cached drowser
 How to use:  
 1. Using Android device wtith Chrome Broswer to open the website  
 2. Click more (three dots) on the Chrome  
