@@ -4,10 +4,10 @@ Group Project for CSCI3100 - Software Engineering (2021 Spring, CUHK)
 
 In order to run the web application Run locally, you may first clone the main repository. And input the following commends:
 
-cd /online-marketplace 
-npm install
-cd /backend
-npm install -g nodemon
+cd /online-marketplace__
+npm install__
+cd /backend__
+npm install -g nodemon__
 
 
 
