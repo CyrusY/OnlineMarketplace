@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import './login.css'
+
 const initialState = {
   email: '',
   password: '',
@@ -39,9 +40,9 @@ function Login() {
 
   return (
     <div className="login_page">
+
       <div className="main-area">
         <div className="form-container">
-
           <form onSubmit={handleSubmit}>
             <div className="text-field">
               <label htmlFor="email">Email Address</label>

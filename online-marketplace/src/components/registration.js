@@ -87,7 +87,7 @@ export default class Registration extends Component {
                 <div className="main-area">
                     <div className="form-container">
                         <form onSubmit={this.onSubmit}>
-                            <div className="form-div">
+                            <div className="text-field">
                                 <label htmlFor="user">User Name</label>
                                 <input type="text"
                                     required
@@ -98,7 +98,7 @@ export default class Registration extends Component {
                                 />
                             </div>
 
-                            <div className="form-div">
+                            <div className="text-field">
                                 <label htmlFor="user">Display Name</label>
                                 <input type="text"
                                     required
@@ -109,7 +109,7 @@ export default class Registration extends Component {
                                 />
                             </div>
 
-                            <div className="form-div">
+                            <div className="text-field">
                                 <label htmlFor="user">Email</label>
                                 <input type="text"
                                     required
@@ -120,7 +120,7 @@ export default class Registration extends Component {
                                 />
                             </div>
 
-                            <div className="form-div">
+                            <div className="text-field">
                                 <label htmlFor="user">Password</label>
                                 <input type="text"
                                     required
@@ -131,7 +131,7 @@ export default class Registration extends Component {
                                 />
                             </div>
 
-                            <div className="form-div">
+                            <div className="text-field">
                                 <label htmlFor="user">Re-type Password</label>
                                 <input type="text"
                                     required
@@ -142,8 +142,9 @@ export default class Registration extends Component {
                                 />
                             </div>
 
-                            <div className="form-group">
+                            <div className="button">
                                 <button type="submit">Register</button>
+
                             </div>
                         </form>
                     </div>
