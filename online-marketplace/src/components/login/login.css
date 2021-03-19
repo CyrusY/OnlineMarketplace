@@ -1,9 +1,46 @@
 .login_page{
-    max-width: 500px;
+    
     margin: auto;
-    color: #444;
-    padding: 0 15px;
+
+    background-image: url('/src/img/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 130px 20px 110px 550px;
+    position: absolute;
+    top: 5;
+    bottom: 10;
+    left: 0;
+    right: 0;
+    height: 60vh;
 }
+
+.login_page .main-area {
+    width:450px;
+    max-width: 800px;
+    margin: auto;
+    color: #333;
+    font-size: 12px;
+}
+
+.login_page .form-container {
+    float: right;
+    max-width: 600px;
+    width: 80%;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.836);
+    box-shadow: 2px 2px 5px #666;
+    align-items: center;
+}
+
+.login_page .text-field
+{
+    width: 90%;
+}
+
+
+
+
 .login_page h2{
     text-transform: uppercase;
     font-size: 2rem;
@@ -36,6 +73,7 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-right: 10px;
+    margin-top: 10px;
 }
 .login_page p{
     margin: 10px 0;

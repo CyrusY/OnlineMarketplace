@@ -7,7 +7,7 @@ import Homepage from "./components/homepage";
 import EditUser from "./components/edit-user";
 import UploadProduct from "./components/upload-product";
 import Registration from "./components/registration";
-import Login from "./components/login";
+import Login from "./components/login/login";
 import ProductList from "./components/product-list";
 import AboutUs from "./components/about-us";
 
@@ -15,7 +15,7 @@ function App() {
   const MenuItemsBeforeLogin =[
     {
       title: 'Home',
-      url: 'homepage',
+      url: 'login',
       cName: 'nav-links'
     },
     {

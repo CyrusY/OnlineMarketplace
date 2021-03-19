@@ -1,6 +1,6 @@
 const router = require('express').Router();     // express routers
 const express = require('express');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 
 const session = require('express-session');
