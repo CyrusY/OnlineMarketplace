@@ -11,7 +11,7 @@ const initialState = {
 }
 
 function Login() {
-  const [user, setUser] = useState(initialState)//Lazy initial state
+  const [user, setUser] = useState(initialState)  //initial state
 
   const { email, password, err, success } = user
 
@@ -19,7 +19,7 @@ function Login() {
     const { name, value } = e.target
 
     setUser({ ...user, [name]: value, err: '', success: '' })
-  } // handler the input
+  } // handle the input
 
 
   const handleSubmit = async e => {
@@ -30,8 +30,7 @@ function Login() {
       setUser({ ...user, err: '', success: res.data.msg })
       localStorage.setItem('firstLogin', true)
       console.log("Login success!");
-
-      alert('Login success!');
+      alert('Login success, Welcome!');
 
     } catch (err) {
       err.response.data.msg &&

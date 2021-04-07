@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios';
 import './registration.css';
 
@@ -260,7 +261,7 @@ export default class Registration extends Component {
 
                             <div className="button">
                                 <button type="submit">Register</button>
-
+                                <Link to="./login">Have an Account Already?</Link>
                             </div>
                         </form>
                     </div>
