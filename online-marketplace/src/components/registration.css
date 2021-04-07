@@ -1,3 +1,19 @@
+.password-icon{
+    position: absolute;
+    top: 348px;
+    right: 260px;
+    z-index: 4;
+    cursor: pointer;
+}
+
+.re-password-icon{
+    position: absolute;
+    top: 430px;
+    right: 260px;
+    z-index: 3;
+    cursor: pointer;
+}
+
 .registration-container {
     margin: auto;
 

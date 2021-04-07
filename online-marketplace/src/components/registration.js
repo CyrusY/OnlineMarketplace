@@ -1,8 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import axios from 'axios';
-import './registration.css'
+import './registration.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import usePasswordToggle from "./hooks/usePasswordToggle";
 
 export default class Registration extends Component {
+
+    state = {
+        isPasswordShown : false
+    }
+
+    togglePasswordVisiblity = () =>{
+        const {isPasswordShown} = this.state;
+        this.setState({ isPasswordShown: ! isPasswordShown});
+    }
+    
+    state = {
+        isPasswordShown2 : false
+    }
+
+    togglePasswordVisiblity2 = () =>{
+        const {isPasswordShown2} = this.state;
+        this.setState({ isPasswordShown2: ! isPasswordShown2});
+    }
+ 
+
     constructor(props) {
         super(props);
 
@@ -19,7 +41,15 @@ export default class Registration extends Component {
             displayName: '',
             email: '',
             password: '',
-            validPassword: ''
+            validPassword: '',
+
+            usernameError: '',
+            emailError: '',
+            passwordError1: '',
+            passwordError2: '',
+            passwordError3: '',
+            passwordError4: '',
+            validPasswordError: ''
         }
     }
 
@@ -53,6 +83,57 @@ export default class Registration extends Component {
         })
     }
 
+    validate = () => {
+        let usernameError = "";
+        let emailError = "";
+        let passwordError1 = "";
+        let passwordError2 = "";
+        let passwordError3 = "";
+        let passwordError4 = "";
+
+        let validPasswordError = "";
+
+        function validateEmail(test) {
+            const emailRegexp = /^[^ ]+@[^]+\.[a-z]{2,3}$/;
+            if (test.match(emailRegexp))
+                return true;
+            else
+                return false;
+        }
+
+        if (this.state.username.length <3) {
+            usernameError = "Username need to be at least 3 characters long."
+        }
+
+        if (!validateEmail(this.state.email)) {
+            emailError = 'invalid email format';
+        }
+
+        if (this.state.password.length < 8) {
+            passwordError1 = "Passwords need to be at least 8 characters long."
+        }
+        if (! /\d/.test(this.state.password)) {
+            passwordError2 = "Passwords need to contain a number."
+        }
+        if (! /[a-z]/.test(this.state.password)) {
+            passwordError3 = "Passwords need to contain a lowercase letter."
+        }
+        if (! /[A-Z]/.test(this.state.password)) {
+            passwordError4 = "Passwords need to contain a uppercase letter."
+        }
+
+        if (this.state.password != this.state.validPassword) {
+            validPasswordError = "Passwords do not match. Please re-enter it."
+        }
+
+        if (usernameError||emailError||passwordError1||passwordError2||passwordError3||passwordError4||validPasswordError) {
+            this.setState({usernameError, emailError,passwordError1,passwordError2,passwordError3,passwordError4, validPasswordError});
+            return false;
+        }
+
+        return true;
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -64,24 +145,38 @@ export default class Registration extends Component {
             validPassword: this.state.validPassword,
         }
 
-        console.log(user);
+        const isValid = this.validate();
 
-        axios.post('http://localhost:5000/users/add', user)
+        if(isValid) {
+            console.log(user);
+            axios.post('http://localhost:5000/users/add', user)
             .then(res => console.log(res.data));
+            alert('Account created! Welcome, ' + this.state.displayName + '!');
 
-        this.setState({
-            username: '',
-            displayName: '',
-            email: '',
-            password: '',
-            validPassword: ''
-        });
-        //window.location = '/';
-        alert('Account created! Welcome, ' + this.state.displayName + '!');
+            /* clear form and error */
+            this.setState({
+                username: '',
+                displayName: '',
+                email: '',
+                password: '',
+                validPassword: '',
 
+                usernameError: '',
+                emailError: '',
+                passwordError1: '',
+                passwordError2: '',
+                passwordError3: '',
+                passwordError4: '',
+                validPasswordError: ''
+            });
+            // window.location = '/';
+        }
     }
 
     render() {
+        const {isPasswordShown} = this.state;
+        const {isPasswordShown2} = this.state;
+
         return (
             <div className="registration-container">
                 <div className="main-area">
@@ -96,6 +191,9 @@ export default class Registration extends Component {
                                     value={this.state.username}
                                     onChange={this.onChangeUsername}
                                 />
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.usernameError}
+                                </div> 
                             </div>
 
                             <div className="text-field">
@@ -118,28 +216,48 @@ export default class Registration extends Component {
                                     value={this.state.email}
                                     onChange={this.onChangeEmail}
                                 />
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.emailError}
+                                </div> 
                             </div>
 
                             <div className="text-field">
                                 <label htmlFor="user">Password</label>
-                                <input type="text"
+                                <input type={(isPasswordShown)? "text" : "password"}
                                     required
                                     placeholder='Enter password'
                                     className="form-control form-group"
-                                    value={this.state.passwrod}
+                                    value={this.state.password}
                                     onChange={this.onChangePassword}
                                 />
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.passwordError1}
+                                </div> 
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.passwordError2}
+                                </div> 
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.passwordError3}
+                                </div> 
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.passwordError4}
+                                </div> 
+                                <i className = {`fa ${isPasswordShown? "fa-eye-slash" : "fa-eye"} password-icon`} onClick={this.togglePasswordVisiblity}/>
                             </div>
 
                             <div className="text-field">
                                 <label htmlFor="user">Re-type Password</label>
-                                <input type="text"
+                                <input type={(isPasswordShown2)? "text" : "password"}
                                     required
                                     placeholder='Re-type Password'
                                     className="form-control form-group"
-                                    value={this.state.ValidPassword}
+                                    value={this.state.validPassword}
                                     onChange={this.onChangeValidPassword}
                                 />
+                                <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
+                                    {this.state.validPasswordError}
+                                </div> 
+                            <i className = {`fa ${isPasswordShown2? "fa-eye-slash" : "fa-eye"} re-password-icon`} onClick={this.togglePasswordVisiblity2}/>
                             </div>
 
                             <div className="button">

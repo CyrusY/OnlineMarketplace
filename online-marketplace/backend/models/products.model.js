@@ -2,15 +2,15 @@ const mongoose = require('mongoose');   //require mongoose
 
 const Schema = mongoose.Schema;     //mongoose schema start same
 
-const productSchema = new Schema({     //user schema with one field
+const productSchema = new Schema({     //product schema with one field
     productName: { type: String, required: true},
-    Price: { type: Number, required: true, defaultValue: false},
-    Status: { type: String, required: true},        // status either : new/ used
+    price: { type: Number, required: true, defaultValue: false},
+    condition: { type: String, required: true},        // condition either : new/ used
     postDate: { type: Date, default: Date.now},
     productDescription: { type: String, default: "No description."},
     ownerID: { type: mongoose.Schema.Types.ObjectId, required},
 });
 
-const products = mongoose.model('User', userSchema);
+const products = mongoose.model('Product', userSchema);
 
 module.exports = products;
