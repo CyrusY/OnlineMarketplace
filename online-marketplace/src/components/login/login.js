@@ -29,10 +29,14 @@ function Login() {
 
       setUser({ ...user, err: '', success: res.data.msg })
       localStorage.setItem('firstLogin', true)
+      console.log("Login success!");
+
+      alert('Login success!');
 
     } catch (err) {
       err.response.data.msg &&
         setUser({ ...user, err: err.response.data.msg, success: '' })
+        alert('Login unsuccess, please again');
     }
   } //handle the submition
 
