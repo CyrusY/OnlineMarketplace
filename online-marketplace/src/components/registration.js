@@ -1,8 +1,6 @@
 import React, { Component, useState } from 'react';
 import axios from 'axios';
 import './registration.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import usePasswordToggle from "./hooks/usePasswordToggle";
 
 export default class Registration extends Component {
 
