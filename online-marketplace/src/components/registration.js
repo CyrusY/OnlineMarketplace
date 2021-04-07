@@ -167,7 +167,7 @@ export default class Registration extends Component {
                 passwordError4: '',
                 validPasswordError: ''
             });
-            // window.location = '/';
+            window.location = '/login';
         }
     }
 
