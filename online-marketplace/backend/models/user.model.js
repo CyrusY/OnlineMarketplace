@@ -14,10 +14,10 @@ const userSchema = new Schema({     //user schema with one field
   timestamps: true, // tells mongoose to automatically assign createdAt and updatedAt fields to the schema
 });
 
-// userSchema.path('username').validate(async(username) => {
-//   const usernameCount = await mongoose.models.User.countDocuments({username})
-//   return !usernameCount
-// }, 'Username already exists')
+userSchema.path('username').validate(async(username) => {
+  const usernameCount = await mongoose.models.User.countDocuments({username})
+  return !usernameCount
+}, 'Username already exists')
 
 const User = mongoose.model('User', userSchema);
  
