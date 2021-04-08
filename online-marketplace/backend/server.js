@@ -16,7 +16,7 @@ app.use(cookieParser());
 /* allowed to pass and receive json */
 /* Express cors middleware */
 
-
+a=1
 const uri = process.env.ATLAS_URI;      // database uri, get from Mongo Altas dashboard (in .env file)
 /* ATLAS_URI - environmental variable */
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}
