@@ -66,15 +66,15 @@ router.route('/').get((req, res) => {       //  get request: 'localhost5000/user
     .catch(err => res.status(400).json('Error: ' + err));       // return status 400 if error 
 });
 
-router.route('/add').post((req, res) => {   // post request ,  could be tested in insomnia 
+router.route('/add').post((req, res) => {  // post request ,  could be tested in insomnia 
     const username = req.body.username;
     const email = req.body.email;
-    const password = req.body.password;             // can increase the security level by using bcrypt
+    const password = req.body.password;          // increase the security level by using bcrypt
     const validPassword = req.body.validPassword;
     const displayName = req.body.displayName;
     const description = req.body.description;    // by default: "No description."
     //const rating = Number(req.body.rating);    // by default: 0
-  
+    
     function validateEmail(test) {
         const emailRegexp = /^[^ ]+@[^]+\.[a-z]{2,3}$/;
         if (test.match(emailRegexp))
@@ -94,8 +94,8 @@ router.route('/add').post((req, res) => {   // post request ,  could be tested i
     if (password != validPassword) {
        return res.status(400).json({msg: "Passwords do not match. Please re-enter it again."})
     }
-
-  // validation
+  
+    // validation
     const newUser = new User({username, email, password, displayName, description/*, rating*/});     // create new user
 
     newUser.save()        // save the new user to DB
@@ -105,17 +105,15 @@ router.route('/add').post((req, res) => {   // post request ,  could be tested i
 
 router.route('/login').post(async(req, res) => {try {
   const email = req.body.email;
-    const password = req.body.password; 
-
+  const password = req.body.password; 
 
   const user = await User.findOne({email})
   if(!user) return res.status(400).json({msg: "This email does not exist."})
   
   if (password != user.password) {
     return res.status(400).json({msg: "Password is incorrect."})
- }
+  }
   
-
   const refresh_token = createRefreshToken({id: user._id})
   res.cookie('refreshtoken', refresh_token, {
       httpOnly: true,
@@ -127,7 +125,6 @@ router.route('/login').post(async(req, res) => {try {
 } catch (err) {
   return res.status(500).json({msg: err.message})
 }})
-
 
 router.route('/refresh_token').post((req, res) => {
   try {
@@ -144,8 +141,6 @@ router.route('/refresh_token').post((req, res) => {
     return res.status(500).json({msg: err.message})
 }
 })
-
-
 
 
 router.route('/:id').get((req, res) => {        
@@ -216,7 +211,5 @@ const createAccessToken = (payload) => {
 const createRefreshToken = (payload) => {
   return jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '7d'})
 }
-
-
 
 module.exports = router;    // exporting router
