@@ -94,10 +94,6 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
     if (password != validPassword) {
        return res.status(400).json({msg: "Passwords do not match. Please re-enter it again."})
     }
-<<<<<<< HEAD
-  
-    // validation
-=======
 
 
 
@@ -105,7 +101,6 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
 
 
   // validation
->>>>>>> 4ace2b45024fe8f9ae2433591f1a8ca81d396253
     const newUser = new User({username, email, password, displayName, description/*, rating*/});     // create new user
 
     newUser.save()        // save the new user to DB
@@ -113,13 +108,6 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
      .catch(err => res.status(400).json('Error: ' + err));   // return error if failed
 });
 
-<<<<<<< HEAD
-router.route('/login').post(async(req, res) => {try {
-  const email = req.body.email;
-  const password = req.body.password; 
-=======
-
->>>>>>> 4ace2b45024fe8f9ae2433591f1a8ca81d396253
 
 const userCtrl = {
   login: async (req, res) => {try {
@@ -128,36 +116,6 @@ const userCtrl = {
    
    
   
-<<<<<<< HEAD
-  if (password != user.password) {
-    return res.status(400).json({msg: "Password is incorrect."})
-  }
-  
-  const refresh_token = createRefreshToken({id: user._id})
-  res.cookie('refreshtoken', refresh_token, {
-      httpOnly: true,
-      path: '/users/refresh_token',
-      maxAge: 7*24*60*60*1000 // 7 days
-  }) // generate a cookiess ,token
-
-  res.json({msg: "Login success!"})
-} catch (err) {
-  return res.status(500).json({msg: err.message})
-}})
-
-router.route('/refresh_token').post((req, res) => {
-  try {
-    const rf_token = req.cookies.refreshtoken
-    if(!rf_token) return res.status(400).json({msg: "Please login now!"})
-
-    jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-        if(err) return res.status(400).json({msg: "Please login now!"})
-
-        const access_token = createAccessToken({id: user.id})
-        res.json({access_token})
-    })
-} catch (err) {
-=======
     const user = await User.findOne({email})
     if(!user) return res.status(400).json({msg: "This email does not exist."})
     
@@ -176,7 +134,6 @@ router.route('/refresh_token').post((req, res) => {
     res.json({msg: "Login success!"})
    
   } catch (err) {
->>>>>>> 4ace2b45024fe8f9ae2433591f1a8ca81d396253
     return res.status(500).json({msg: err.message})
   }},
   getAccessToken: (req, res) => {
@@ -197,15 +154,6 @@ router.route('/refresh_token').post((req, res) => {
 }
 
 
-<<<<<<< HEAD
-=======
-router.post('/login', userCtrl.login)
-
-router.post('/refresh_token', userCtrl.getAccessToken)
-
-
-
->>>>>>> 4ace2b45024fe8f9ae2433591f1a8ca81d396253
 router.route('/:id').get((req, res) => {        
     // id object was created by mongo automatically since object created , get request, return that test by that id
     User.findById(req.params.id)          // findByID
