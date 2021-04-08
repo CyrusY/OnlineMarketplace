@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 const mongoose = require('mongoose'); // used to connect to mongoDB database
 
 require('dotenv').config();     // having environment variable in .env file 
@@ -10,6 +12,7 @@ const port = process.env.PORT || 5000
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 /* allowed to pass and receive json */
 /* Express cors middleware */
 
