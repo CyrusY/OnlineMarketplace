@@ -2,8 +2,8 @@ const router = require('express').Router();     // express routers
 const express = require('express');
 //const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth')
 
-const session = require('express-session');
 /*
 const hbs = require('express-handlebar');
 const passport = require('passport');
@@ -153,7 +153,6 @@ const userCtrl = {
     }
 }
 }
-
 
 
 router.post('/login', userCtrl.login)
