@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();     // express routers
 const multer = require('multer');   // upload photo
 
-let Products = require("../models/products.model");
+let Products = require('../models/products.model');
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "../public/uploads/");
+    callback(null, '../public/uploads/');
   },
   filename: (req, file, callback) => {
     callback(null, file.originalname);
@@ -30,8 +30,6 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     productDescription: req.body.productDescription,
     productPhoto: req.file.originalname
   });
-
-  console.log(req.file.originalname);
 
   // validation
   newProduct.save()        // save the new user to DB
