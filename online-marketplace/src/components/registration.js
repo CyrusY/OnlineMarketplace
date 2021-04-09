@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './registration.css';
 
@@ -121,7 +121,7 @@ export default class Registration extends Component {
             passwordError4 = "Passwords need to contain a uppercase letter."
         }
 
-        if (this.state.password != this.state.validPassword) {
+        if (this.state.password !== this.state.validPassword) {
             validPasswordError = "Passwords do not match. Please re-enter it."
         }
 
@@ -266,8 +266,6 @@ export default class Registration extends Component {
                         </form>
                     </div>
                 </div>
-
-
             </div>
         )
     }

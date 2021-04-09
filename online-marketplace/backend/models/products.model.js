@@ -8,11 +8,10 @@ const productSchema = new Schema({     //product schema with one field
     condition: { type: String, required: true},        // condition either : new/ used
     postDate: { type: Date, default: Date.now},
     productDescription: { type: String, default: "No description."},
-    ownerID: { type: mongoose.Schema.Types.ObjectId, required: true},
-    productPhoto: {type: String, required: true},
+    // ownerID: { type: mongoose.Schema.Types.ObjectId, required: true},
+    productPhoto: {type: String, required: true}
 });
 
 const Products = mongoose.model('Products', productSchema);
 
 module.exports = Products;
-//

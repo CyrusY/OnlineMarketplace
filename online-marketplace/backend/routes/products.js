@@ -6,7 +6,7 @@ let Products = require("../models/products.model");
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, '../public/uploads');
+    callback(null, "../public/uploads/");
   },
   filename: (req, file, callback) => {
     callback(null, file.originalname);
@@ -14,16 +14,15 @@ const storage = multer.diskStorage({
 });
 
 /* storge image */
-
 const upload = multer({storage: storage});
  
-router.route("/").get((req, res) => {       //  get request: 'localhost:3000/product/' case
+router.get("/", (req, res) => {       //  get request: 'localhost:3000/product/' case
     Products.find()       //get list of Product in mongodb atlas
       .then(product => res.json(product))     //after find, return users in json format (from DB)
       .catch(err => res.status(400).json('Error: ' + err));       // return status 400 if error 
 });
 
-router.post("/add", upload.single("productPhoto"), (req, res) => {   // post request ,  could be tested in insomnia 
+router.post("/add", upload.single("productPhoto"), (req, res) => {   // post request
   const newProduct = new Products({
     productName: req.body.productName,
     price: Number(req.body.price),
@@ -31,6 +30,8 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     productDescription: req.body.productDescription,
     productPhoto: req.file.originalname
   });
+
+  console.log(req.file.originalname);
 
   // validation
   newProduct.save()        // save the new user to DB
