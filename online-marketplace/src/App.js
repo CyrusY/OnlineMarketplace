@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route,Switch} from "react-router-dom"
 import Navbar from "./components/Navbar/navbar";
 import Homepage from "./components/homepage";
 import EditUser from "./components/edit-user";
-import UploadProduct from "./components/upload-product";
+import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration";
 import Login from "./components/login/login";
 import ProductList from "./components/product-list";
@@ -62,12 +62,14 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path="/" > <Login /> </Route> 
-            <Route exact path="/create" > <UploadProduct /> </Route> 
+            <Route exact path="/upload" > <UploadProduct /> </Route> 
             <Route exact path="/user" > <Registration /> </Route> 
             <Route exact path="/login" > <Login /> </Route> 
             <Route exact path="/product" > <ProductList /> </Route> 
             <Route exact path="/edit" > <EditUser /> </Route> 
             <Route exact path="/aboutus"> <AboutUs /></Route>
+            <Route exact path="/homepage"> <Homepage /></Route>
+            
           </Switch>
         </div>
       </div>

@@ -1,70 +1,72 @@
 const express = require('express');
 const router = express.Router();     // express routers
-const multer = required('multer');   // upload photo
+const multer = require('multer');   // upload photo
 
-let Products = require("../models/products");
+let Products = require("../models/products.model");
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, '../public/uploads/');
+    callback(null, '../public/uploads');
   },
   filename: (req, file, callback) => {
     callback(null, file.originalname);
   }
 });
 
+/* storge image */
+
 const upload = multer({storage: storage});
-
-
-router.route('/').get((req, res) => {       //  get request: 'localhost5000/products/' case
-    Products.find()       //get list of users in mongodb atlas
-        .then(users => res.json(users))     //after find, return users in json format (from DB)
-        .catch(err => res.status(400).json('Error: ' + err));       // return status 400 if error 
+ 
+router.route("/").get((req, res) => {       //  get request: 'localhost:3000/product/' case
+    Products.find()       //get list of Product in mongodb atlas
+      .then(product => res.json(product))     //after find, return users in json format (from DB)
+      .catch(err => res.status(400).json('Error: ' + err));       // return status 400 if error 
 });
 
-router.route('/add', upload.single("productPhoto")).post((req, res) => {   // post request ,  could be tested in insomnia 
-    const pName = req.body.pName;
-    const pPrice = Number(req.body.pPrice);
-    const pStatus = req.body.pStatus;
-    const postDate = Date.parse(req.body.postDate);
-    const pDescription = req.body.pDescription;    // by default: ""
-    const productPhoto = req.file.originalname;
+router.post("/add", upload.single("productPhoto"), (req, res) => {   // post request ,  could be tested in insomnia 
+  const newProduct = new Products({
+    productName: req.body.productName,
+    price: Number(req.body.price),
+    condition: req.body.condition,
+    productDescription: req.body.productDescription,
+    productPhoto: req.file.originalname
+  });
 
   // validation
-    const newProduct = new User({pName, pPrice, pStatus, postDate, pDescription, productPhoto});     // create new user
-
-    newProduct.save()        // save the new user to DB
+  newProduct.save()        // save the new user to DB
      .then(() => res.json('Product uploaded!'))        // return "User added" if add success
      .catch(err => res.status(400).json('Error: ' + err));   // return error if failed
 });
 
-router.route('/:id').get((req, res) => {        
+router.get("/:id",(req, res) => {        
   // id object was created by mongo automatically since object created , get request, return that product photo by that id
   Products.findById(req.params.id)          // findByID
-    .then(Product => res.json(Product))       // return as json
-    .catch(err => res.status(400).json('Error: ' + err));
+    .then((product) => res.json(product))       // return as json
+    .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id', upload.single("productName")).post((req, res) => {    //update data of the object by id
+router.put("/update/:id", upload.single("productName"),(req, res) => {    //update data of the object by id
   Products.findById(req.params.id)
-  .then(Product => {
+  .then((product) => {
       /* start of the update from the post request, received from route('/update/:id') */
-      product.pName = req.body.pName;
-      product.pPrice = req.body.pPrice;
-      product.pStatus = req.body.pStatus;
-      product.pDescription = req.body.pDescription;
+      product.productName = req.body.productName;
+      product.price = Number(req.body.price);
+      product.condition = req.body.condition;
+      product.productDescription = req.body.productDescription;
       product.productPhoto = req.file.originalname;
       /* end */
 
-    user.save()
-      .then(() => res.json('User information updated!'))
+    product.save()
+      .then(() => res.json('Product Updated!'))
       .catch(err => res.status(400).json('Error: ' + err));
   })
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {     //pass in object id, delete request, delete that object by id
+router.delete("/:id",(req, res) => {     //pass in object id, delete request, delete that object by id
   Products.findByIdAndDelete(req.params.id)       //findByIdAndDelete
     .then(() => res.json('Product deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+module.exports = router;

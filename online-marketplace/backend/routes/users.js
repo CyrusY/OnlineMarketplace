@@ -60,7 +60,7 @@ passport.use(new localStrategy(
 /* passport.json */
 
 
-router.route('/').get((req, res) => {       //  get request: 'localhost5000/users/' case
+router.route('/').get((req, res) => {       //  get request: 'localhost:3000/users/' case
   User.find()       //get list of users in mongodb atlas
     .then(users => res.json(users))     //after find, return users in json format (from DB)
     .catch(err => res.status(400).json('Error: ' + err));       // return status 400 if error 
@@ -112,7 +112,7 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
 const userCtrl = {
   login: async (req, res) => {try {
     const email = req.body.email;
-      const password = req.body.password; 
+    const password = req.body.password; 
    
    
   

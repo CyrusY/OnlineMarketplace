@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+const hbs = require('express-handlebars');    //create views in express application
+const path = require('path');
+
 const mongoose = require('mongoose'); // used to connect to mongoDB database
 
 require('dotenv').config();     // having environment variable in .env file 
@@ -12,10 +15,10 @@ const port = process.env.PORT || 5000
 
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
 /* allowed to pass and receive json */
 /* Express cors middleware */
-
+app.use(express.static(path.join(__dirname, 'public')));   // serving static file
+app.use(cookieParser());
 
 const uri = process.env.ATLAS_URI;      // database uri, get from Mongo Altas dashboard (in .env file)
 /* ATLAS_URI - environmental variable */
@@ -24,7 +27,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedT
     //  constructor used for the new Server Discover and Monitoring engine
     //  "useNewUrlParser: true" - pass mongodb connection strings
     //  "useCreateIndex: true" - deparecating insurer index function
-
 
 const connection = mongoose.connection;
 connection.once('open', () => {
@@ -36,6 +38,9 @@ const usersRouter = require('./routes/users');    // go to path
 
 app.use('/users', usersRouter);
 // import to use
+
+const productsRouter = require('./routes/products');
+app.use('/products', productsRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
