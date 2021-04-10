@@ -52,7 +52,7 @@ export default class App extends Component {
       title: 'Logout',
       url: 'user',
       cName: 'nav-links-mobile'
-    }
+    },
   ]
 
   render() {
