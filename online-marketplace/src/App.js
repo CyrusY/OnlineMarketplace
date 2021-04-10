@@ -15,12 +15,17 @@ function App() {
   const MenuItemsBeforeLogin =[
     {
       title: 'Home',
-      url: 'login',
+      url: 'homepage',
       cName: 'nav-links'
     },
     {
       title: 'About us',
       url: 'aboutus',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Login',
+      url: 'login',
       cName: 'nav-links'
     },
     {
@@ -63,6 +68,7 @@ function App() {
           <Switch>
             <Route exact path="/" > <Login /> </Route> 
             <Route exact path="/upload" > <UploadProduct /> </Route> 
+            <Route exact path="/homepage" > <Homepage /> </Route> 
             <Route exact path="/user" > <Registration /> </Route> 
             <Route exact path="/login" > <Login /> </Route> 
             <Route exact path="/product" > <ProductList /> </Route> 
