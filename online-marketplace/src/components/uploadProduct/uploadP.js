@@ -106,7 +106,6 @@ export default class UploadProduct extends Component {
     return (
       <div className="upload-container">
         <div className="main-area">
-          <h1>Upload Product</h1>
           <div className="form-container">
             <form onSubmit={this.onSubmit} encType="multipart/form-data">
               <div className="text-field">
