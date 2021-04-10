@@ -66,18 +66,37 @@ onChangeProductPhoto(e) {
 onSubmit(e) {
     e.preventDefault();
 
-    const product =  {
-      productName: this.state.productName,
-      price: this.state.price,
-      condition: this.state.condition,
-      productDescription: this.state.productDescription,
+    const formData = new FormData();
+
+    formData.append("productName", this.state.productName);
+    formData.append("price", this.state.price);
+    formData.append("condition", this.state.condition);
+    formData.append("productDescription", this.state.productDescription);
+    // formData.append("ownerID", ownerID);
+    formData.append("productPhoto", this.state.productPhoto);
+
+  //   this.setState({
+  //     productName: '',
+  //     price: 0,
+  //     condition: '',
+  //     productDescription: '',
+  // });
+
+  //   const product =  {
+  //     productName: this.state.productName,
+  //     price: this.state.price,
+  //     condition: this.state.condition,
+  //     productDescription: this.state.productDescription,
       // ownerID: this.state.ownerID,
-      productPhoto: this.state.productPhoto
-  }
+      // productPhoto: this.state.productPhoto
+  // }
 
-  console.log(product);
+  for (var pair of formData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1] + ', ' + pair[2]+ ', ' + pair[3]); 
+}
+  // console.log(product);
 
-  axios.post("http://localhost:5000/products/add", product)
+  axios.post("http://localhost:5000/products/add", formData)
     .then(res => console.log(res.data))
     .catch(err=> {console.log(err);});
 }
@@ -118,7 +137,7 @@ render() {
           </div>
 
           <div className = "form-group">
-            <label htmlFor="description">Description on Item</label>
+            <label htmlFor="productDescription">Description on Item</label>
             <input
               type= "text"
               value = {this.state.productDescription}
@@ -129,7 +148,7 @@ render() {
           </div>
 
           <div className = "form-group">
-            <label htmlFor="file"> Choose Item Photo</label>
+            <label htmlFor="fileName"> Choose Item Photo</label>
             <input
               type = "file"
               filename="productPhoto"

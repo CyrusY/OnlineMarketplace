@@ -31,8 +31,6 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     productPhoto: req.file.originalname
   });
 
-  console.log(req.file.originalname);
-
   // validation
   newProduct.save()        // save the new user to DB
      .then(() => res.json("Product uploaded!"))        // return "User added" if add success

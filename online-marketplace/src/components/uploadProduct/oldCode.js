@@ -20,7 +20,6 @@ const UploadProduct = () => {
       formData.append("productName", productName);
       formData.append("price", price);
       formData.append("condition", condition);
-      formData.append("postDate", postDate);
       formData.append("productDescription", productDescription);
       formData.append("ownerID", ownerID);
       formData.append("fileName", fileName);

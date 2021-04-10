@@ -150,9 +150,11 @@ const userCtrl = {
     } catch (err) {
         return res.status(500).json({msg: err.message})
     }
-}
+ }
 }
 
+router.post('/login', userCtrl.login)
+router.post('/refresh_token', userCtrl.getAccessToken)
 
 router.route('/:id').get((req, res) => {        
     // id object was created by mongo automatically since object created , get request, return that test by that id
