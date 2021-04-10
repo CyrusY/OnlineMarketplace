@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
+import './homepage.css';
+import ImageSlider from './ImageSlider';
+import { SliderData } from './SliderData';
 
-export default class Homepage extends Component {
-
-render() {
-    return (
-      <div>
-          <h3>Welcome to Easy Trader! </h3>
-          <br></br>
-          <p>Content</p>
-      </div>
-    )
-  }
+function Homepage() {
+  return <ImageSlider slides={SliderData} />;
 }
+
+export default Homepage;
