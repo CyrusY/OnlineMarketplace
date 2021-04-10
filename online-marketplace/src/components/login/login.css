@@ -6,17 +6,17 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 130px 20px 110px 550px;
+    padding: 20vh 3vh 0vh 125vh;
     position: absolute;
-    top: 5;
+    top: 8vh;
     bottom: 10;
     left: 0;
     right: 0;
-    height: 70vh;
+    height:72vh;;
 }
 
 .login_page .main-area {
-    width:450px;
+    width: 50vh;
     max-width: 800px;
     margin: auto;
     color: #333;
@@ -26,8 +26,8 @@
 .login_page .form-container {
     float: right;
     max-width: 600px;
-    width: 80%;
-    padding: 30px 20px;
+    width: 45vh;
+    padding: 5vh 3vh;
     background: rgba(255, 255, 255, 0.836);
     box-shadow: 2px 2px 5px #666;
     align-items: center;
@@ -35,7 +35,7 @@
 
 .login_page .text-field
 {
-    width: 90%;
+    width: 38vh;
 }
 
 

@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import Navbar from "./components/Navbar/navbar";
-import Homepage from "./components/homepage";
+import Homepage from "./components/homepage/homepage";
 import EditUser from "./components/edit-user";
 import UploadProduct from "./components/uploadProduct/uploadP";
-import Registration from "./components/registration";
+import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
 import ProductList from "./components/productList/product-list";
 import AboutUs from "./components/about-us";
 
 export default class App extends Component {
-  login = true;
+  login = false;
 
   MenuItemsBeforeLogin = [
     {
@@ -49,17 +49,23 @@ export default class App extends Component {
       cName: 'nav-links'
     },
     {
+      title: 'Product List',
+      url: 'product',
+      cName: 'nav-links'
+    },
+
+    {
       title: 'Logout',
       url: 'user',
       cName: 'nav-links-mobile'
-    }
+    },
   ]
 
   render() {
 
     return (
       <Router>
-        <div className="App">
+        <div className="App-container">
           <Navbar menuItem={this.login ? this.MenuItemsAfterLogin: this.MenuItemsBeforeLogin} login={this.login}
           />
 
