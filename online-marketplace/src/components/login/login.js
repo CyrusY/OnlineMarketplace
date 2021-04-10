@@ -44,7 +44,6 @@ function Login() {
 
   return (
     <div className="login_page">
-
       <div className="main-area">
         <div className="form-container">
           <form onSubmit={handleSubmit}>
