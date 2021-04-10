@@ -9,10 +9,10 @@ import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
 import ProductList from "./components/productList/product-list";
-import AboutUs from "./components/about-us";
+import AboutUs from "./components/aboutus/about-us";
 
 export default class App extends Component {
-  login = false;
+  login = true;
 
   MenuItemsBeforeLogin = [
     {

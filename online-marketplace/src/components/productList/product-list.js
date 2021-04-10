@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './product-list';
-// import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default class ProductList extends Component {
 
