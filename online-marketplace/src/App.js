@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 //import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route,Switch} from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import Navbar from "./components/Navbar/navbar";
 import Homepage from "./components/homepage";
@@ -11,8 +11,10 @@ import Login from "./components/login/login";
 import ProductList from "./components/product-list";
 import AboutUs from "./components/about-us";
 
-function App() {
-  const MenuItemsBeforeLogin =[
+export default class App extends Component {
+  login = true;
+
+  MenuItemsBeforeLogin = [
     {
       title: 'Home',
       url: 'login',
@@ -27,9 +29,10 @@ function App() {
       title: 'Sign up',
       url: 'user',
       cName: 'nav-links-mobile'
-  }
+    },
+
   ]
-  const MenuItemsAfterLogin =[
+  MenuItemsAfterLogin = [
     {
       title: 'Home',
       url: 'homepage',
@@ -42,41 +45,41 @@ function App() {
     },
     {
       title: 'Upload Product',
-      url: 'create',
+      url: 'upload',
       cName: 'nav-links'
     },
     {
       title: 'Logout',
       url: 'user',
       cName: 'nav-links-mobile'
-  }
+    }
   ]
 
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Navbar menuItem={this.login ? this.MenuItemsAfterLogin: this.MenuItemsBeforeLogin} login={this.login}
+          />
 
-  return (
-    <Router>
-      <div className="App">
-        <Navbar menuItem={MenuItemsBeforeLogin} login={false} 
-        />
+          <div className="content">
+            <Switch>
+              <Route exact path="/" > <Login /> </Route>
+              <Route exact path="/upload" > <UploadProduct /> </Route>
+              <Route exact path="/user" > <Registration /> </Route>
+              <Route exact path="/login" > <Login /> </Route>
+              <Route exact path="/product" > <ProductList /> </Route>
+              <Route exact path="/edit" > <EditUser /> </Route>
+              <Route exact path="/aboutus"> <AboutUs /></Route>
+              <Route exact path="/homepage"> <Homepage /></Route>
 
-        <div className="content">
-          <Switch>
-            <Route exact path="/" > <Login /> </Route> 
-            <Route exact path="/upload" > <UploadProduct /> </Route> 
-            <Route exact path="/user" > <Registration /> </Route> 
-            <Route exact path="/login" > <Login /> </Route> 
-            <Route exact path="/product" > <ProductList /> </Route> 
-            <Route exact path="/edit" > <EditUser /> </Route> 
-            <Route exact path="/aboutus"> <AboutUs /></Route>
-            <Route exact path="/homepage"> <Homepage /></Route>
-            
-          </Switch>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
-export default App;
 
 

@@ -1,0 +1,79 @@
+
+
+.upload-container {
+    margin: auto;
+
+    background-image: url('/src/img/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 60px 20px 110px 550px;
+    position: absolute;
+    top: 5;
+    bottom: 10;
+    left: 0;
+    right: 0;
+    height: 70vh;
+}
+
+.upload-container .main-area {
+    width:80%;
+    max-width: 500px;
+    margin: auto;
+    color: #333;
+    font-size: 12px;
+}
+
+.upload-container .form-container {
+    float: right;
+    max-width: 600px;
+    width: 80%;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.836);
+    box-shadow: 2px 2px 5px #666;
+    align-items: center;
+}
+
+.upload-container input{
+    width: 100%;
+    height: 45px;
+    margin: 10px 0;
+    border: 2px solid #777;
+    outline: none;
+    padding: 0 10px;
+}
+
+.registration-container .text-field {
+    width: 90%;
+}
+
+.registration-container button{
+    width: 150px;
+    padding: 10px 0;
+    color: white;
+    background: black;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 960px) {
+    .upload-container {
+        padding: 60px ;
+        margin-top: 0;
+        height: 80vh;
+        
+    }
+    .upload-container .main-area {
+        width: 100%;
+    }
+    .upload-container .form-container {
+        width: 70%;
+        margin: 0 auto;
+        float: none;
+    }
+    
+
+
+}
