@@ -49,6 +49,12 @@ export default class App extends Component {
       cName: 'nav-links'
     },
     {
+      title: 'Product List',
+      url: 'product',
+      cName: 'nav-links'
+    },
+
+    {
       title: 'Logout',
       url: 'user',
       cName: 'nav-links-mobile'
