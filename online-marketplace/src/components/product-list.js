@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 
-export default class ProductList extends Component {
 
-render() {
+  const ProductList = ({ProductList=[]}) => {
     return (
-      <div>
-          <p>ProductList component</p>
-      </div>
-    )
+      <>
+      { ProductList.map((data,index) => {
+          if (data) {
+            return (
+              <div key={data.name}>
+                <h1>{data.name}</h1>
+        </div>	
+           )	
+         }
+         return null
+      }) }
+      </>
+    );
   }
-}
+  
+  export default ProductList
