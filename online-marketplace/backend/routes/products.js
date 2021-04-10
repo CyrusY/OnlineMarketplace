@@ -52,7 +52,7 @@ router.put("/update/:id", upload.single("productName"),(req, res) => {    //upda
       product.price = Number(req.body.price);
       product.condition = req.body.condition;
       product.productDescription = req.body.productDescription;
-      product.productPhoto = req.file.originalname;
+      // product.productPhoto = req.file.originalname;
       /* end */
 
     product.save()

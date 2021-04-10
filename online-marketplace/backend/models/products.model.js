@@ -9,7 +9,7 @@ const productSchema = new Schema({     //product schema with one field
     postDate: { type: Date, default: Date.now},
     productDescription: { type: String, default: "No description."},
     // ownerID: { type: mongoose.Schema.Types.ObjectId, required: true},
-    productPhoto: {type: String, required: true}
+    productPhoto: {type: String}
 });
 
 const Products = mongoose.model('Products', productSchema);
