@@ -76,13 +76,6 @@ export default class UploadProduct extends Component {
     // formData.append("ownerID", ownerID);
     formData.append("productPhoto", this.state.productPhoto);
 
-    //   this.setState({
-    //     productName: '',
-    //     price: 0,
-    //     condition: '',
-    //     productDescription: '',
-    // });
-
     //   const product =  {
     //     productName: this.state.productName,
     //     price: this.state.price,
