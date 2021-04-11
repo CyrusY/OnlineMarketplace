@@ -7,7 +7,7 @@ import './edit-user.css';
 /* three problems now: 
 1. textbox cant edit
 2. cant update
-3. get can depends on log-in user
+3. get cant depends on log-in user
 */
 
 export default class EditUser extends Component {
