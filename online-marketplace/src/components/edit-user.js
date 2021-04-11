@@ -7,7 +7,29 @@ import './edit-user.css';
 
 export default class EditUser extends Component {
 
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+          user:{}
+        }
+
+      }
+    
+      componentDidMount() {
+        axios.get('http://localhost:5000/users/60519a60167898652cc4723e')
+          .then(res => {
+            console.log(res)
+            this.setState({ user: res.data });
+          })
+          .catch(error => { console.log(error) })
+      }
+
+      
+
 render() {
+    const { user } = this.state
+    console.log(this.state.user.username);
     return (
       <div className="registration-container">
                 <div className="main-area">
@@ -20,8 +42,8 @@ render() {
                                     required
                                     placeholder='Enter display Name'
                                     className="form-control form-group"
-                                    //value={this.state.displayName}
-                                    onChange={this.onChangeDisplayName}
+                                    value={this.state.user.username}
+                                    onChange={this.state.user.username}
                                 />
                             </div>
 
@@ -31,16 +53,16 @@ render() {
                                     required
                                     placeholder='Enter description'
                                     className="form-control form-group"
-                                    //value={this.state.description}
+                                    value={this.state.user.description}
                                     onChange={this.onChangeDescription}
                                 />
                             </div>
 
                             <div className="button">
-                                <button type="submit">Register</button>
-                                <Link to="./login">Have an Account Already?</Link>
+                                <button type="submit">Update</button>
                             </div>
 
+                            
                         </form>
                     </div>
                 </div>
