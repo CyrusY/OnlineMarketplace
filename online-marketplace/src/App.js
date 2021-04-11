@@ -8,9 +8,8 @@ import EditUser from "./components/edit-user";
 import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
-import ProductList from "./components/product-list";
+import ProductList from "./components/productList/product-list";
 import AboutUs from "./components/aboutus/about-us";
-import "./App.css";
 
 export default class App extends Component {
   login = false;
@@ -63,6 +62,7 @@ export default class App extends Component {
   ]
 
   render() {
+
     return (
       <Router>
         <div className="App-container">
@@ -79,7 +79,6 @@ export default class App extends Component {
               <Route exact path="/edit" > <EditUser /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
               <Route exact path="/homepage"> <Homepage /></Route>
-
             </Switch>
           </div>
         </div>
