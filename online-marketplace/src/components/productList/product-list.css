@@ -15,8 +15,11 @@
 .product-list-container .grid-contianer{
     display: grid;
     grid-template-columns: auto auto auto;
+
     padding: 10px;
-    grid-column-gap: 0vh
+    grid-column-gap: 0vh;
+    align-content: space-between;
+    row-gap:2vh;
 
 }
 
@@ -25,4 +28,5 @@
     height: 30vh;
     border-radius: 2vh;
     background-color: rgba(109, 109, 109, 0.274);
+    
 }
