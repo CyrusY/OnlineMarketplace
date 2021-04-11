@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import './login.css'
-
+import { signin } from '../../redux/action/authAction';
+import {useDispatch} from 'react-redux'
 const initialState = {
   email: '',
   password: '',
@@ -12,7 +13,8 @@ const initialState = {
 
 function Login() {
   const [user, setUser] = useState(initialState)  //initial state
-
+  const dispatch = useDispatch()
+  const history = useHistory()
   const { email, password, err, success } = user
 
   const handleChangeInput = e => {
@@ -24,22 +26,15 @@ function Login() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    try {
-      const res = await axios.post('http://localhost:5000/users/login', { email, password })
+    
 
-      setUser({ ...user, err: '', success: res.data.msg })
-      localStorage.setItem('firstLogin', true)
+   
+    dispatch(signin(user, history));    
       
-      console.log("Login success!");
-      alert('Login success, Welcome!');
 
-    } catch (err) {
-      err.response.data.msg &&
-        setUser({ ...user, err: err.response.data.msg, success: '' })
-        alert('Login unsuccess, please again');
-    }
+  
   } //handle the submition
-
+  console.log("ssssssssssssssssssssssssssss")
 
 
   return (
