@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components'
-// import "bootstrap /dist/css/bootstrap.min.css";
 
-import './product-list';
+
+import './product-list.css';
 
 export default class ProductList extends Component {
 
@@ -26,13 +26,14 @@ export default class ProductList extends Component {
 render() {
   const {products}=this.state 
     return (
-      <div>
-        <h1>Happy Hunting!</h1>
+      <div className="product-list-container">
+        <div className="grid-contianer">
         {
           products.length ?
           products.map( product =>
           <MainContainer key = {product._id}>
-            <span className = "badge badge-dark">
+            <div className="card-container">
+            <span className = "tag-container">
               {product.productName}
             </span>
             <div
@@ -41,8 +42,12 @@ render() {
             </div>
             <div>posted at: {new Date(product.postDate).getDate() }</div>
             {/* <div>Description: {product.productDescription}</div> */}
+            </div>
+            
           </MainContainer>) : null
         }
+        </div>
+        
       </div>
     );
   }
