@@ -175,6 +175,8 @@ router.route('/update/:id').post((req, res) => {    //update data of the object 
     User.findById(req.params.id)
     .then(user => {
         /* start of the update from the post request, received from route('/update/:id') */
+      
+      
       user.displayName = req.body.displayName;
       user.description = req.body.description;
         /* end */
