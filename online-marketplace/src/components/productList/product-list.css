@@ -1,1 +1,32 @@
+.product-list-container{
+    
+    background-image: url('/src/img/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 5vh 5vh 5vh 5vh;
+    position: absolute;
+    top: 8vh;
+    bottom: 10;
+    left: 0;
+    right: 0;    
+}
 
+.product-list-container .grid-contianer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+
+    padding: 10px;
+    grid-column-gap: 0vh;
+    align-content: space-between;
+    row-gap:2vh;
+
+}
+
+.product-list-container .card-container{
+    width: 30vw;
+    height: 30vh;
+    border-radius: 2vh;
+    background-color: rgba(109, 109, 109, 0.274);
+    
+}

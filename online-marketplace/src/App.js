@@ -13,7 +13,7 @@ import ProductList from "./components/productList/product-list";
 import AboutUs from "./components/aboutus/about-us";
 
 export default class App extends Component {
-  login = false;
+  login = true;
 
   MenuItemsBeforeLogin = [
     {
