@@ -124,15 +124,11 @@ const userCtrl = {
    }
    
   
-    const refresh_token = createRefreshToken({id: user._id})
-    res.cookie('refreshtoken', refresh_token, {
-        httpOnly: true,
-        path: '/users/refresh_token',
-        maxAge: 7*24*60*60*1000 // 7 days
-    }) // generate a cookiess ,token
-  
-    res.json({msg: "Login success!"})
+   const token = jwt.sign({ email: user.email, id:  user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
    
+    
+
+   res.status(200).json({ result: user, token });
   } catch (err) {
     return res.status(500).json({msg: err.message})
   }},
@@ -150,11 +146,21 @@ const userCtrl = {
     } catch (err) {
         return res.status(500).json({msg: err.message})
     }
- }
-}
+ },abc: (req, res) => {
+  try {
+    console.log("sdsd213123123123135d");
+    res.send('<p>some html</p>');
+  } catch (err) {
+    console.log('some h');
+      return res.status(500).json({msg: err.message})
+  }
 
+}
+}
+router.get('/abc', auth,userCtrl.abc)
 router.post('/login', userCtrl.login)
 router.post('/refresh_token', userCtrl.getAccessToken)
+
 
 router.route('/:id').get((req, res) => {        
     // id object was created by mongo automatically since object created , get request, return that test by that id
@@ -175,6 +181,8 @@ router.route('/update/:id').post((req, res) => {    //update data of the object 
     User.findById(req.params.id)
     .then(user => {
         /* start of the update from the post request, received from route('/update/:id') */
+      
+      
       user.displayName = req.body.displayName;
       user.description = req.body.description;
         /* end */
