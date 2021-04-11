@@ -4,6 +4,8 @@ import styled from 'styled-components'
 
 
 import './product-list.css';
+import Product from './product/product';
+
 
 export default class ProductList extends Component {
 
@@ -12,16 +14,59 @@ export default class ProductList extends Component {
 
     this.state = {
       products: [],
+      menuVisiable: false
     }
+
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this);
+
   }
 
   componentDidMount() {
     axios.get('http://localhost:5000/products/')
       .then(res => {
-        console.log(res)
         this.setState({ products: res.data });
       })
       .catch(error => { console.log(error) })
+  }
+
+  handleMouseDown(e) {
+    this.toggleMenu();
+
+    console.log("clicked");
+    e.stopPropagation();
+  }
+
+  toggleMenu() {
+    this.setState({
+      visible: !this.state.visible
+    });
+  }
+
+  timeSince(date) {
+    var seconds = Math.floor((new Date() - new Date(date)) / 1000);
+    var interval = seconds / 31536000;
+
+    if (interval > 1) {
+      return Math.floor(interval) + " years";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
   }
 
   render() {
@@ -32,20 +77,21 @@ export default class ProductList extends Component {
           {
             products.length ?
               products.map(product =>
-                <div key={product._id} className="card-container">
-                 
-                    <span className="tag-container">
-                      {product.productName}
-                    </span>
-                    <div
-                      style={{ fontSize: 16, fontWeight: "bold" }}>HK${product.price}
-                      <span style={{ fontSize: 12, color: 'GrayText' }}> • {product.condition}</span>
-                    </div>
-                    <div>posted at: {new Date(product.postDate).getDate()}</div>
-                    {/* <div>Description: {product.productDescription}</div> */}
-                 
-
+                <div key={product._id} className="card-container" onMouseDown={this.handleMouseDown}>
+                  <h1>
+                    {product.productName}
+                  </h1>
+                  <span
+                    style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}
+                    <span className="tag">{product.condition}</span>
+                  </span>
+                  <div>posted at: {this.timeSince(product.postDate)}</div>
+                  {/* <div>Description: {product.productDescription}</div> */}
+                  <Product handleMouseDown={this.handleMouseDown}
+                    menuVisibility={this.state.visible} productId={product._id} />
                 </div>) : null
+
+
           }
         </div>
 
@@ -54,6 +100,4 @@ export default class ProductList extends Component {
   }
 }
 
-const MainContainer = styled.div`
-  margin: 7rem 0;
-`;
+
