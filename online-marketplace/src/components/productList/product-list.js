@@ -77,21 +77,25 @@ export default class ProductList extends Component {
           {
             products.length ?
               products.map(product =>
-                <div key={product._id} className="card-container" onMouseDown={this.handleMouseDown}>
-                  <Link to= {{
+                <div key={product._id} onMouseDown={this.handleMouseDown}>
+                  <Link to={{
                     pathname: `/product/${product._id}`
-                    }} >
-                    <h1>{product.productName}</h1>
+                  }} >
+                    <div className="card-container">
+                      <div className="card-text-container">
+                        <h1 id="pruductName">{product.productName}</h1>
+                        <span id="price"
+                          style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}
+                          <span id="id"className="tag">{product.condition}</span>
+                        </span>
+                        <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
+                      </div>
+                      <img id="image"src={`/uploads/${product.productPhoto}`} alt="..."></img>
+                    </div>
+
                   </Link>
-                  <img src = {`/uploads/${product.productPhoto}`} alt = "..."></img><br/>
-                  <span
-                    style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}
-                    <span className="tag">{product.condition}</span>
-                  </span>
-                  <div>posted at: {this.timeSince(product.postDate)}</div>
-                  {/* <div>Description: {product.productDescription}</div> */}
-                  <Product handleMouseDown={this.handleMouseDown}
-                    menuVisibility={this.state.visible} productId={product._id} />
+
+
                 </div>) : null
           }
         </div>
