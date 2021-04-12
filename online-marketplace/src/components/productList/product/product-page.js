@@ -4,24 +4,27 @@ import axios from 'axios';
  
 class Product extends Component {
     constructor(props){
-        
         super(props);
 
         this.state = {
-            products:{}
+            products:{},
           }
     }
 
+    getID() {
+      var pathname = window.location.pathname.split( '/' );
+        return pathname[2]
+    }
+
     componentDidMount() {
-        axios.get(`http://localhost:5000/products/${this.props.productId}`)
+        const productId = this.getID();
+        axios.get(`http://localhost:5000/products/${productId}`)
           .then(res => {
             console.log(res.data)
             this.setState({ products: res.data });
-            
           })
-          .catch(error => { console.log(error);  })
+          .catch(error => { console.log(error);})
       }
-
 
   render() {
     // var visibility = "hide";
@@ -29,7 +32,6 @@ class Product extends Component {
     // if (this.props.menuVisibility) {
     //   visibility = "show";
     // }
-    console.log('http://localhost:5000/products/'+this.props.productId)
     // console.log('http://localhost:5000/products/'+this.props.productId)
     return (
       // <div id="flyoutMenu"
@@ -41,8 +43,11 @@ class Product extends Component {
       //   <h2><a href="#">Search</a></h2>
       // </div>
       <div>
-        Hello, here is product <br/>
-        {this.props.productId}
+        Hello, here is product<br/>
+        Name: {this.state.products.productName}<br/>
+        Price: {this.state.products.price}<br/>
+        Condition: {this.state.products.condition}<br/>
+        Description {this.state.products.productDescription}<br/>
       </div>
     );
   }
