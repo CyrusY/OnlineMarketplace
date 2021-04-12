@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom';
 
 import './product-list.css';
-import Product from './product/product';
+import Product from './product/product-page';
 
 
 export default class ProductList extends Component {
@@ -78,9 +78,11 @@ export default class ProductList extends Component {
             products.length ?
               products.map(product =>
                 <div key={product._id} className="card-container" onMouseDown={this.handleMouseDown}>
-                  <h1>
-                    {product.productName}
-                  </h1>
+                  <Link to= {{
+                    pathname: `/product/${product._id}`
+                    }} >
+                    <h1>{product.productName}</h1>
+                  </Link>
                   <img src = {`/uploads/${product.productPhoto}`} alt = "..."></img><br/>
                   <span
                     style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}

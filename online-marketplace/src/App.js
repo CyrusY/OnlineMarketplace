@@ -9,6 +9,7 @@ import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
 import ProductList from "./components/productList/product-list";
+import Product from "./components/productList/product/product-page";
 import AboutUs from "./components/aboutus/about-us";
 
 export default class App extends Component {
@@ -76,6 +77,7 @@ export default class App extends Component {
               <Route exact path="/user" > <Registration /> </Route>
               <Route exact path="/login" > <Login /> </Route>
               <Route exact path="/product" > <ProductList /> </Route>
+              <Route exact path="/product/:id" > <Product /> </Route>
               <Route exact path="/edit" > <EditUser /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
               <Route exact path="/homepage"> <Homepage /></Route>
