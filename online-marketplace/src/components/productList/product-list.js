@@ -81,6 +81,7 @@ export default class ProductList extends Component {
                   <h1>
                     {product.productName}
                   </h1>
+                  <img src = {`/uploads/${product.productPhoto}`} alt = "..."></img><br/>
                   <span
                     style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}
                     <span className="tag">{product.condition}</span>
@@ -90,8 +91,6 @@ export default class ProductList extends Component {
                   <Product handleMouseDown={this.handleMouseDown}
                     menuVisibility={this.state.visible} productId={product._id} />
                 </div>) : null
-
-
           }
         </div>
 

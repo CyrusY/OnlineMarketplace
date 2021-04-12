@@ -8,6 +8,7 @@ import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 import * as actionType from '../../redux/action/index';
+
 const Navbar = ({ login, menuItem }) => {
     const dispatch = useDispatch();
     const [clicked, setClicked] = useState(false)
@@ -21,7 +22,7 @@ const Navbar = ({ login, menuItem }) => {
         history.push('/login');
         console.log("s2312312312313dsad")
         setUser(null);
-      };
+    };
 
     const classes = useStyles();
     console.log("sdhjhjjasdad",user);
@@ -31,17 +32,14 @@ const Navbar = ({ login, menuItem }) => {
         if (token) {
             const decodedToken = decode(token);
       
-            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-          }
-      
+            if (decodedToken.exp * 1000 < new Date().getTime())
+                logout();
+        }
     
         setUser(JSON.parse(localStorage.getItem('profile')));
-      }, [location]);
-
-    
+    }, [location]);
      
     return (
-
         <nav className={"NavbarItems"}>
             <a className="logohref" href={login ? "homepage" : "login"}><h1 className="navbar-logo">Easy Trade</h1></a>
 
@@ -64,10 +62,8 @@ const Navbar = ({ login, menuItem }) => {
             <form action="user">
                 <Button>{login ? "Log out" : "Sign up"} </Button>
             </form>
-
         </nav>
     )
-
 }
 
 export default Navbar;
