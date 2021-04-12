@@ -84,13 +84,12 @@ export default class ProductList extends Component {
                     <div className="card-container">
                       <div className="card-text-container">
                         <h1 id="pruductName">{product.productName}</h1>
-                        <span id="price"
-                          style={{ fontSize: 20, fontWeight: "bold" }}>HK${product.price}
-                          <span id="id"className="tag">{product.condition}</span>
+                        <span id="price">HK${product.price}
+                          <span id="id" className="tag">{product.condition}</span>
                         </span>
                         <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
                       </div>
-                      <img id="image"src={`/uploads/${product.productPhoto}`} alt="..."></img>
+                      <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
                     </div>
 
                   </Link>
