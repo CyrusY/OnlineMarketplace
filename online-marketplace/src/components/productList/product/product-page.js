@@ -13,7 +13,7 @@ class Product extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:5000/products/${this.state.products._id}`)
+        axios.get(`http://localhost:5000/products/${this.props.productId}`)
           .then(res => {
             console.log(res.data)
             this.setState({ products: res.data });
@@ -41,7 +41,8 @@ class Product extends Component {
       //   <h2><a href="#">Search</a></h2>
       // </div>
       <div>
-        Hello, here is product
+        Hello, here is product <br/>
+        {this.props.productId}
       </div>
     );
   }
