@@ -28,7 +28,7 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     price: Number(req.body.price),
     condition: req.body.condition,
     productDescription: req.body.productDescription,
-    OwnerID: req.body.OwnerID,
+    ownerId: req.body.ownerId,
     productPhoto: req.file.originalname,
   });
 

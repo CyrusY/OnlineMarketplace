@@ -97,13 +97,11 @@ export default class ProductList extends Component {
                         <span id="id" className="tag">{product.condition}</span>
                       </span>
                       <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
+                      {/* <div> {product.ownerId}</div> */}
+
                     </div>
                     <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
                   </div>
-
-
-
-
                 </div>) : null
 
           }

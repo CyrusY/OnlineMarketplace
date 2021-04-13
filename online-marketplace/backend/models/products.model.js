@@ -8,9 +8,11 @@ const productSchema = new Schema({     //product schema with one field
     condition: { type: String, required: true},        // condition either : new/ used
     postDate: { type: Date, default: Date.now},
     productDescription: { type: String, default: "No description."},
-    ownerID: { type: String, required: true},
-    productPhoto: {type: String}
+    ownerId: { type: Schema.Types.ObjectId, required: true},
+    productPhoto: {type: String},
 });
+
+//
 
 const Products = mongoose.model('Products', productSchema);
 
