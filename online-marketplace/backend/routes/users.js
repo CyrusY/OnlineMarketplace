@@ -257,19 +257,8 @@ router.route('/changePW/:id').post((req, res) => {    //update data of the objec
     User.findById(req.params.id)
     .then(user => {
         /* start of the update from the post request, received from route('/update/:id') */
-      const oldPassword = req.body.oldPassword;
-      
-      if ( oldPassword !== user.password ) {
-        console.log("user.password: " + user.password);
-        //return res.status(400).json({msg: "Wrong old password."})
-      }
 
       user.password = req.body.password;
-
-      if (req.body.password !==  req.body.validPassword) {
-        return res.status(400).json({msg: "Passwords do not match."})
-      }
-        /* end */
 
       user.save()
         .then(() => res.json('Password changed!'))

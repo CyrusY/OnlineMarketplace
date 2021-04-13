@@ -10,39 +10,71 @@ There are 2 things need to do:
 
 export default class ChangePw extends Component {
 
-  state = {
-    isPasswordShown : false
-  }
+    state = {
+        isPasswordShown : false
+    }
 
-togglePasswordVisiblity = () =>{
-    const {isPasswordShown} = this.state;
-    this.setState({ isPasswordShown: ! isPasswordShown});
-  }
-  
-  state = {
-    isPasswordShown1 : false
-  }
-
-togglePasswordVisiblity1 = () =>{
-    const {isPasswordShown1} = this.state;
-    this.setState({ isPasswordShown1: ! isPasswordShown1});
-  }
-
-state = {
-    isPasswordShown2 : false
-  }
-
-togglePasswordVisiblity2 = () =>{
-    const {isPasswordShown2} = this.state;
-    this.setState({ isPasswordShown2: ! isPasswordShown2});
-  }
+    togglePasswordVisiblity = () =>{
+        const {isPasswordShown} = this.state;
+        this.setState({ isPasswordShown: ! isPasswordShown});
+    }
     
-    constructor(props){
+    state = {
+        isPasswordShown2 : false
+    }
+
+    togglePasswordVisiblity2 = () =>{
+        const {isPasswordShown2} = this.state;
+        this.setState({ isPasswordShown2: ! isPasswordShown2});
+    }
+
+    state = {
+        isPasswordShown3 : false
+    }
+
+    togglePasswordVisiblity3 = () =>{
+        const {isPasswordShown3} = this.state;
+        this.setState({ isPasswordShown3: ! isPasswordShown3});
+    }
+
+    constructor(props) {
         super(props);
 
+        this.onChangeOldPassword = this.onChangeOldPassword.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeValidPassword = this.onChangeValidPassword.bind(this);
+
+        this.onSubmit = this.onSubmit.bind(this);
+    
         this.state = {
-            users:{},
-          }
+          user:{} ,
+          oldPassword: '',
+          password: '',
+          validPassword: '',
+
+          oldPasswordError:'',
+          passwordError1: '',
+          passwordError2: '',
+          passwordError3: '',
+          passwordError4: '',
+          validPasswordError: ''
+        }
+    }
+
+    onChangeOldPassword(e) {
+        this.setState({
+            oldPassword: e.target.value
+        })
+    }
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
+    onChangeValidPassword(e) {
+        this.setState({
+            validPassword: e.target.value
+        })
     }
 
     getID (){
@@ -60,86 +92,74 @@ togglePasswordVisiblity2 = () =>{
         const userId = this.getID();
         axios.get(`http://localhost:5000/users/${userId}`)
           .then(res => {
-            console.log(res.data)
-            this.setState({ users: res.data });
+            this.setState({ user: res.data });
           })
           .catch(error => { console.log(error);})
       }
 
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    onChangeValidPassword(e) {
-        this.setState({
-            validPassword: e.target.value
-        })
-    }
-
     validate = () => {
-      let passwordError1 = "";
-      let passwordError2 = "";
-      let passwordError3 = "";
-      let passwordError4 = "";
+        let oldPasswordError = "";
 
-      let validPasswordError = "";
+        let passwordError1 = "";
+        let passwordError2 = "";
+        let passwordError3 = "";
+        let passwordError4 = "";
 
-      if (this.state.password.length < 8) {
-          passwordError1 = "Passwords need to be at least 8 characters long."
-      }
-      if (! /\d/.test(this.state.password)) {
-          passwordError2 = "Passwords need to contain a number."
-      }
-      if (! /[a-z]/.test(this.state.password)) {
-          passwordError3 = "Passwords need to contain a lowercase letter."
-      }
-      if (! /[A-Z]/.test(this.state.password)) {
-          passwordError4 = "Passwords need to contain a uppercase letter."
-      }
+        let validPasswordError = "";
 
-      if (this.state.password !== this.state.validPassword) {
-          validPasswordError = "Passwords do not match. Please re-enter it."
-      }
+        if (this.state.oldPassword !== this.state.user.password) {
+            oldPasswordError = "The old password is incorrect."
+        }
 
-      if (passwordError1||passwordError2||passwordError3||passwordError4||validPasswordError) {
-          this.setState({passwordError1,passwordError2,passwordError3,passwordError4, validPasswordError});
-          return false;
-      }
+        if (this.state.password.length < 8) {
+            passwordError1 = "Passwords need to be at least 8 characters long."
+        }
+        if (! /\d/.test(this.state.password)) {
+            passwordError2 = "Passwords need to contain a number."
+        }
+        if (! /[a-z]/.test(this.state.password)) {
+            passwordError3 = "Passwords need to contain a lowercase letter."
+        }
+        if (! /[A-Z]/.test(this.state.password)) {
+            passwordError4 = "Passwords need to contain a uppercase letter."
+        }
 
-      return true;
+        if (this.state.password !== this.state.validPassword) {
+            validPasswordError = "Passwords do not match. Please re-enter it."
+        }
+
+        if (oldPasswordError||passwordError1||passwordError2||passwordError3||passwordError4||validPasswordError) {
+            this.setState({oldPasswordError,passwordError1,passwordError2,passwordError3,passwordError4, validPasswordError});
+            return false;
+        }
+
+        return true;
     }
 
     onSubmit(e) {
     e.preventDefault();
 
     const user = {
-        username: this.state.username,
-        displayName: this.state.displayName,
-        email: this.state.email,
         password: this.state.password,
-        validPassword: this.state.validPassword,
       }
 
     const isValid = this.validate();
 
     if(isValid) {
+        const url = 'http://localhost:5000/users/changePW/';
+        const id = this.state.user._id;
         console.log(user);
-        axios.post('http://localhost:5000/users/add', user)
-        .then(res => console.log(res.data));
-        alert('Account created! Welcome, ' + this.state.displayName + '!');
+        axios.post(url + id, user)
+            .then(res => console.log(res.data));
+        alert('Password Changed!');
 
         /* clear form and error */
         this.setState({
-            username: '',
-            displayName: '',
-            email: '',
+            oldPassword: '',
             password: '',
             validPassword: '',
-
-            usernameError: '',
-            emailError: '',
+      
+            oldPasswordError:'',
             passwordError1: '',
             passwordError2: '',
             passwordError3: '',
@@ -151,44 +171,33 @@ togglePasswordVisiblity2 = () =>{
     }
 
   render() {
-    // console.log(this.state.users.username + "| username")
     const {isPasswordShown} = this.state;
-    const {isPasswordShown1} = this.state;
     const {isPasswordShown2} = this.state;
+    const {isPasswordShown3} = this.state;
 
     return (
       <div className="registration-container">
       <div className="main-area">
           <div className="form-container">
               <form onSubmit={this.onSubmit}>
-
                   <div className="text-field">
                       <label htmlFor="user">Old Password</label>
                       <input type={(isPasswordShown)? "text" : "password"}
                           required
                           placeholder='Enter old password'
                           className="form-control form-group"
-                          value={this.state.password}
-                          onChange={this.onChangePassword}
-                      />
+                          value={this.state.oldPassword}
+                          onChange={this.onChangeOldPassword}
+                      /> 
                       <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
-                          {this.state.passwordError1}
-                      </div> 
-                      <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
-                          {this.state.passwordError2}
-                      </div> 
-                      <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
-                          {this.state.passwordError3}
-                      </div> 
-                      <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
-                          {this.state.passwordError4}
+                          {this.state.oldPasswordError}
                       </div> 
                       <i className = {`fa ${isPasswordShown? "fa-eye-slash" : "fa-eye"} password-icon`} onClick={this.togglePasswordVisiblity}/>
                   </div>
 
                   <div className="text-field">
                       <label htmlFor="user">New Password</label>
-                      <input type={(isPasswordShown1)? "text" : "password"}
+                      <input type={(isPasswordShown2)? "text" : "password"}
                           required
                           placeholder='Enter New Password'
                           className="form-control form-group"
@@ -207,12 +216,12 @@ togglePasswordVisiblity2 = () =>{
                       <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
                           {this.state.passwordError4}
                       </div> 
-                      <i className = {`fa ${isPasswordShown1? "fa-eye-slash" : "fa-eye"} password-icon`} onClick={this.togglePasswordVisiblity1}/>
+                      <i className = {`fa ${isPasswordShown2? "fa-eye-slash" : "fa-eye"} password-icon`} onClick={this.togglePasswordVisiblity2}/>
                   </div>
 
                   <div className="text-field">
-                      <label htmlFor="user">Re-type New Password</label>
-                      <input type={(isPasswordShown2)? "text" : "password"}
+                      <label htmlFor="user">Re-type New Password </label>
+                      <input type={(isPasswordShown3)? "text" : "password"}
                           required
                           placeholder='Re-type New Password'
                           className="form-control form-group"
@@ -222,7 +231,7 @@ togglePasswordVisiblity2 = () =>{
                       <div style={{fontSize:12, color: "red", fontWeight: "bold"}}>
                           {this.state.validPasswordError}
                       </div> 
-                  <i className = {`fa ${isPasswordShown2? "fa-eye-slash" : "fa-eye"} re-password-icon`} onClick={this.togglePasswordVisiblity2}/>
+                  <i className = {`fa ${isPasswordShown3? "fa-eye-slash" : "fa-eye"} re-password-icon`} onClick={this.togglePasswordVisiblity3}/>
                   </div>
 
                   <div className="button">
