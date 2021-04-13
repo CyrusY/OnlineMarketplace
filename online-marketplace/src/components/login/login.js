@@ -34,8 +34,6 @@ function Login() {
 
   
   } //handle the submition
-  console.log("ssssssssssssssssssssssssssss")
-
 
   return (
     <div className="login_page">
