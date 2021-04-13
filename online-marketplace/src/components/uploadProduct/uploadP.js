@@ -106,64 +106,67 @@ export default class UploadProduct extends Component {
     return (
       <div className="upload-container">
         <div className="main-area">
-          <h1>Upload Product</h1>
-          <form onSubmit={this.onSubmit} encType="multipart/form-data">
-            <div className="form-group">
-              <label htmlFor="productName">Product Name</label>
-              <input
-                type="text"
-                value={this.state.productName}
-                onChange={this.onChangeProductName}
-                className="form-control"
-                placegolder="Product Name"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="price">Price (in HKD)</label>
-              <input
-                type="number"
-                value={this.state.price}
-                onChange={this.onChangePrice}
-                className="form-control"
-                placegolder="Price"
-              />
-            </div>
+          <div className="form-container">
+            <form onSubmit={this.onSubmit} encType="multipart/form-data">
+              <div className="text-field">
+                <label htmlFor="productName">Product Name</label>
+                <input
+                  type="text"
+                  value={this.state.productName}
+                  onChange={this.onChangeProductName}
+                  className="form-control"
+                  placegolder="Product Name"
+                />
+              </div>
+              <div className="text-field">
+                <label htmlFor="price">Price (in HKD)</label>
+                <input
+                  type="number"
+                  value={this.state.price}
+                  onChange={this.onChangePrice}
+                  className="form-control"
+                  placegolder="Price"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="condition">Condition of Item</label>
-              <select value={this.state.condition} onChange={this.onChangeCondition}>
-                <option value=""> </option>
-                <option value="New"> New </option>
-                <option value="Used"> Used </option>
-              </select>
-            </div>
+              <div className="text-field">
+                <label htmlFor="condition">Condition of Item</label>
+                <select value={this.state.condition} onChange={this.onChangeCondition}>
+                  <option value=""> </option>
+                  <option value="New"> New </option>
+                  <option value="Used"> Used </option>
+                </select>
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="productDescription">Description on Item</label>
-              <input
-                type="text"
-                value={this.state.productDescription}
-                onChange={this.onChangeProductDescription}
-                className="form-control"
-                placegolder="Description"
-              />
-            </div>
+              <div className="text-field">
+                <label htmlFor="productDescription">Description on Item</label>
+                <input
+                  type="text"
+                  value={this.state.productDescription}
+                  onChange={this.onChangeProductDescription}
+                  className="form-control"
+                  placegolder="Description"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="fileName"> Choose Item Photo</label>
-              <input
-                type="file"
-                filename="productPhoto"
-                className="form-control-file"
-                onChange={this.onChangeProductPhoto}
-              />
-            </div>
+              <div className="text-field">
+                <label htmlFor="fileName"> Choose Item Photo</label>
+                <input
+                  type="file"
+                  filename="productPhoto"
+                  className="form-control-file"
+                  onChange={this.onChangeProductPhoto}
+                />
+              </div>
 
-            <div className="button">
-              <button type="submit">Upload Item</button>
-            </div>
+              <div className="button">
+                <button type="submit">Upload Item</button>
+              </div>
 
-          </form>
+            </form>
+
+          </div>
+
         </div>
 
 

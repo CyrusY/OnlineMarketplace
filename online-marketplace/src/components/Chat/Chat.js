@@ -9,10 +9,10 @@ import Input from '../Input/Input';
 
 import './Chat.css';
 
+fetch('http://localhost:5000/', {mode:'cors'});
 
 
-
-const ENDPOINT = 'localhost:5000';
+const ENDPOINT = 'http://localhost:5000/';
 
 let socket;
 

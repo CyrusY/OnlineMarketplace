@@ -3,11 +3,13 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    padding-left: 5vh;
+    padding-right: 5vh;
     top: 5;
     bottom: 10;
     left: 0;
     right: 0;
-    height:130vh;
+    height:92vh;
 }
 
 .about-us-container .content-container{
