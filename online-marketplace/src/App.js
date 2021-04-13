@@ -10,14 +10,21 @@ import Registration from "./components/registration";
 import Login from "./components/login/login";
 import ProductList from "./components/product-list";
 import AboutUs from "./components/about-us";
+import Chat from './components/Chat/Chat';
+import Join from './components/Join/Join';
 
 export default class App extends Component {
-  login = true;
+  login = false;
 
   MenuItemsBeforeLogin = [
     {
       title: 'Home',
       url: 'login',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Chat',
+      url: 'join',
       cName: 'nav-links'
     },
     {
@@ -71,6 +78,8 @@ export default class App extends Component {
               <Route exact path="/product" > <ProductList /> </Route>
               <Route exact path="/edit" > <EditUser /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
+              <Route path="/chat" component={Chat} />
+              <Route path="/join" exact component={Join} />
               <Route exact path="/homepage"> <Homepage /></Route>
 
             </Switch>
