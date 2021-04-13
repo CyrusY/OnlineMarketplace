@@ -14,11 +14,13 @@ export default class ProductList extends Component {
 
     this.state = {
       products: [],
-      menuVisiable: false
-    }
+      show: false,
+      productId: '',
+      paymentForm :null,
 
-    this.toggleMenu = this.toggleMenu.bind(this);
+    }
     this.handleMouseDown = this.handleMouseDown.bind(this);
+
 
   }
 
@@ -30,17 +32,28 @@ export default class ProductList extends Component {
       .catch(error => { console.log(error) })
   }
 
-  handleMouseDown(e) {
-    this.toggleMenu();
+  componentDidUpdate(prevProps, prevState) {
+    const { ID, cmbID } = this.state
+    const { ID: prevId, cmbID: prevCmbId } = prevState;
+    if (ID !== prevId || cmbID !== prevCmbId) {
+        if (typeof ID !== 'undefined' && typeof cmbID !== 'undefined') {
+            this.dataListener();
+            this.fetching()
+        }
+    }
 
+}
+
+  handleMouseDown(productId) {
     console.log("clicked");
-    e.stopPropagation();
+    this.state.show = true;
+    this.state.productId = productId;
+    console.log( this.state.show);
   }
 
-  toggleMenu() {
-    this.setState({
-      visible: !this.state.visible
-    });
+
+  closeModelHandler() {
+    this.state.show = false;
   }
 
   timeSince(date) {
@@ -77,28 +90,30 @@ export default class ProductList extends Component {
           {
             products.length ?
               products.map(product =>
-                <div key={product._id} onMouseDown={this.handleMouseDown}>
-                  <Link to={{
-                    pathname: `/product/${product._id}`
-                  }} >
-                    <div className="card-container">
-                      <div className="card-text-container">
-                        <h1 id="pruductName">{product.productName}</h1>
-                        <span id="price">HK${product.price}
-                          <span id="id" className="tag">{product.condition}</span>
-                        </span>
-                        <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-                      </div>
-                      <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
+                <div key={product._id} onMouseDown={() => this.handleMouseDown(product._id)}>
+                  <div className="card-container">
+                    <div className="card-text-container">
+                      <h1 id="pruductName">{product.productName}</h1>
+                      <span id="price">HK${product.price}
+                        <span id="id" className="tag">{product.condition}</span>
+                      </span>
+                      <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
                     </div>
+                    <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
+                  </div>
 
-                  </Link>
+
 
 
                 </div>) : null
-          }
-        </div>
 
+          }
+
+        </div>
+        <div className='form-container'>
+          {(this.state.show) ?
+            (<Product  productId={this.state.productId} />) : ''}
+        </div>
       </div>
     );
   }
