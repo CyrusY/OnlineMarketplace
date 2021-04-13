@@ -25,7 +25,7 @@ const Navbar = ({ login, menuItem }) => {
     };
 
     const classes = useStyles();
-    console.log("sdhjhjjasdad",user);
+   
     useEffect(() => {
         const token = user?.token;
     
@@ -43,7 +43,7 @@ const Navbar = ({ login, menuItem }) => {
         <nav className={"NavbarItems"}>
             <a className="logohref" href={login ? "homepage" : "login"}><h1 className="navbar-logo">Easy Trade</h1></a>
 
-            <h5 className="dsd" style={{ color: 'red' }} >{user? (  user?.result.username ): "name of user"}</h5> 
+            <h5 className="dsd" style={{ color: 'black' }} >{user? (  user?.result.username ): "Guess"}</h5> 
             <div className="menu-icon" onClick={() => setClicked(!clicked)}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>
@@ -57,10 +57,12 @@ const Navbar = ({ login, menuItem }) => {
                         </li>
                     )
                 })}
-                  <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>realLogout</Button>
+             
             </ul>
             <form action="user">
-                <Button>{login ? "Log out" : "Sign up"} </Button>
+             {user? <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>{ 'real logout' }</Button>: <Button>{ "Sign up"} </Button> }
+            
+               
             </form>
         </nav>
     )
