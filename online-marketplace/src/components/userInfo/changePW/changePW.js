@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+/*
+There are 2 things need to do:
+1.Check the old password match the input old pw
+2.valid new password
+*/
+
 export default class ChangePw extends Component {
 
   state = {
@@ -59,6 +65,90 @@ togglePasswordVisiblity2 = () =>{
           })
           .catch(error => { console.log(error);})
       }
+
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    onChangeValidPassword(e) {
+        this.setState({
+            validPassword: e.target.value
+        })
+    }
+
+    validate = () => {
+      let passwordError1 = "";
+      let passwordError2 = "";
+      let passwordError3 = "";
+      let passwordError4 = "";
+
+      let validPasswordError = "";
+
+      if (this.state.password.length < 8) {
+          passwordError1 = "Passwords need to be at least 8 characters long."
+      }
+      if (! /\d/.test(this.state.password)) {
+          passwordError2 = "Passwords need to contain a number."
+      }
+      if (! /[a-z]/.test(this.state.password)) {
+          passwordError3 = "Passwords need to contain a lowercase letter."
+      }
+      if (! /[A-Z]/.test(this.state.password)) {
+          passwordError4 = "Passwords need to contain a uppercase letter."
+      }
+
+      if (this.state.password !== this.state.validPassword) {
+          validPasswordError = "Passwords do not match. Please re-enter it."
+      }
+
+      if (passwordError1||passwordError2||passwordError3||passwordError4||validPasswordError) {
+          this.setState({passwordError1,passwordError2,passwordError3,passwordError4, validPasswordError});
+          return false;
+      }
+
+      return true;
+    }
+
+    onSubmit(e) {
+    e.preventDefault();
+
+    const user = {
+        username: this.state.username,
+        displayName: this.state.displayName,
+        email: this.state.email,
+        password: this.state.password,
+        validPassword: this.state.validPassword,
+      }
+
+    const isValid = this.validate();
+
+    if(isValid) {
+        console.log(user);
+        axios.post('http://localhost:5000/users/add', user)
+        .then(res => console.log(res.data));
+        alert('Account created! Welcome, ' + this.state.displayName + '!');
+
+        /* clear form and error */
+        this.setState({
+            username: '',
+            displayName: '',
+            email: '',
+            password: '',
+            validPassword: '',
+
+            usernameError: '',
+            emailError: '',
+            passwordError1: '',
+            passwordError2: '',
+            passwordError3: '',
+            passwordError4: '',
+            validPasswordError: ''
+        });
+        // window.location = '/login';
+      }
+    }
 
   render() {
     // console.log(this.state.users.username + "| username")
