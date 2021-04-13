@@ -68,7 +68,7 @@
 }
 
 .registration-container button{
-    width: 20vh;
+    width: 25vw;
     padding: 10px 0;
     color: white;
     background: black;
@@ -80,7 +80,7 @@
 
 @media screen and (max-width: 960px) {
     .registration-container {
-        padding: 60px ;
+        padding:10vw ;
         margin-top: 0;
         height: 80vh;
         
@@ -89,11 +89,32 @@
         width: 100%;
     }
     .registration-container .form-container {
-        width: 70%;
+        width: 65vw;
         margin: 0 auto;
         float: none;
     }
+
+
+    .registration-container input{
+        width: 60vw;
+        height: 6vh;
+        border: 2px solid #777;
+        outline: none;
+    
+    }
+
+    .registration-container button{
+        width: 25vw;
+    }
     
 
+    .registration-container .re-password-icon{
+        right: 2vh;
+    }
+
+    
+    .registration-container .password-icon{
+        right: 2vh;
+    }
 
 }
