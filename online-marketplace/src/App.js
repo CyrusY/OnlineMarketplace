@@ -42,8 +42,8 @@ export default class App extends Component {
       cName: 'nav-links'
     },
     {
-      title: 'Edit Personal Information',
-      url: 'edit',
+      title: 'Personal Information',
+      url: 'info',
       cName: 'nav-links'
     },
     {

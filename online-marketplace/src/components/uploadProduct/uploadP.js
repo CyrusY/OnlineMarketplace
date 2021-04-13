@@ -64,8 +64,21 @@ export default class UploadProduct extends Component {
     })
   }
 
+  getID (){
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try {return User.result._id;}
+    catch(error){
+        console.log('Please sign in to enable function');
+        window.location = '/login';
+        alert('Please sign in to enable member function');
+        return undefined;
+    }
+  }
+  
   onSubmit(e) {
     e.preventDefault();
+
+    const userId = this.getID();
 
     const formData = new FormData();
 
@@ -73,7 +86,7 @@ export default class UploadProduct extends Component {
     formData.append("price", this.state.price);
     formData.append("condition", this.state.condition);
     formData.append("productDescription", this.state.productDescription);
-    // formData.append("ownerID", ownerID);
+    formData.append("ownerID", userId);
     formData.append("productPhoto", this.state.productPhoto);
 
     //   this.setState({
@@ -93,13 +106,19 @@ export default class UploadProduct extends Component {
     // }
 
     for (var pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1] + ', ' + pair[2] + ', ' + pair[3]);
+      console.log(pair[0] + ', ' + pair[1]);
     }
     // console.log(product);
 
     axios.post("http://localhost:5000/products/add", formData)
-      .then(res => console.log(res.data))
+      .then(res => {console.log(res.data)})
       .catch(err => { console.log(err); });
+
+    // if () {
+    //   window.location = '/product';
+    //   alert('Your item has been uploaded! Check out the product list!');
+    // }
+      
   }
 
   render() {

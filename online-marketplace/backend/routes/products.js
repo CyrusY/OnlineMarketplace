@@ -28,7 +28,8 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     price: Number(req.body.price),
     condition: req.body.condition,
     productDescription: req.body.productDescription,
-    productPhoto: req.file.originalname
+    OwnerID: req.body.OwnerID,
+    productPhoto: req.file.originalname,
   });
 
   // validation
