@@ -150,7 +150,7 @@ export default class Registration extends Component {
             console.log(user);
             axios.post('http://localhost:5000/users/add', user)
             .then(res => console.log(res.data));
-            alert('Account created! Welcome, ' + this.state.displayName + '!');
+            alert('Email has been sent, please check your email box, ' + this.state.displayName + '!');
 
             /* clear form and error */
             this.setState({

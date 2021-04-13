@@ -10,6 +10,7 @@ import ChangePw from "./components/userInfo/changePW/changePW";
 import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
+import ActivationEmail from "./components/login/ActivationEmail";
 import ProductList from "./components/productList/product-list";
 import Product from "./components/productList/product/product-page";
 import AboutUs from "./components/aboutus/about-us";
@@ -85,6 +86,9 @@ export default class App extends Component {
               <Route exact path="/changePW" > <ChangePw /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
               <Route exact path="/homepage"> <Homepage /></Route>
+              <Route exact path="/:activation_token" > <ActivationEmail/> </Route>
+
+            
             </Switch>
           </div>
         </div>
