@@ -1,5 +1,5 @@
 .NavbarItems {
-    color: #fff;
+    color: rgb(255, 255, 255);
     height: 8vh;
     display: flex;
     justify-content: center;
@@ -118,7 +118,7 @@
         display: block;
         position: absolute;
         top:-5px;
-        right: 0;
+        right: 5vw;
         transform: translate(-100%, 60%);
         font-size: 1.8rem;
         cursor: pointer;
