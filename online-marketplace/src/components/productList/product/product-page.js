@@ -44,6 +44,7 @@ class Product extends Component {
       // </div>
       <div>
         Hello, here is product<br/>
+        <img id="image" src={`/uploads/${this.state.products.productPhoto}`} alt="..."></img> <br/>
         Name: {this.state.products.productName}<br/>
         Price: {this.state.products.price}<br/>
         Condition: {this.state.products.condition}<br/>

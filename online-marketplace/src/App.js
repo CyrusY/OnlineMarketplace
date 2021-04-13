@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import Navbar from "./components/Navbar/navbar";
 import Homepage from "./components/homepage/homepage";
-import EditUser from "./components/edit-user";
+import Info from "./components/userInfo/info-page";
+import EditUser from "./components/userInfo/editUser/edit-user";
+import ChangePw from "./components/userInfo/changePW/changePW";
 import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
@@ -76,9 +78,11 @@ export default class App extends Component {
               <Route exact path="/upload" > <UploadProduct /> </Route>
               <Route exact path="/user" > <Registration /> </Route>
               <Route exact path="/login" > <Login /> </Route>
+              <Route exact path="/info" > <Info /> </Route>
               <Route exact path="/product" > <ProductList /> </Route>
               <Route exact path="/product/:id" > <Product /> </Route>
               <Route exact path="/edit" > <EditUser /> </Route>
+              <Route exact path="/changePW" > <ChangePw /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
               <Route exact path="/homepage"> <Homepage /></Route>
             </Switch>
