@@ -34,6 +34,7 @@ class Product extends Component {
 
     // console.log('http://localhost:5000/products/'+this.props.productId)
     return (
+<<<<<<< HEAD
       <div id="flyoutMenu"
         onMouseDown={this.props.handleMouseDown}
  >
@@ -41,6 +42,23 @@ class Product extends Component {
           {this.props.productId}
         </p>
         <h2><a href="#">Search</a></h2>
+=======
+      // <div id="flyoutMenu"
+      //      onMouseDown={this.props.handleMouseDown} 
+      //      className={visibility}>
+      //   <p>
+      //       {this.props.productId}
+      //   </p>
+      //   <h2><a href="#">Search</a></h2>
+      // </div>
+      <div>
+        Hello, here is product<br/>
+        <img id="image" src={`/uploads/${this.state.products.productPhoto}`} alt="..."></img> <br/>
+        Name: {this.state.products.productName}<br/>
+        Price: {this.state.products.price}<br/>
+        Condition: {this.state.products.condition}<br/>
+        Description {this.state.products.productDescription}<br/>
+>>>>>>> 03933f994b579b0ef39e6e94ac2871d3e572685e
       </div>
 
     );

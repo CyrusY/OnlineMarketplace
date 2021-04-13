@@ -124,7 +124,7 @@ const userCtrl = {
    }
    
   
-   const token = jwt.sign({ email: user.email, id:  user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10m" });
+   const token = jwt.sign({ email: user.email, id:  user._id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30m" });
    
     
 
