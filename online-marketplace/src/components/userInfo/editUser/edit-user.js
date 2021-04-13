@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import axios from 'axios';
 import './edit-user.css';
 
@@ -24,12 +23,25 @@ export default class EditUser extends Component {
         }
       }
     
+      getID (){
+        let User = JSON.parse(localStorage.getItem('profile'));
+        try {return User.result._id;}
+        catch(error){
+            console.log('Please sign in to enable function');
+            window.location = '/login';
+            alert('Please sign in to enable member function');
+            return undefined;
+        }
+    }
+
     componentDidMount() {
-        axios.get('http://localhost:5000/users/60519af6167898652cc47243')
+        const userId = this.getID();
+        axios.get(`http://localhost:5000/users/${userId}`)
           .then(res => {
+            console.log(res.data)
             this.setState({ user: res.data });
           })
-          .catch(error => { console.log(error) })
+          .catch(error => { console.log(error);})
       }
     
     onChangeDisplayName(e) {
@@ -92,23 +104,22 @@ export default class EditUser extends Component {
 
 render() {
     const { user } = this.state
+    console.log("current user's id is:" + this.state.user._id)
     return (
         <div className="registration-container">
             <div className="main-area">
                 <div className="form-container">
                 <div style={{ fontSize: 16, color: 'BlackText' }}>
-                    Hi {this.state.user.username} <br/>
-                    Original displayname: {this.state.user.displayName}<br/>
-                    Original Description: {this.state.user.description}<br/>
-                    (ref: {this.state.user._id})
+                    Hi {this.state.user.username}, Here is the current information <br/><br/>
+                    Displayname: {this.state.user.displayName}<br/>
+                    Description: {this.state.user.description}<br/>
                  </div>
                     <br/>
                     <form onSubmit={this.onSubmit}>
                         <div className="text-field">
                             <label htmlFor="user">Display Name</label>
                             <input type="text"
-                                required
-                                placeholder='Enter display Name'
+                                placeholder='New display Name'
                                 className="form-control form-group"
                                 value={this.state.displayName}
                                 onChange={this.onChangeDisplayName}
@@ -121,8 +132,7 @@ render() {
                         <div className="bigtext-field">
                             <label htmlFor="user">Description</label>
                             <input type="text"
-                                required
-                                placeholder='Enter description'
+                                placeholder='New description'
                                 className="form-control form-group"
                                 value={this.state.description}
                                 onChange={this.onChangeDescription}
