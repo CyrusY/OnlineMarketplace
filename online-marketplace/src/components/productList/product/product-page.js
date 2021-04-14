@@ -78,7 +78,7 @@ class Product extends Component {
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            //<a className="link-to-chat-button" href=''>
+          
             
             <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
               ?  e.preventDefault() : null}
@@ -87,9 +87,9 @@ class Product extends Component {
             
             </Link>
              
-              <i className="fas fa-comments-dollar"></i>
-            </a>
-
+             
+           
+            <div id="productOwner"> {product.ownerId}</div>
           </div>
           <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
         </div>
