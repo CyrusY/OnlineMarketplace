@@ -78,15 +78,15 @@ class Product extends Component {
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            //<a className="link-to-chat-button" href=''>
+          
             
             <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
-            <button className={'button mt-20'} type="submit">Sign In</button>
+            <i className="fas fa-comments-dollar"></i>
             
             </Link>
              
-              <i className="fas fa-comments-dollar"></i>
-            </a>
+             
+           
             <div id="productOwner"> {product.ownerId}</div>
           </div>
 
