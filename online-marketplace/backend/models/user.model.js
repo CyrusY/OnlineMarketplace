@@ -9,6 +9,7 @@ const userSchema = new Schema({     //user schema with one field
   displayName: { type: String },
   rating: { type: Number, default: 0, min:0 , max:5 },
   description: { type: String, maxlength: 255, default: "No description." },
+  chatUrl: { type: [String] }
 }, 
 {
   timestamps: true, // tells mongoose to automatically assign createdAt and updatedAt fields to the schema

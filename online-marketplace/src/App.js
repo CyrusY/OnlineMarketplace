@@ -19,7 +19,21 @@ import Chat from './components/Chat/Chat';
 import Join from './components/Join/Join';
 
 export default class App extends Component {
-  login = true;
+  login = this.loginTest();
+
+  getID () {
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try {return User.result._id;}
+    catch(error){
+      return undefined;
+    }
+  }
+
+  loginTest() {
+    const userId = this.getID();
+    if (userId == undefined) {return false;}
+    return true;
+  }
 
   MenuItemsBeforeLogin = [
     {
@@ -80,7 +94,6 @@ export default class App extends Component {
         <div className="App-container">
           <Navbar menuItem={this.login ? this.MenuItemsAfterLogin: this.MenuItemsBeforeLogin} login={this.login}
           />
-
           <div className="content">
             <Switch>
               <Route exact path="/" > <Login /> </Route>
