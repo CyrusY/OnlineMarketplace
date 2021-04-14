@@ -260,8 +260,10 @@ export default class Registration extends Component {
                             </div>
 
                             <div className="button">
-                                <button type="submit">Register</button>
-                                <Link to="./login">Have an Account Already?</Link>
+                                <button type="submit">Register</button><br/><br/>
+                                <div style = {{fontWeight: "bold", margin: "auto", width: "60%"}}>
+                                    <Link to="./login">Have an Account Already?</Link>
+                                </div>
                             </div>
                         </form>
                     </div>

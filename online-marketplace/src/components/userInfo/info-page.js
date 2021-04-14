@@ -45,7 +45,7 @@ export default class Info extends Component {
         Rating: {this.state.users.rating}<br />
         <div>
             <Link to={{pathname: `/edit`}} >
-                Edit display name/ Description
+                Edit display name/description
             </Link>
             <span> </span>
             <Link to={{pathname: `/changePW`}} >
