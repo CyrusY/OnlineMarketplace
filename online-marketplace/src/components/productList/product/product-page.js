@@ -87,7 +87,6 @@ class Product extends Component {
              
              
            
-            <div id="productOwner"> {product.ownerId}</div>
           </div>
 
 

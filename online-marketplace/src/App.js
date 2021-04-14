@@ -37,7 +37,7 @@ export default class App extends Component {
 
   MenuItemsBeforeLogin = [
     {
-      title: 'Home',
+      title: 'Login',
       url: 'login',
       cName: 'nav-links'
     },
@@ -51,7 +51,7 @@ export default class App extends Component {
       url: 'user',
       cName: 'nav-links-mobile'
     },
-  
+
   ]
   MenuItemsAfterLogin = [
     {
@@ -79,7 +79,7 @@ export default class App extends Component {
       url: 'product',
       cName: 'nav-links'
     },
-  
+
     {
       title: 'Logout',
       url: 'user',
@@ -87,37 +87,38 @@ export default class App extends Component {
     },
   ]
 
+  render() {
 
+    return (
+      <Router>
+        <div className="App-container">
+          <Navbar menuItem={this.login ? this.MenuItemsAfterLogin: this.MenuItemsBeforeLogin} login={this.login}
+          />
+          <div className="content">
+            <Switch>
+              <Route exact path="/" > <Login /> </Route>
+              <Route exact path="/upload" > <UploadProduct /> </Route>
+              <Route exact path="/user" > <Registration /> </Route>
+              <Route exact path="/login" > <Login /> </Route>
+              <Route exact path="/info" > <Info /> </Route>
+              <Route exact path="/product" > <ProductList /> </Route>
+              <Route exact path="/product/:id" > <Product /> </Route>
+              <Route exact path="/edit" > <EditUser /> </Route>
+              <Route exact path="/changePW" > <ChangePw /> </Route>
+              <Route exact path="/aboutus"> <AboutUs /></Route>
+              <Route exact path="/homepage"> <Homepage /></Route>
+              <Route path="/join" exact component={Join} />
+              <Route path="/chat" component={Chat} />
+              <Route exact path="/:activation_token" > <ActivationEmail/> </Route>
 
-render() {
-
-  return (
-    <Router>
-      <div className="App-container">
-        <Navbar menuItem={this.state.login==undefined ? this.MenuItemsBeforeLogin : this.MenuItemsAfterLogin} login={this.login}
-        />
-
-        <div className="content">
-          <Switch>
-            <Route exact path="/" > <Login /> </Route>
-            <Route exact path="/upload" > <UploadProduct /> </Route>
-            <Route exact path="/user" > <Registration /> </Route>
-            <Route exact path="/login" > <Login /> </Route>
-            <Route exact path="/info" > <Info /> </Route>
-            <Route exact path="/product" > <ProductList /> </Route>
-            <Route exact path="/product/:id" > <Product /> </Route>
-            <Route exact path="/edit" > <EditUser /> </Route>
-            <Route exact path="/changePW" > <ChangePw /> </Route>
-            <Route exact path="/aboutus"> <AboutUs /></Route>
-            <Route exact path="/homepage"> <Homepage /></Route>
-            <Route path="/join" exact component={Join} />
-            <Route path="/chat" component={Chat} />
-            <Route exact path="/:activation_token" > <ActivationEmail /> </Route>
-
-          </Switch>
+            
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
-}
+
+
+
