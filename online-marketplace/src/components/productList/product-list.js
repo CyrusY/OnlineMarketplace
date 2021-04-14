@@ -85,12 +85,12 @@ export default class ProductList extends Component {
 
                   <div className="card-container" key={product._id} onClick={() => this.handleMouseDown(product._id)}>
                     <div className="card-text-container">
-                      <h1 id="pruductName">{product.productName}</h1>
+                      <h1 id="productName">{product.productName}</h1>
                       <div id="price">HK${product.price}</div>
                         <div id="tag" >{product.condition}</div>
                       
                       <div id="postDate">posted at: {this.timeSince(product.postDate)} ago</div>
-                      {/* <div id="productOwner"> {product.ownerId}</div> */}
+                      <div id="owner">By: {product.ownerDisName} </div>
 
                     </div>
                     <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>

@@ -43,7 +43,7 @@ const Navbar = ({ login, menuItem }) => {
         <nav className={"NavbarItems"}>
             <a className="logohref" href={login ? "homepage" : "login"}><h1 className="navbar-logo">Easy Trade</h1></a>
 
-            <h5 className="dsd" style={{ color: 'black' }} >{user? (  user?.result.username ): "Guess"}</h5> 
+            <h5 className="dsd" style={{ color: 'black' }} >{user? (  user?.result.username ): "Guest"}</h5> 
             <div className="menu-icon" onClick={() => setClicked(!clicked)}>
                 <i className={clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
             </div>

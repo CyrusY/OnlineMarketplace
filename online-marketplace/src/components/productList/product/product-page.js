@@ -73,12 +73,12 @@ class Product extends Component {
         <div className="product-container">
           <div className="text-container">
 
-            <h1 id="pruductName">{product.productName}</h1>
+            <h1 id="productName">{product.productName}</h1>
             <span id="price">HK${product.price}
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-          
+            <div id="owner">By: {product.ownerDisName} </div>
             
             <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
             <i className="fas fa-comments-dollar"></i>

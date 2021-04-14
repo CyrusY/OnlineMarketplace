@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './info-page.css';
 import userIcon from './user-icon.png';
+import { Button } from '../button/button';
 
 export default class Info extends Component {
     
@@ -50,16 +51,19 @@ export default class Info extends Component {
             <b>Rating:</b> {this.state.users.rating}<br />
 
             <div className="button">
-              <button>
-                <Link to={{pathname: `/edit`}} >
-                    Edit display name/ Description
-                </Link>
-              </button>
-              <button>
-                <Link to={{pathname: `/changePW`}} >
-                    Change Password
-                </Link>
-              </button>
+         
+ 
+             
+                <Button  onClick={<Link to={{pathname: `/edit`}} >
+                    
+                </Link>}> Edit display name/ Description</Button>
+        
+                
+
+                <Button  onClick={<Link to={{pathname: `/changePW`}} >
+                    
+                </Link>}>Change Password</Button>
+     
             </div>
           </div>
         </div>

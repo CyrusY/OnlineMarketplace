@@ -8,6 +8,7 @@
     margin: 20vh 40vw 100vh 30vw;
     width: 50vw;
     height:50vh;
+    
   }
    
   #flyoutMenu.hide {
@@ -34,6 +35,8 @@
 
   .product-container{
     margin-left:1vw;
+    
+
   }
   .product-container #image {
     height: 45vh;
@@ -53,7 +56,10 @@
   width: 5vw;
 }
 
-
+.product-container #productName{
+  width:30vw;
+  
+}
 .product-container #price{
   font-size: 3vh;
   font-weight: bold
@@ -69,7 +75,7 @@
 .product-container #postDate{
   padding:1vh 0vw 0vh 0vw;
   font-size: 2.5vh;
-  width: 50vw
+  width: 30vw
 }
 
 
@@ -91,6 +97,10 @@
 .product-container h1{
   position: sticky;    
   width: 10vw
+}
+
+.product-container #owner{
+  max-width: 30vw
 }
 
 }
