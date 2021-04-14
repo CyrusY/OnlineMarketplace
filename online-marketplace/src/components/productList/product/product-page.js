@@ -62,10 +62,10 @@ class Product extends Component {
     const { product, show } = this.state;
     let User = JSON.parse(localStorage.getItem('profile'));
 
-    console.log("owner Name is: " + product.ownerDisName);
+   // console.log("owner Name is: " + product.ownerDisName);
 
-    console.log("owner Id: " + product.ownerId);
-    console.log("Current User Id " + User.result._id);
+   // console.log("owner Id: " + product.ownerId);
+   // console.log("Current User Id " + User.result._id);
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
