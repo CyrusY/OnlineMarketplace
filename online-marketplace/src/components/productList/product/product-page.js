@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./product-page.css";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 class Product extends Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class Product extends Component {
 
   render() {
     const { product, show } = this.state
+    console.log(this.state.product.ownId);
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
@@ -76,7 +78,13 @@ class Product extends Component {
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            <a className="link-to-chat-button" href=''>
+            //<a className="link-to-chat-button" href=''>
+            
+            <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
+            //<button className={'button mt-20'} type="submit">Sign In</button>
+            
+            </Link>
+             
               <i className="fas fa-comments-dollar"></i>
             </a>
 
