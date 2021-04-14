@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const http = require('http');
+
 
 const hbs = require('express-handlebars');    //create views in express application
 const path = require('path');
@@ -41,6 +43,51 @@ app.use('/users', usersRouter);
 
 const productsRouter = require('./routes/products');
 app.use('/products', productsRouter)
+var app2 =  express();
+//chat
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+const router = require('./router');
+app2.use(cors());
+app2.use(router);
+const server = http.createServer(app2);
+var io = require('socket.io')(server);
+
+io.on('connect', (socket) => {
+  socket.on('join', ({ name, room }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, room });
+
+    if(error) return callback(error);
+
+    socket.join(user.room);
+
+    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
+    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
+
+    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+
+    callback();
+  });
+
+  socket.on('sendMessage', (message, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('message', { user: user.name, text: message });
+
+    callback();
+  });
+
+  socket.on('disconnect', () => {
+    const user = removeUser(socket.id);
+
+    if(user) {
+      io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+    }
+  })
+});
+
+
+server.listen(process.env.PORT || 5001, () => console.log(`Server has started on 5001.`));
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

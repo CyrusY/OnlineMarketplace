@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './edit-user.css';
 
-//Only Update User displayname and description
-/* three problems now: 
-3. get cant depends on log-in user
-*/
-
 export default class EditUser extends Component {
 
     constructor(props) {

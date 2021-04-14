@@ -25,7 +25,7 @@ const Navbar = ({ login, menuItem }) => {
     };
 
     const classes = useStyles();
-   
+    console.log(user);
     useEffect(() => {
         const token = user?.token;
     

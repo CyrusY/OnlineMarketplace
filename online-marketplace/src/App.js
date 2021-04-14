@@ -14,6 +14,8 @@ import ActivationEmail from "./components/login/ActivationEmail";
 import ProductList from "./components/productList/product-list";
 import Product from "./components/productList/product/product-page";
 import AboutUs from "./components/aboutus/about-us";
+import Chat from './components/Chat/Chat';
+import Join from './components/Join/Join';
 
 export default class App extends Component {
   login = true;
@@ -43,8 +45,13 @@ export default class App extends Component {
       cName: 'nav-links'
     },
     {
-      title: 'Edit Personal Information',
-      url: 'edit',
+      title: 'Personal Information',
+      url: 'info',
+      cName: 'nav-links'
+    },
+    {
+      title: 'Chat',
+      url: 'join',
       cName: 'nav-links'
     },
     {
@@ -86,6 +93,8 @@ export default class App extends Component {
               <Route exact path="/changePW" > <ChangePw /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
               <Route exact path="/homepage"> <Homepage /></Route>
+              <Route path="/join" exact component={Join} />
+              <Route path="/chat" component={Chat} />
               <Route exact path="/:activation_token" > <ActivationEmail/> </Route>
 
             

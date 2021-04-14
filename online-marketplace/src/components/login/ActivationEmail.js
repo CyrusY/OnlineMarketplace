@@ -16,7 +16,6 @@ function ActivationEmail() {
                     const res = await axios.post('/users/activation', {activation_token})
         console.log(activation_token)
                 } catch (err) {
-
                 }
             }
             activationEmail()
