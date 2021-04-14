@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components'
 import { Link } from 'react-router-dom';
 
 import './product-list.css';
@@ -15,11 +16,11 @@ export default class ProductList extends Component {
       products: [],
       show: false,
       productId: '',
-      paymentForm :null,
+      productPage: null,
 
     }
     this.handleMouseDown = this.handleMouseDown.bind(this);
-
+this.closeModelHandler = this.closeModelHandler.bind(this);
 
   }
 
@@ -31,28 +32,18 @@ export default class ProductList extends Component {
       .catch(error => { console.log(error) })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { ID, cmbID } = this.state
-    const { ID: prevId, cmbID: prevCmbId } = prevState;
-    if (ID !== prevId || cmbID !== prevCmbId) {
-        if (typeof ID !== 'undefined' && typeof cmbID !== 'undefined') {
-            this.dataListener();
-            this.fetching()
-        }
-    }
 
-}
 
   handleMouseDown(productId) {
     console.log("clicked");
-    this.state.show = true;
-    this.state.productId = productId;
-    console.log( this.state.show);
+    this.setState({ show: true,productId })
+
   }
 
 
-  closeModelHandler() {
-    this.state.show = false;
+
+  closeModelHandler(productId) {
+    this.setState({ show: false })
   }
 
   timeSince(date) {
@@ -82,15 +73,19 @@ export default class ProductList extends Component {
   }
 
   render() {
-    const { products } = this.state
+    const { products ,show} = this.state
+
+
     return (
-      <div className="product-list-container">
-        <div className="grid-contianer">
-          {
-            products.length ?
-              products.map(product =>
-                <div key={product._id} onMouseDown={() => this.handleMouseDown(product._id)}>
-                  <div className="card-container">
+      <div>
+        <div className="product-list-container">
+        {show ? < div onClick={this.closeModelHandler} className="back-drop"> </div> : ''}
+          <div className="grid-contianer">
+            {
+              products.length ?
+                products.map(product =>
+
+                  <div className="card-container" key={product._id} onClick={() => this.handleMouseDown(product._id)}>
                     <div className="card-text-container">
                       <h1 id="pruductName">{product.productName}</h1>
                       <span id="price">HK${product.price}
@@ -99,21 +94,18 @@ export default class ProductList extends Component {
                       <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
                     </div>
                     <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
-                  </div>
 
+                  </div>) : null
+            }
 
-
-
-                </div>) : null
-
-          }
-
-        </div>
-        <div className='form-container'>
-          {(this.state.show) ?
-            (<Product  productId={this.state.productId} />) : ''}
+          </div>
+          <div className='product-container'>
+          {console.log(show)}
+            <Product show={show} close={this.closeModelHandler} productId={this.state.productId}></Product>
+          </div>
         </div>
       </div>
+
     );
   }
 }

@@ -5,10 +5,13 @@ import axios from 'axios';
 class Product extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      products: {},
+      product: {},
+      productId: '',
+      show: false
     }
+    console.log(this.props.show)
   }
 
   getID() {
@@ -16,49 +19,69 @@ class Product extends Component {
     return pathname[2]
   }
 
+  timeSince(date) {
+    var seconds = Math.floor((new Date() - new Date(date)) / 1000);
+    var interval = seconds / 31536000;
 
-
-  componentDidMount() {
-    const productId = this.props.productId;
-    console.log(this.props.productId)
-    axios.get(`http://localhost:5000/products/${productId}`)
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ products: res.data });
-      })
-      .catch(error => { console.log(error); })
+    if (interval > 1) {
+      return Math.floor(interval) + " years";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
   }
 
 
-  render() {
+  componentWillReceiveProps(props) {
+    const productId = props.productId;
+    const show = props.show;
+    this.state.productId = productId;
+    this.state.show = show;
 
-    // console.log('http://localhost:5000/products/'+this.props.productId)
+    axios.get(`http://localhost:5000/products/${productId}`)
+      .then(res => {
+        this.setState({ product: res.data });
+      })
+      .catch(error => { console.log(error); })
+
+    console.log(this.state.product)
+    console.log(this.state.show)
+  }
+
+  render() {
+    const { product ,show} = this.state
     return (
-<<<<<<< HEAD
-      <div id="flyoutMenu"
-        onMouseDown={this.props.handleMouseDown}
- >
-        <p>
-          {this.props.productId}
-        </p>
-        <h2><a href="#">Search</a></h2>
-=======
-      // <div id="flyoutMenu"
-      //      onMouseDown={this.props.handleMouseDown} 
-      //      className={visibility}>
-      //   <p>
-      //       {this.props.productId}
-      //   </p>
-      //   <h2><a href="#">Search</a></h2>
-      // </div>
-      <div>
-        Hello, here is product<br/>
-        <img id="image" src={`/uploads/${this.state.products.productPhoto}`} alt="..."></img> <br/>
-        Name: {this.state.products.productName}<br/>
-        Price: {this.state.products.price}<br/>
-        Condition: {this.state.products.condition}<br/>
-        Description {this.state.products.productDescription}<br/>
->>>>>>> 03933f994b579b0ef39e6e94ac2871d3e572685e
+
+      <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
+        onMouseDown={this.props.handleMouseDown}>
+        <div className="product-container">
+          <div className="text-container">
+            
+            <h1 id="pruductName">{product.productName}</h1>
+                      <span id="price">HK${product.price}
+                        <span id="id" className="tag">{product.condition}</span>
+                      </span>
+                      <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
+            
+          </div>
+
+
+          <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
+        </div>
       </div>
 
     );
