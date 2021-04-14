@@ -9,6 +9,7 @@ const productSchema = new Schema({     //product schema with one field
     postDate: { type: Date, default: Date.now},
     productDescription: { type: String, default: "No description."},
     ownerId: { type: Schema.Types.ObjectId, required: true},
+    ownerDisName: { type: String, required: true},
     productPhoto: {type: String},
 });
 
