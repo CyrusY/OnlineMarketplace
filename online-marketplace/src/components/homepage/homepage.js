@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './homepage.css';
+import style from './homepage2.css'
 import ImageSlider from '../ImageSlider/ImageSlider';
 import { SliderData } from '../ImageSlider/SliderData';
 import SearchBar from '../SearchBar';

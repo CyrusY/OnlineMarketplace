@@ -19,26 +19,21 @@ import Chat from './components/Chat/Chat';
 import Join from './components/Chat/Join/Join';
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state ={
-      login : this.getID()
-    }
-    console.log(this.state.login)
-  }
-  getID (){
+  login = this.loginTest();
+
+  getID () {
     let User = JSON.parse(localStorage.getItem('profile'));
     try {return User.result._id;}
-    catch(error){       
-        return undefined;
+    catch(error){
+      return undefined;
     }
-}
+  }
 
-UNSAFE_componentWillMount(){
-  this.state.login = this.getID()
-}
-
-
+  loginTest() {
+    const userId = this.getID();
+    if (userId == undefined) {return false;}
+    return true;
+  }
 
   MenuItemsBeforeLogin = [
     {

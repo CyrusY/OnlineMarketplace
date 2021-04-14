@@ -267,6 +267,19 @@ router.route('/changePW/:id').post((req, res) => {    //update data of the objec
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/chatUrl/:id').post((req, res) => {    //update data of the object by id
+  User.findById(req.params.id)
+  .then(user => {
+
+    user.chatUrl = req.body.chatUrl;
+
+    user.save()
+      .then(() => res.json('Chatroom URL ++!'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
 
 const createActivationToken = (payload) => {
   return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '5m'})

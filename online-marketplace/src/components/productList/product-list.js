@@ -89,8 +89,8 @@ export default class ProductList extends Component {
                       <div id="price">HK${product.price}</div>
                         <div id="tag" >{product.condition}</div>
                       
-                      <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-                      <div id="productOwner"> {product.ownerId}</div>
+                      <div id="postDate">posted at: {this.timeSince(product.postDate)} ago</div>
+                      {/* <div id="productOwner"> {product.ownerId}</div> */}
 
                     </div>
                     <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>

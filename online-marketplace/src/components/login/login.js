@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import './login.css'
 import { signin } from '../../redux/action/authAction';
 import {useDispatch} from 'react-redux'
@@ -27,12 +27,8 @@ function Login() {
   const handleSubmit = async e => {
     e.preventDefault()
     
-
-   
     dispatch(signin(user, history));    
       
-
-  
   } //handle the submition
 
   return (
