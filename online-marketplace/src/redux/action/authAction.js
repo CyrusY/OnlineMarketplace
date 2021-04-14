@@ -12,7 +12,7 @@ export const signin = (formData, router) => async (dispatch) => {
       router.push('/product');
     } catch (error) {
       console.log(error);
-      console.log(error);
+      alert('Wrong email or password ,please fill in again');
     }
   };
 
