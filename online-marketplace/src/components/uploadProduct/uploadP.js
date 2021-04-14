@@ -75,10 +75,21 @@ export default class UploadProduct extends Component {
     }
   }
   
+  getDisName (){
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try { 
+      return User.result.displayName;
+    }
+    catch(error){
+      return undefined;
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     let userId = this.getID();
+    let userDisName = this.getDisName();
 
     const formData = new FormData();
 
@@ -87,6 +98,7 @@ export default class UploadProduct extends Component {
     formData.append("condition", this.state.condition);
     formData.append("productDescription", this.state.productDescription);
     formData.append("ownerId", userId);
+    formData.append("ownerDisName", userDisName);
     formData.append("productPhoto", this.state.productPhoto);
 
 
@@ -162,16 +174,6 @@ export default class UploadProduct extends Component {
                   onChange={this.onChangeProductPhoto}
                 />
               </div>
-
-              {/* <div className="text-field">
-                <label htmlFor="ID"> ID</label>
-                <input
-                  type="text"
-                  value={this.state.ownerID}
-                  className="form-control"
-                  onChange={this.onChangeOwnerID}
-                />
-              </div> */}
 
               <div className="button">
                 <button type="submit">Upload Item</button>

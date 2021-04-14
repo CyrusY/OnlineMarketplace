@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import userIcon from './user-icon.png';
 
 export default class Info extends Component {
     
@@ -27,7 +28,6 @@ export default class Info extends Component {
         const userId = this.getID();
         axios.get(`http://localhost:5000/users/${userId}`)
           .then(res => {
-            console.log(res.data)
             this.setState({ users: res.data });
           })
           .catch(error => { console.log(error);})
@@ -37,9 +37,8 @@ export default class Info extends Component {
     // console.log(this.state.users.username + "| username")
     return (
       <div>
+        <img src= {userIcon} alt="User Icon"/><br />
         Name: {this.state.users.username} <br />
-        help insert user icon here<br />
-        <img src= {`/userInfo/user-icon.png`} alt=""></img>
         display name: {this.state.users.displayName}<br />
         email: {this.state.users.email}<br />
         Description: {this.state.users.description}<br />
