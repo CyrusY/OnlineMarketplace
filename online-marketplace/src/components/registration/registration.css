@@ -21,7 +21,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 9vh 3vh 0vh 50vh;
+    padding: 5vh 3vh 0vh 50vh;
     position: absolute;
     top: 8vh;
     bottom: 0vh;
@@ -80,7 +80,7 @@
 
 @media screen and (max-width: 960px) {
     .registration-container {
-        padding: 8vh 3vw 0vh 2vw  ;
+        padding: 7vh 3vw 0vh 2vw  ;
         margin-top: 0;
         height: 91vh;
         
