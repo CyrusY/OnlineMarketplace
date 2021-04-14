@@ -6,6 +6,8 @@
     align-items: center;
     font-size: 1rem;
     margin:  0;
+    position: sticky;
+    top: 0;
 
 }
 
@@ -27,11 +29,11 @@
 }
 .NavbarItems .nav-menu{
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(5, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;
-    width: 70vw;
+    width: 80vw;
     justify-content: end;
     margin-right: 1rem;
     margin-bottom: 1rem;

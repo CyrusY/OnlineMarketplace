@@ -20,7 +20,7 @@ export default class ProductList extends Component {
 
     }
     this.handleMouseDown = this.handleMouseDown.bind(this);
-this.closeModelHandler = this.closeModelHandler.bind(this);
+    this.closeModelHandler = this.closeModelHandler.bind(this);
 
   }
 
@@ -32,11 +32,9 @@ this.closeModelHandler = this.closeModelHandler.bind(this);
       .catch(error => { console.log(error) })
   }
 
-
-
   handleMouseDown(productId) {
     console.log("clicked");
-    this.setState({ show: true,productId })
+    this.setState({ show: true, productId })
 
   }
 
@@ -73,13 +71,13 @@ this.closeModelHandler = this.closeModelHandler.bind(this);
   }
 
   render() {
-    const { products ,show} = this.state
+    const { products, show } = this.state
 
 
     return (
       <div>
         <div className="product-list-container">
-        {show ? < div onClick={this.closeModelHandler} className="back-drop"> </div> : ''}
+          {show ? < div onClick={this.closeModelHandler} className="back-drop"> </div> : ''}
           <div className="grid-contianer">
             {
               products.length ?
@@ -88,11 +86,11 @@ this.closeModelHandler = this.closeModelHandler.bind(this);
                   <div className="card-container" key={product._id} onClick={() => this.handleMouseDown(product._id)}>
                     <div className="card-text-container">
                       <h1 id="pruductName">{product.productName}</h1>
-                      <span id="price">HK${product.price}
-                        <span id="id" className="tag">{product.condition}</span>
-                      </span>
+                      <div id="price">HK${product.price}</div>
+                        <div id="tag" >{product.condition}</div>
+                      
                       <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-                      {/* <div> {product.ownerId}</div> */}
+                      <div id="productOwner"> {product.ownerId}</div>
 
                     </div>
                     <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
@@ -102,7 +100,7 @@ this.closeModelHandler = this.closeModelHandler.bind(this);
 
           </div>
           <div className='product-container'>
-          {console.log(show)}
+            {console.log(show)}
             <Product show={show} close={this.closeModelHandler} productId={this.state.productId}></Product>
           </div>
         </div>

@@ -7,13 +7,13 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 8vh 3vh 0px 125vh;
+    padding: 8vh 3vw 0vh 50vw;
     position: absolute;
     top: 8vh;
     bottom: 10;
     left: 0;
     right: 0;
-    height:84vh;
+    height:92vh;
 }
 .upload-container h1{
     float: left;
@@ -50,7 +50,7 @@
 }
 
 .upload-container select{
-    width: 109%;
+    width: 100%;
     height: 45px;
     margin: 10px 0;
     border: 2px solid #777;

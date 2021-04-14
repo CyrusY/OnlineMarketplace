@@ -31,14 +31,15 @@ html, body {
   width: 100%;
 }
 
-.heading {
+
+.joinOuterContainer .heading {
   color: white;
   font-size: 2.5em;
   padding-bottom: 10px;
   border-bottom: 2px solid white;
 }
 
-.button {
+.joinOuterContainer .button {
     color: #fff !important;
     text-transform: uppercase;
     text-decoration: none;

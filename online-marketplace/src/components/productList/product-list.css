@@ -37,9 +37,12 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0vh;
-    
-   
+    margin: 0vh;  
+}
+
+.product-list-container .card-text-container{
+  width: 14vw;
+  
 }
 .card-container h1{
     margin-top: 0vh;
@@ -51,11 +54,13 @@
     font-weight: bold
 }
 
-.card-container .tag{
-    margin-left: 1vw;
+.card-container #tag{
+
+    width: 5vw;
     padding:0vh 0.5vw 0vh 0.5vw;
     border-radius: 1vh;
     background-color: rgb(209, 209, 209);
+    align-items:center
 }
 
 .card-container #postDate{
@@ -91,9 +96,10 @@
 
     .product-list-container .card-container{
         width: 43vw;
-        height: 35vh;
+        height: 38vh;
         display:block;
-        padding: 0;
+        padding: 1vw;
+        position: static;
 
     }
     .card-container h1{
@@ -101,20 +107,30 @@
        margin-bottom: 0vh;
     }
 
+    .card-container #tag{
+        width:10vw;
+    }
+
     .card-container .card-text-container{
         position: relative;
-        top: 24vh;
+        top: 22vh;
         font-size: 2vh;
+        width: 40vw;
+        height:13vh
     }
 
     .card-container #price{
         font-size: 2vh;
         font-weight: bold
     }
+    .card-container #postDate{
+        padding:0vh 0vw 0vh 0vw;
+        width: 40vw;
+    }
 
     .card-container #image{
         position: relative;
-        top:-10vh;
+        top:-13vh;
         width: 40vw;
         height: 23vh;
     }

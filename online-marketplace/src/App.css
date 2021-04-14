@@ -2,3 +2,9 @@
     height: 100vh;
 
 }
+
+.App-container .content{
+    padding-top: 100px;
+    margin: 200px;
+
+}
