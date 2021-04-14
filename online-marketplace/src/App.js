@@ -37,7 +37,7 @@ export default class App extends Component {
 
   MenuItemsBeforeLogin = [
     {
-      title: 'Home',
+      title: 'Login',
       url: 'login',
       cName: 'nav-links'
     },

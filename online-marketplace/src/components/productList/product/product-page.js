@@ -76,9 +76,7 @@ class Product extends Component {
             //<button className={'button mt-20'} type="submit">Sign In</button>
             
             </Link>
-             
-             
-           
+            
             <div id="productOwner">Posted by:{product.ownerDisName}</div>
           </div>
           <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
