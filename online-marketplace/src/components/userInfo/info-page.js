@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './info-page.css';
 import userIcon from './user-icon.png';
 
 export default class Info extends Component {
@@ -36,21 +37,31 @@ export default class Info extends Component {
   render() {
     // console.log(this.state.users.username + "| username")
     return (
-      <div>
-        <img src= {userIcon} alt="User Icon"/><br />
-        Name: {this.state.users.username} <br />
-        display name: {this.state.users.displayName}<br />
-        email: {this.state.users.email}<br />
-        Description: {this.state.users.description}<br />
-        Rating: {this.state.users.rating}<br />
-        <div>
-            <Link to={{pathname: `/edit`}} >
-                Edit display name/description
-            </Link>
-            <span> </span>
-            <Link to={{pathname: `/changePW`}} >
-                Change Password
-            </Link>
+      <div className="info-container">
+        <div className="main-area">
+          <div className="form-container">
+            <div className="icon-img">
+              <img src= {userIcon} alt="User Icon" />
+            </div>
+            <b>Name:</b> {this.state.users.username} <br />
+            <b>Display name:</b> {this.state.users.displayName}<br />
+            <b>Email:</b> {this.state.users.email}<br />
+            <b>Description:</b> {this.state.users.description}<br />
+            <b>Rating:</b> {this.state.users.rating}<br />
+
+            <div className="button">
+              <button>
+                <Link to={{pathname: `/edit`}} >
+                    Edit display name/ Description
+                </Link>
+              </button>
+              <button>
+                <Link to={{pathname: `/changePW`}} >
+                    Change Password
+                </Link>
+              </button>
+            </div>
+          </div>
         </div>
       </div>      
     );

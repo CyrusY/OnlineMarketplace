@@ -1,0 +1,43 @@
+.info-container {
+    margin: auto;
+    background-image: url('/src/img/background1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 9vh 0vh 6vh 0vh;
+    position: absolute;
+    top: 8vh;
+    bottom: 0vh;
+    left: 0;
+    right: 0;
+    height: 91vh;
+}
+
+.info-container .icon-img {
+    max-width: 15px;
+    height: auto;
+    margin-bottom: 5%;
+  }
+
+.info-container .form-container {
+    float: middle;
+    margin-left: 25%;
+    margin-right: 25%;
+    max-width: 600px;
+    width: auto;
+    padding: 1vh 3vh;
+    background: rgba(255, 255, 255, 0.836);
+    box-shadow: 2px 2px 5px #666;
+    align-items: center;
+}
+
+.info-container button{
+    width: auto;
+    padding: 10px 10px;
+    color: white;
+    background: rgba(95, 216, 140, 0.454);
+    border-radius: 5%;
+    text-transform: uppercase;
+    margin-right: 1%;
+    margin-top: 5%;
+}
