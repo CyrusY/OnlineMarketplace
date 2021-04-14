@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './info-page.css';
 import userIcon from './user-icon.png';
 
 export default class Info extends Component {
@@ -36,21 +37,23 @@ export default class Info extends Component {
   render() {
     // console.log(this.state.users.username + "| username")
     return (
-      <div>
-        <img src= {userIcon} alt="User Icon"/><br />
-        Name: {this.state.users.username} <br />
-        display name: {this.state.users.displayName}<br />
-        email: {this.state.users.email}<br />
-        Description: {this.state.users.description}<br />
-        Rating: {this.state.users.rating}<br />
-        <div>
-            <Link to={{pathname: `/edit`}} >
-                Edit display name/ Description
-            </Link>
-            <span> </span>
-            <Link to={{pathname: `/changePW`}} >
-                Change Password
-            </Link>
+      <div className="registration-container">
+        <div className="form-container">
+          <img src= {userIcon} alt="User Icon"/><br />
+          Name: {this.state.users.username} <br />
+          display name: {this.state.users.displayName}<br />
+          email: {this.state.users.email}<br />
+          Description: {this.state.users.description}<br />
+          Rating: {this.state.users.rating}<br />
+          <div>
+              <Link to={{pathname: `/edit`}} >
+                  Edit display name/ Description
+              </Link>
+              <span> </span>
+              <Link to={{pathname: `/changePW`}} >
+                  Change Password
+              </Link>
+          </div>
         </div>
       </div>      
     );
