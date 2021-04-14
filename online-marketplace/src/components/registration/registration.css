@@ -1,7 +1,7 @@
 .registration-container .password-icon{
     position: absolute;
     top: 0vh;
-    right: -5vh;
+    right: 0vh;
     z-index: 4;
     cursor: pointer;
 }
@@ -9,7 +9,7 @@
 .registration-container .re-password-icon{
     position: absolute;
     top: 0vh;
-    right: -5vh;
+    right: 0vh;
     z-index: 3;
     cursor: pointer;
 }
@@ -27,7 +27,7 @@
     bottom: 0vh;
     left: 0;
     right: 0;
-    height: 83vh;
+    height: 91vh;
 }
 
 
@@ -51,7 +51,7 @@
 }
 
 .registration-container input{
-    width: 41vh;
+    width: 39vh;
     height: 6vh;
     border: 2px solid #777;
     outline: none;
@@ -68,7 +68,7 @@
 }
 
 .registration-container button{
-    width: 21vw;
+    width: 19vw;
     padding: 10px 0;
     color: white;
     background: black;

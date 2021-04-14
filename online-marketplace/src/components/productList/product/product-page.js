@@ -63,20 +63,23 @@ class Product extends Component {
   }
 
   render() {
-    const { product ,show} = this.state
+    const { product, show } = this.state
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
         onMouseDown={this.props.handleMouseDown}>
         <div className="product-container">
           <div className="text-container">
-            
+
             <h1 id="pruductName">{product.productName}</h1>
-                      <span id="price">HK${product.price}
-                        <span id="id" className="tag">{product.condition}</span>
-                      </span>
-                      <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            
+            <span id="price">HK${product.price}
+              <span id="id" className="tag">{product.condition}</span>
+            </span>
+            <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
+            <a className="link-to-chat-button" href=''>
+              <i className="fas fa-comments-dollar"></i>
+            </a>
+
           </div>
 
 

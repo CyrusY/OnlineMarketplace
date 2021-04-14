@@ -45,6 +45,10 @@
     top: 0vh;
 }
 
+.fa-comments-dollar{
+  font-size: 8vh;
+}
+
 .product-container .text-container{
   width: 5vw;
 }
@@ -76,8 +80,8 @@
   }
 
   .product-container #image {
-    height: 30vh;
-    width: 30vw;
+    height: 35vh;
+    width: 35vw;
     border-radius: 5vh;
     padding:2vh;
     position: absolute;
