@@ -10,18 +10,17 @@ import ChangePw from "./components/userInfo/changePW/changePW";
 import UploadProduct from "./components/uploadProduct/uploadP";
 import Registration from "./components/registration/registration";
 import Login from "./components/login/login";
+import ActivationEmail from "./components/login/ActivationEmail";
 import ProductList from "./components/productList/product-list";
 import Product from "./components/productList/product/product-page";
 import AboutUs from "./components/aboutus/about-us";
-import Chat from "./components/Chat/Chat";
-import Join from "./components/Join/Join";
 
 export default class App extends Component {
   login = true;
 
   MenuItemsBeforeLogin = [
     {
-      title: 'Sign in',
+      title: 'Home',
       url: 'login',
       cName: 'nav-links'
     },
@@ -44,13 +43,8 @@ export default class App extends Component {
       cName: 'nav-links'
     },
     {
-      title: 'Edit Personal Information',
-      url: 'edit',
-      cName: 'nav-links'
-    },
-    {
-      title: 'Chat',
-      url: 'join',
+      title: 'Personal Information',
+      url: 'info',
       cName: 'nav-links'
     },
     {
@@ -91,9 +85,10 @@ export default class App extends Component {
               <Route exact path="/edit" > <EditUser /> </Route>
               <Route exact path="/changePW" > <ChangePw /> </Route>
               <Route exact path="/aboutus"> <AboutUs /></Route>
-              <Route path="/chat" component={Chat} />
-              <Route path="/join" exact component={Join} />
               <Route exact path="/homepage"> <Homepage /></Route>
+              <Route exact path="/:activation_token" > <ActivationEmail/> </Route>
+
+            
             </Switch>
           </div>
         </div>

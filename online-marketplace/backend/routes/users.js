@@ -1,8 +1,10 @@
 const router = require('express').Router();     // express routers
 const express = require('express');
-//const bcrypt = require('bcrypt');
+const mailgun = require('mailgun-js');
+
 const jwt = require('jsonwebtoken')
 const auth = require('../middleware/auth')
+
 
 /*
 const hbs = require('express-handlebar');
@@ -12,7 +14,9 @@ const bcrypt = require('bcrypt');
 */
 let User = require('../models/user.model');     // required models
 // const { eventNames } = require('../models/user.model');
+const DOMAIN ='sandbox2b7de7f28e2a4ebbb036ad8088b47214.mailgun.org';
 
+const mg = mailgun({apiKey: process.env.API_KEY, domain: DOMAIN});
 /* Middleware *//*
 app.engine('hbs',hbs({extname: '.hbs'})); // extention 
 app.set('view engine', 'hbs');            // set engine
@@ -95,17 +99,44 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
        return res.status(400).json({msg: "Passwords do not match. Please re-enter it again."})
     }
 
+    const token = jwt.sign({ username, email, password, displayName, description }, process.env.ACTIVATION_TOKEN_SECRET, { expiresIn: "20m" });
+
+    const data = {
+      from: 'EASY trade <csci3100gp34@gmail.com>',
+      to: email,
+      subject: 'Hello wellcome to EASY trade',
+      html: `
+      <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+      <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the Easy Trade.</h2>
+      <p>Congratulations! You're almost set to start using Easy Trade.
+          Just click the button below to validate your email address
+          and login again.
+      </p>
+      
+      <a href=${process.env.URL}/${token} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;"</a>
+   
+     
+      </div>
+  `
+     
+    };
+   
+    mg.messages().send(data, function (error, body) {
+      if(error){
+        return res.json({
+          message : error.message
+        })
+      }
+      
+      return res.json({message :'email has been sent'})
+
+
+      
+    });
 
 
 
-
-
-  // validation
-    const newUser = new User({username, email, password, displayName, description/*, rating*/});     // create new user
-
-    newUser.save()        // save the new user to DB
-     .then(() => res.json('User added!'))        // return "User added" if add success
-     .catch(err => res.status(400).json('Error: ' + err));   // return error if failed
+   
 });
 
 
@@ -148,19 +179,46 @@ const userCtrl = {
     }
  },abc: (req, res) => {
   try {
-    console.log("sdsd213123123123135d");
+   
     res.send('<p>some html</p>');
   } catch (err) {
     console.log('some h');
       return res.status(500).json({msg: err.message})
   }
 
+},
+
+activateEmail: async (req, res) => {
+
+      const {activation_token} = req.body
+     
+      if (activation_token){
+      
+      jwt.verify(activation_token, process.env.ACTIVATION_TOKEN_SECRET, (err, user) => {
+        if(err) return res.status(400).json({msg: "Invalid Authentication."})
+
+        const {username, email, password, displayName, description} = user
+    
+        const newUser = new User({username, email, password, displayName, description/*, rating*/});     // create new user
+
+        newUser.save()        // save the new user to DB
+      
+
+    
+        
+    
+      })
+      return res.json({msg: "Account has been activated!"})
+  } else {
+      return res.json({ error: 'no token'})
+  }
 }
 }
-router.get('/abc', auth,userCtrl.abc)
+
+router.get('/abc',userCtrl.abc)
 router.post('/login', userCtrl.login)
 router.post('/refresh_token', userCtrl.getAccessToken)
-
+router.post('/activation', userCtrl.activateEmail)
 
 router.route('/:id').get((req, res) => {        
     // id object was created by mongo automatically since object created , get request, return that test by that id
@@ -199,19 +257,8 @@ router.route('/changePW/:id').post((req, res) => {    //update data of the objec
     User.findById(req.params.id)
     .then(user => {
         /* start of the update from the post request, received from route('/update/:id') */
-      const oldPassword = req.body.oldPassword;
-      
-      if ( oldPassword !== user.password ) {
-        console.log("user.password: " + user.password);
-        //return res.status(400).json({msg: "Wrong old password."})
-      }
 
       user.password = req.body.password;
-
-      if (req.body.password !==  req.body.validPassword) {
-        return res.status(400).json({msg: "Passwords do not match."})
-      }
-        /* end */
 
       user.save()
         .then(() => res.json('Password changed!'))

@@ -64,8 +64,21 @@ export default class UploadProduct extends Component {
     })
   }
 
+  getID (){
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try {return User.result._id;}
+    catch(error){
+        console.log('Please sign in to enable function');
+        window.location = '/login';
+        alert('Please sign in to enable member function');
+        return undefined;
+    }
+  }
+  
   onSubmit(e) {
     e.preventDefault();
+
+    let userId = this.getID();
 
     const formData = new FormData();
 
@@ -73,24 +86,9 @@ export default class UploadProduct extends Component {
     formData.append("price", this.state.price);
     formData.append("condition", this.state.condition);
     formData.append("productDescription", this.state.productDescription);
-    // formData.append("ownerID", ownerID);
+    formData.append("ownerId", userId);
     formData.append("productPhoto", this.state.productPhoto);
 
-    //   this.setState({
-    //     productName: '',
-    //     price: 0,
-    //     condition: '',
-    //     productDescription: '',
-    // });
-
-    //   const product =  {
-    //     productName: this.state.productName,
-    //     price: this.state.price,
-    //     condition: this.state.condition,
-    //     productDescription: this.state.productDescription,
-    // ownerID: this.state.ownerID,
-    // productPhoto: this.state.productPhoto
-    // }
 
     for (var pair of formData.entries()) {
       console.log(pair[0] + ', ' + pair[1] + ', ' + pair[2] + ', ' + pair[3]);
@@ -98,8 +96,14 @@ export default class UploadProduct extends Component {
     // console.log(product);
 
     axios.post("http://localhost:5000/products/add", formData)
-      .then(res => console.log(res.data))
-      .catch(err => { console.log(err); });
+      .then(res => {console.log(res.data)})
+      .catch(err => { console.log(err);});
+
+    // if () {
+    //   window.location = '/product';
+    //   alert('Your item has been uploaded! Check out the product list!');
+    // }
+      
   }
 
   render() {
@@ -158,6 +162,16 @@ export default class UploadProduct extends Component {
                   onChange={this.onChangeProductPhoto}
                 />
               </div>
+
+              {/* <div className="text-field">
+                <label htmlFor="ID"> ID</label>
+                <input
+                  type="text"
+                  value={this.state.ownerID}
+                  className="form-control"
+                  onChange={this.onChangeOwnerID}
+                />
+              </div> */}
 
               <div className="button">
                 <button type="submit">Upload Item</button>
