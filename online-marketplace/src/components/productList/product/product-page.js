@@ -79,7 +79,7 @@ class Product extends Component {
             <a className="link-to-chat-button" href=''>
               <i className="fas fa-comments-dollar"></i>
             </a>
-
+            <div id="productOwner"> {product.ownerId}</div>
           </div>
 
 

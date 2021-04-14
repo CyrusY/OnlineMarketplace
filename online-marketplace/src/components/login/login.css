@@ -85,21 +85,21 @@
 
 @media screen and (max-width: 960px) {
     .login_page {
-        padding: 10vw ;
+        padding: 8vh 3vw 0vh 2vw  ;
         margin-top: 0;
-        height: 80vh;        
+        height: 91vh;        
     }
     .login_page .main-area {
         width: 100%;
     }
     .login_page .form-container {
-        width: 65vw;
+        width: 75vw;
         margin: 0 auto;
         float: none;
     }
 
     .login_page input{
-        width: 60vw;
+        width: 65vw;
         height: 6vh;
 
     }

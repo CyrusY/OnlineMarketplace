@@ -80,23 +80,23 @@
 
 @media screen and (max-width: 960px) {
     .registration-container {
-        padding:10vw ;
+        padding: 8vh 3vw 0vh 2vw  ;
         margin-top: 0;
-        height: 80vh;
+        height: 91vh;
         
     }
     .registration-container .main-area {
         width: 100%;
     }
     .registration-container .form-container {
-        width: 65vw;
+        width: 75vw;
         margin: 0 auto;
         float: none;
     }
 
 
     .registration-container input{
-        width: 60vw;
+        width: 65vw;
         height: 6vh;
         border: 2px solid #777;
         outline: none;
