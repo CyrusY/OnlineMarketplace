@@ -16,10 +16,29 @@ import ProductList from "./components/productList/product-list";
 import Product from "./components/productList/product/product-page";
 import AboutUs from "./components/aboutus/about-us";
 import Chat from './components/Chat/Chat';
-import Join from './components/Join/Join';
+import Join from './components/Chat/Join/Join';
 
 export default class App extends Component {
-  login = true;
+  constructor() {
+    super();
+    this.state ={
+      login : this.getID()
+    }
+    console.log(this.state.login)
+  }
+  getID (){
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try {return User.result._id;}
+    catch(error){       
+        return undefined;
+    }
+}
+
+UNSAFE_componentWillMount(){
+  this.state.login = this.getID()
+}
+
+
 
   MenuItemsBeforeLogin = [
     {
@@ -37,7 +56,7 @@ export default class App extends Component {
       url: 'user',
       cName: 'nav-links-mobile'
     },
-
+  
   ]
   MenuItemsAfterLogin = [
     {
@@ -65,7 +84,7 @@ export default class App extends Component {
       url: 'product',
       cName: 'nav-links'
     },
-
+  
     {
       title: 'Logout',
       url: 'user',
@@ -73,38 +92,39 @@ export default class App extends Component {
     },
   ]
 
-  render() {
 
-    return (
-      <Router>
-        <div className="App-container">
-          <Navbar menuItem={this.login ? this.MenuItemsAfterLogin: this.MenuItemsBeforeLogin} login={this.login}
-          />
 
-          <div className="content">
-            <Switch>
-              <Route exact path="/" > <Login /> </Route>
-              <Route exact path="/upload" > <UploadProduct /> </Route>
-              <Route exact path="/user" > <Registration /> </Route>
-              <Route exact path="/login" > <Login /> </Route>
-              <Route exact path="/info" > <Info /> </Route>
-              <Route exact path="/product" > <ProductList /> </Route>
-              <Route exact path="/product/:id" > <Product /> </Route>
-              <Route exact path="/edit" > <EditUser /> </Route>
-              <Route exact path="/changePW" > <ChangePw /> </Route>
-              <Route exact path="/aboutus"> <AboutUs /></Route>
-              <Route exact path="/homepage"> <Homepage /></Route>
-              <Route path="/join" exact component={Join} />
-              <Route path="/chat" component={Chat} />
-              <Route exact path="/:activation_token" > <ActivationEmail/> </Route>
+render() {
 
-            
-            </Switch>
-          </div>
+  return (
+    <Router>
+      <div className="App-container">
+        <Navbar menuItem={this.state.login==undefined ? this.MenuItemsBeforeLogin : this.MenuItemsAfterLogin} login={this.login}
+        />
+
+        <div className="content">
+          <Switch>
+            <Route exact path="/" > <Login /> </Route>
+            <Route exact path="/upload" > <UploadProduct /> </Route>
+            <Route exact path="/user" > <Registration /> </Route>
+            <Route exact path="/login" > <Login /> </Route>
+            <Route exact path="/info" > <Info /> </Route>
+            <Route exact path="/product" > <ProductList /> </Route>
+            <Route exact path="/product/:id" > <Product /> </Route>
+            <Route exact path="/edit" > <EditUser /> </Route>
+            <Route exact path="/changePW" > <ChangePw /> </Route>
+            <Route exact path="/aboutus"> <AboutUs /></Route>
+            <Route exact path="/homepage"> <Homepage /></Route>
+            <Route path="/join" exact component={Join} />
+            <Route path="/chat" component={Chat} />
+            <Route exact path="/:activation_token" > <ActivationEmail /> </Route>
+
+          </Switch>
         </div>
-      </Router>
-    );
-  }
+      </div>
+    </Router>
+  );
+}
 }
 
 

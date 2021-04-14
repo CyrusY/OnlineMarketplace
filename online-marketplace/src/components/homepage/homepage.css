@@ -44,4 +44,13 @@
     transition-duration: 1s;
     transform: scale(1.08);
   }
-  
+
+  .image-slider-contiainer{
+    height: 60vh;
+
+  }
+
+  .homepage-containter{
+    position: absolute;
+  }
+

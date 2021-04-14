@@ -1,9 +1,10 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
-  color: white;
 
+  color: white;
+  width: 30vw;
+  height: 81vh;
 
   justify-content: space-between;
 }

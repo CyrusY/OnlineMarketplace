@@ -60,7 +60,7 @@ const Navbar = ({ login, menuItem }) => {
              
             </ul>
             <form action="user">
-             {user? <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>{ 'real logout' }</Button>: <Button>{ "Sign up"} </Button> }
+             {user? <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>{ 'Logout' }</Button>: <Button>{ "Sign up"} </Button> }
             
                
             </form>

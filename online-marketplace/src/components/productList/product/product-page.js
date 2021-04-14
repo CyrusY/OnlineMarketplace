@@ -15,6 +15,11 @@ class Product extends Component {
     console.log(this.props.show)
   }
 
+  getID() {
+    var pathname = window.location.pathname.split('/');
+    return pathname[2]
+  }
+
   timeSince(date) {
     var seconds = Math.floor((new Date() - new Date(date)) / 1000);
     var interval = seconds / 31536000;
@@ -59,13 +64,8 @@ class Product extends Component {
   }
 
   render() {
-    const { product, show } = this.state;
-    let User = JSON.parse(localStorage.getItem('profile'));
-
-   // console.log("owner Name is: " + product.ownerDisName);
-
-   // console.log("owner Id: " + product.ownerId);
-   // console.log("Current User Id " + User.result._id);
+    const { product, show } = this.state
+    console.log(this.state.product.ownId);
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
@@ -80,10 +80,8 @@ class Product extends Component {
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
           
             
-            <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
-              ?  e.preventDefault() : null}
-              to={`/chat?name=${product.ownerDisName}&room=${product.ownerId}+${User.result._id}`}>
-            //<button className={'button mt-20'} type="submit">Sign In</button>
+            <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
+            <i className="fas fa-comments-dollar"></i>
             
             </Link>
              
@@ -91,6 +89,8 @@ class Product extends Component {
            
             <div id="productOwner"> {product.ownerId}</div>
           </div>
+
+
           <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
         </div>
       </div>

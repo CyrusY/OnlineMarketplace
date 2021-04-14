@@ -21,7 +21,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    padding: 9vh 3vh 0vh 125vh;
+    padding: 9vh 3vh 0vh 50vh;
     position: absolute;
     top: 8vh;
     bottom: 0vh;
@@ -86,10 +86,10 @@
         
     }
     .registration-container .main-area {
-        width: 100%;
+        width: 80vw;
     }
     .registration-container .form-container {
-        width: 75vw;
+        width: 500vw;
         margin: 0 auto;
         float: none;
     }
