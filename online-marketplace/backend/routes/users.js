@@ -267,18 +267,20 @@ router.route('/changePW/:id').post((req, res) => {    //update data of the objec
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/chatUrl/:id').post((req, res) => {    //update data of the object by id
-  User.findById(req.params.id)
-  .then(user => {
+// router.route('/chatUrl/:id').post((req, res) => {    //update data of the object by id
+//   User.findById(req.params.id)
+//   .then(user => {
+//       /* start of the update from the post request, received from route('/update/:id') */
 
-    user.chatUrl = req.body.chatUrl;
+//     $push: {chatUrl: req.body.chatUrl
 
-    user.save()
-      .then(() => res.json('Chatroom URL ++!'))
-      .catch(err => res.status(400).json('Error: ' + err));
-  })
-  .catch(err => res.status(400).json('Error: ' + err));
-});
+//     user.save()
+//       .then(() => res.json('Password changed!'))
+//       .catch(err => res.status(400).json('Error: ' + err));
+//   })
+//   .catch(err => res.status(400).json('Error: ' + err));
+// });
+
 
 
 const createActivationToken = (payload) => {
