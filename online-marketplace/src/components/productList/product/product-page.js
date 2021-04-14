@@ -81,7 +81,7 @@ class Product extends Component {
             //<a className="link-to-chat-button" href=''>
             
             <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
-            //<button className={'button mt-20'} type="submit">Sign In</button>
+            <button className={'button mt-20'} type="submit">Sign In</button>
             
             </Link>
              
