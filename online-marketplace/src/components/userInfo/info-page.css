@@ -13,8 +13,9 @@
     height: 91vh;
 }
 
-.info-container .icon-img {
-    max-width: 15px;
+.info-container .icon {
+
+    width: 13vw;
     height: auto;
     margin-bottom: 5%;
   }

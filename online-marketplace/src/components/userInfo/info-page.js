@@ -41,7 +41,7 @@ export default class Info extends Component {
         <div className="main-area">
           <div className="form-container">
             <div className="icon-img">
-              <img src= {userIcon} alt="User Icon" />
+              <img className="icon" src= {userIcon} alt="User Icon" />
             </div>
             <b>Name:</b> {this.state.users.username} <br />
             <b>Display name:</b> {this.state.users.displayName}<br />
