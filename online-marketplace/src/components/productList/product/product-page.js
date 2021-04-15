@@ -73,7 +73,7 @@ class Product extends Component {
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            <div id="owner">By: {product.ownerDisName} </div>
+            <div id="owner">By: {product.ownerDisName} </div><br/>
             <div id="description">description: {product.productDescription} </div>
             
             <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
