@@ -68,8 +68,8 @@
 }
 
 .registration-container button{
-    width: 19vw;
-    padding: 10px 0;
+    width: 100%;
+    padding: 1.2vh 2vw 1.2vh 2vw;
     color: white;
     background: black;
     text-transform: uppercase;
@@ -88,8 +88,9 @@
     .registration-container .main-area {
         width: 80vw;
     }
+    
     .registration-container .form-container {
-        width: 500vw;
+        width: 80vw;
         margin: 0 auto;
         float: none;
     }

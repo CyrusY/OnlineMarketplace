@@ -31,7 +31,7 @@ export default class App extends Component {
 
   loginTest() {
     const userId = this.getID();
-    if (userId == undefined) {return false;}
+    if (userId === undefined) {return false;}
     return true;
   }
 

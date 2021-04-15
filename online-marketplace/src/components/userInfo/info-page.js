@@ -51,20 +51,28 @@ export default class Info extends Component {
             <b>Rating:</b> {this.state.users.rating}<br />
 
             <div className="button">
-         
- 
-             
-                <Button  onClick={<Link to={{pathname: `/edit`}} >
-                    
-                </Link>}> Edit display name/ Description</Button>
-        
-                
-
-                <Button  onClick={<Link to={{pathname: `/changePW`}} >
-                    
-                </Link>}>Change Password</Button>
-     
+              <button>
+                <Link to={{pathname: `/edit`}} >
+                    Edit display name/ Description
+                </Link>
+              </button>
+              <button>
+                <Link to={{pathname: `/changePW`}} >
+                    Change Password
+                </Link>
+              </button>
             </div>
+
+            {/*
+            <div className="button">
+              <Button  onClick={<Link to={{pathname: `/edit`}} >
+                </Link>}> Edit display name/ Description</Button>
+
+              <Button  onClick={<Link to={{pathname: `/changePW`}} >
+                </Link>}>Change Password</Button>
+            </div> 
+            */}
+
           </div>
         </div>
       </div>      

@@ -69,7 +69,7 @@ export default class UploadProduct extends Component {
     try {return User.result._id;}
     catch(error){
         console.log('Please sign in to enable function');
-        window.location = '/login';
+        window.oepn = '/login';
         alert('Please sign in to enable member function');
         return undefined;
     }
@@ -85,11 +85,22 @@ export default class UploadProduct extends Component {
     }
   }
 
+  getEmail (){
+    let User = JSON.parse(localStorage.getItem('profile'));
+    try { 
+      return User.result.email;
+    }
+    catch(error){
+      return undefined;
+    }
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
     let userId = this.getID();
     let userDisName = this.getDisName();
+    let userEmail = this.getEmail();
 
     const formData = new FormData();
 
@@ -99,6 +110,7 @@ export default class UploadProduct extends Component {
     formData.append("productDescription", this.state.productDescription);
     formData.append("ownerId", userId);
     formData.append("ownerDisName", userDisName);
+    formData.append("ownerEmail", userEmail);
     formData.append("productPhoto", this.state.productPhoto);
 
 
@@ -111,11 +123,9 @@ export default class UploadProduct extends Component {
       .then(res => {console.log(res.data)})
       .catch(err => { console.log(err);});
 
-    // if () {
-    //   window.location = '/product';
-    //   alert('Your item has been uploaded! Check out the product list!');
-    // }
-      
+      alert('Your item has been uploaded! Check out the product list!');
+      window.open = ('/product','_top');
+
   }
 
   render() {
@@ -127,6 +137,7 @@ export default class UploadProduct extends Component {
               <div className="text-field">
                 <label htmlFor="productName">Product Name</label>
                 <input
+                  required
                   type="text"
                   value={this.state.productName}
                   onChange={this.onChangeProductName}
@@ -137,6 +148,7 @@ export default class UploadProduct extends Component {
               <div className="text-field">
                 <label htmlFor="price">Price (in HKD)</label>
                 <input
+                  required
                   type="number"
                   value={this.state.price}
                   onChange={this.onChangePrice}

@@ -166,8 +166,8 @@ export default class ChangePw extends Component {
             passwordError4: '',
             validPasswordError: ''
         });
-        // window.location = '/login';
       }
+    //   window.location = '/login';
     }
 
   render() {

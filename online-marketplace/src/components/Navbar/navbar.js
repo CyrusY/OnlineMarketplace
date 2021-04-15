@@ -20,7 +20,6 @@ const Navbar = ({ login, menuItem }) => {
         dispatch({ type: actionType.LOGOUT });
     
         history.push('/login');
-        console.log("s2312312312313dsad")
         setUser(null);
     };
 

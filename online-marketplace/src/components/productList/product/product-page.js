@@ -15,8 +15,6 @@ class Product extends Component {
     console.log(this.props.show)
   }
 
-  
-
   timeSince(date) {
     var seconds = Math.floor((new Date() - new Date(date)) / 1000);
     var interval = seconds / 31536000;
@@ -62,7 +60,6 @@ class Product extends Component {
 
   render() {
     const { product, show } = this.state
-    let User = JSON.parse(localStorage.getItem('profile'));
     console.log(this.state.product.ownId);
     return (
 
@@ -78,11 +75,8 @@ class Product extends Component {
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
             <div id="owner">By: {product.ownerDisName} </div>
             
-            <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
-              ?  e.preventDefault() : null}
-              to={`/chat?name=${product.ownerDisName}&room=${product.ownerId}+${User.result._id}`}>
-              
-              <i className="fas fa-comments-dollar"></i>
+            <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
+            <i className="fas fa-comments-dollar"></i>
             
             </Link>
              
@@ -100,5 +94,3 @@ class Product extends Component {
 }
 
 export default Product;
-
-
