@@ -79,6 +79,12 @@ class Product extends Component {
             <i className="fas fa-comments-dollar"></i>
             
             </Link>
+
+            {/* 
+            <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
+              ?  e.preventDefault() : null}
+              to={`/chat?name=${product.ownerDisName}&room=${product.ownerId}+${User.result._id}`}>
+            */}
              
              
            
