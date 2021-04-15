@@ -74,6 +74,7 @@ class Product extends Component {
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
             <div id="owner">By: {product.ownerDisName} </div>
+            <div id="description">description: {product.productDescription} </div>
             
             <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
             <i className="fas fa-comments-dollar"></i>
