@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 */
 let User = require('../models/user.model');     // required models
 // const { eventNames } = require('../models/user.model');
-const DOMAIN ='sandbox2b7de7f28e2a4ebbb036ad8088b47214.mailgun.org';
+const DOMAIN ='sand22g';
 
 const mg = mailgun({apiKey: process.env.API_KEY, domain: DOMAIN});
 /* Middleware *//*
@@ -123,11 +123,16 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
    
     mg.messages().send(data, function (error, body) {
       if(error){
+         console.log(res.json({
+         
+          message : error.message
+        }))
         return res.json({
+         
           message : error.message
         })
       }
-      
+      console.log("ssssssssssss")
       return res.json({message :'email has been sent'})
 
 
@@ -138,6 +143,60 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
 
    
 });
+
+
+router.route('/notice').post((req, res) => {  // post request ,  could be tested in insomnia 
+
+  const email = req.body.email;
+  const name = req.body.productName;
+  const price = Number(req.body.price)
+  // by default: "No description."
+  //const rating = Number(req.body.rating);    // by default: 0
+  
+
+  const data = {
+    from: 'EASY trade <csci3100gp34@gmail.com>',
+    to: email,
+    subject: 'Your buyer is waiting for trade',
+    html: `
+    <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+    <h2 style="text-align: center; text-transform: uppercase;color: teal;">Easy Trade and 3100 Ta's is the best.</h2>
+    <p>Congratulations! Someone want to trade with you.
+        Just click the link below and talk to buyer.
+       
+    </p>
+    
+ 
+    <a href=${process.env.URL}/chat?name=${name}&room=${price} > ${process.env.URL}/chat?name=${name}&room=${price}</a>
+    </div>
+`
+   
+  };
+ 
+  mg.messages().send(data, function (error, body) {
+    if(error){
+       console.log(res.json({
+       
+        message : error.message
+      }))
+      return res.json({
+       
+        message : error.message
+      })
+    }
+    console.log("ssssssssssss")
+    return res.json({message :'email has been sent'})
+
+
+    
+  });
+
+
+
+ 
+});
+
+
 
 
 const userCtrl = {
