@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 */
 let User = require('../models/user.model');     // required models
 // const { eventNames } = require('../models/user.model');
-const DOMAIN ='sand22g';
+const DOMAIN = 'hereeee';
 
 const mg = mailgun({apiKey: process.env.API_KEY, domain: DOMAIN});
 /* Middleware *//*
@@ -113,12 +113,10 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
           and login again.
       </p>
       
-      <a href=${process.env.URL}/${token} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;"</a>
-   
+      <a href=${process.env.URL}/${token} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;"> Accept </a>
      
       </div>
-  `
-     
+      `
     };
    
     mg.messages().send(data, function (error, body) {
