@@ -7,6 +7,8 @@ class Product extends Component {
   constructor(props) {
     super(props);
 
+    this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       product: {},
       productId: '',
@@ -58,6 +60,15 @@ class Product extends Component {
     console.log(this.state.show)
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log('button clicked');
+      // axios.post('http://localhost:5000/users/add', user)
+      // .then(res => console.log(res.data));
+      // alert('Email has been sent, please check your email box, ' + this.state.displayName + '!');
+  }
+
   render() {
     const { product, show } = this.state
     console.log(this.state.product.ownId);
@@ -76,21 +87,18 @@ class Product extends Component {
             <div id="owner">By: {product.ownerDisName} </div><br/>
             <div id="description">description: {product.productDescription} </div>
             
-            <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
-            <i className="fas fa-comments-dollar"></i>
-            
-            </Link>
-
+            <div onSubmit={this.onSubmit}>
+              <Link onClick={e => (!product.ownerDisName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.ownerDisName}&room=${product.productName}`}>
+              <i className="fas fa-comments-dollar"></i>
+              
+              </Link>
+            </div>
             {/* 
             <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
               ?  e.preventDefault() : null}
               to={`/chat?name=${product.ownerDisName}&room=${product.ownerId}+${User.result._id}`}>
-            */}
-             
-             
-           
+            */}         
           </div>
-
 
           <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
         </div>
