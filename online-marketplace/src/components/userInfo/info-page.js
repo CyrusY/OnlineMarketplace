@@ -48,7 +48,7 @@ export default class Info extends Component {
             <b>Display name:</b> {this.state.users.displayName}<br />
             <b>Email:</b> {this.state.users.email}<br />
             <b>Description:</b> {this.state.users.description}<br />
-            <b>Rating:</b> {this.state.users.rating}<br />
+            {/* <b>Rating:</b> {this.state.users.rating}<br /> */}
 
             <div className="button">
               <button>

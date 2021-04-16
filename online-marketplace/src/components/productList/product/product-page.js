@@ -72,6 +72,7 @@ class Product extends Component {
   render() {
     const { product, show } = this.state
     console.log(this.state.product.ownId);
+    let User = JSON.parse(localStorage.getItem('profile'));
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
@@ -88,7 +89,7 @@ class Product extends Component {
             <div id="description">description: {product.productDescription} </div>
             
             <div onSubmit={this.onSubmit}>
-              <Link onClick={e => (!product.ownerDisName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.ownerDisName}&room=${product.productName}`}>
+              <Link onClick={e => (!User.result.displayName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${User.result.displayName}&room=${product.productName}`}>
               <i className="fas fa-comments-dollar"></i>
               
               </Link>
