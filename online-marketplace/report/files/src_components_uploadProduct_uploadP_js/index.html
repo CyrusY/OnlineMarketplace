@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - src\components\uploadProduct\uploadP.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>src\components\uploadProduct\uploadP.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">71.93</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">192</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">29.34</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.08</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">import React, { Component } from &#039;react&#039;;
+// import styled from &#039;styled-components&#039;;
+import axios from &#039;axios&#039;;
+import &#039;./upload.css&#039;;
+
+export default class UploadProduct extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.onChangeProductName = this.onChangeProductName.bind(this);
+    this.onChangePrice = this.onChangePrice.bind(this);
+    this.onChangeCondition = this.onChangeCondition.bind(this);
+    this.onChangeProductDescription = this.onChangeProductDescription.bind(this);
+    // this.onChangeOwnerID = this.onChangeOwnerID.bind(this);
+    this.onChangeProductPhoto = this.onChangeProductPhoto.bind(this);
+
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      productName: &#039;&#039;,
+      price: 0,
+      condition: &#039;&#039;,
+      productDescription: &#039;&#039;,
+      // ownerID: &#039;&#039;,
+      productPhoto: &#039;&#039;,
+    }
+  }
+
+  onChangeProductName(e) {
+    this.setState({
+      productName: e.target.value
+    })
+  }
+
+  onChangePrice(e) {
+    this.setState({
+      price: e.target.value
+    })
+  }
+
+  onChangeCondition(e) {
+    this.setState({
+      condition: e.target.value
+    })
+  }
+
+
+  onChangeProductDescription(e) {
+    this.setState({
+      productDescription: e.target.value
+    })
+  }
+
+  // onChangeOwnerID(e) {
+  //     this.setState({
+  //       ownerID: e.target.value
+  //     })
+  // }
+
+  onChangeProductPhoto(e) {
+    this.setState({
+      productPhoto: (e.target.files[0])
+    })
+  }
+
+  getID (){
+    let User = JSON.parse(localStorage.getItem(&#039;profile&#039;));
+    try {return User.result._id;}
+    catch(error){
+        console.log(&#039;Please sign in to enable function&#039;);
+        window.location = &#039;/login&#039;;
+        alert(&#039;Please sign in to enable member function&#039;);
+        return undefined;
+    }
+  }
+  
+  getDisName (){
+    let User = JSON.parse(localStorage.getItem(&#039;profile&#039;));
+    try { 
+      return User.result.displayName;
+    }
+    catch(error){
+      return undefined;
+    }
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    let userId = this.getID();
+    let userDisName = this.getDisName();
+
+    const formData = new FormData();
+
+    formData.append(&quot;productName&quot;, this.state.productName);
+    formData.append(&quot;price&quot;, this.state.price);
+    formData.append(&quot;condition&quot;, this.state.condition);
+    formData.append(&quot;productDescription&quot;, this.state.productDescription);
+    formData.append(&quot;ownerId&quot;, userId);
+    formData.append(&quot;ownerDisName&quot;, userDisName);
+    formData.append(&quot;productPhoto&quot;, this.state.productPhoto);
+
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + &#039;, &#039; + pair[1] + &#039;, &#039; + pair[2] + &#039;, &#039; + pair[3]);
+    }
+    // console.log(product);
+
+    axios.post(&quot;http://localhost:5000/products/add&quot;, formData)
+      .then(res =&gt; {console.log(res.data)})
+      .catch(err =&gt; { console.log(err);});
+
+    // if () {
+    //   window.location = &#039;/product&#039;;
+    //   alert(&#039;Your item has been uploaded! Check out the product list!&#039;);
+    // }
+      
+  }
+
+  render() {
+    return (
+      &lt;div className=&quot;upload-container&quot;&gt;
+        &lt;div className=&quot;main-area&quot;&gt;
+          &lt;div className=&quot;form-container&quot;&gt;
+            &lt;form onSubmit={this.onSubmit} encType=&quot;multipart/form-data&quot;&gt;
+              &lt;div className=&quot;text-field&quot;&gt;
+                &lt;label htmlFor=&quot;productName&quot;&gt;Product Name&lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  value={this.state.productName}
+                  onChange={this.onChangeProductName}
+                  className=&quot;form-control&quot;
+                  placegolder=&quot;Product Name&quot;
+                /&gt;
+              &lt;/div&gt;
+              &lt;div className=&quot;text-field&quot;&gt;
+                &lt;label htmlFor=&quot;price&quot;&gt;Price (in HKD)&lt;/label&gt;
+                &lt;input
+                  type=&quot;number&quot;
+                  value={this.state.price}
+                  onChange={this.onChangePrice}
+                  className=&quot;form-control&quot;
+                  placegolder=&quot;Price&quot;
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;text-field&quot;&gt;
+                &lt;label htmlFor=&quot;condition&quot;&gt;Condition of Item&lt;/label&gt;
+                &lt;select value={this.state.condition} onChange={this.onChangeCondition}&gt;
+                  &lt;option value=&quot;&quot;&gt; &lt;/option&gt;
+                  &lt;option value=&quot;New&quot;&gt; New &lt;/option&gt;
+                  &lt;option value=&quot;Used&quot;&gt; Used &lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;text-field&quot;&gt;
+                &lt;label htmlFor=&quot;productDescription&quot;&gt;Description on Item&lt;/label&gt;
+                &lt;input
+                  type=&quot;text&quot;
+                  value={this.state.productDescription}
+                  onChange={this.onChangeProductDescription}
+                  className=&quot;form-control&quot;
+                  placegolder=&quot;Description&quot;
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;text-field&quot;&gt;
+                &lt;label htmlFor=&quot;fileName&quot;&gt; Choose Item Photo&lt;/label&gt;
+                &lt;input
+                  type=&quot;file&quot;
+                  filename=&quot;productPhoto&quot;
+                  className=&quot;form-control-file&quot;
+                  onChange={this.onChangeProductPhoto}
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;button&quot;&gt;
+                &lt;button type=&quot;submit&quot;&gt;Upload Item&lt;/button&gt;
+              &lt;/div&gt;
+
+            &lt;/form&gt;
+
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+
+      &lt;/div&gt;
+    )
+  }
+}</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

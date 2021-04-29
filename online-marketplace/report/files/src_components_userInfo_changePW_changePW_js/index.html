@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - src\components\userInfo\changePW\changePW.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>src\components\userInfo\changePW\changePW.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">64.85</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">246</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">46.26</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.76</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">import React, { Component } from &quot;react&quot;;
+import axios from &#039;axios&#039;;
+import { Link } from &#039;react-router-dom&#039;;
+
+/*
+There are 2 things need to do:
+1.Check the old password match the input old pw
+2.valid new password
+*/
+
+export default class ChangePw extends Component {
+
+    state = {
+        isPasswordShown : false
+    }
+
+    togglePasswordVisiblity = () =&gt;{
+        const {isPasswordShown} = this.state;
+        this.setState({ isPasswordShown: ! isPasswordShown});
+    }
+    
+    state = {
+        isPasswordShown2 : false
+    }
+
+    togglePasswordVisiblity2 = () =&gt;{
+        const {isPasswordShown2} = this.state;
+        this.setState({ isPasswordShown2: ! isPasswordShown2});
+    }
+
+    state = {
+        isPasswordShown3 : false
+    }
+
+    togglePasswordVisiblity3 = () =&gt;{
+        const {isPasswordShown3} = this.state;
+        this.setState({ isPasswordShown3: ! isPasswordShown3});
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.onChangeOldPassword = this.onChangeOldPassword.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeValidPassword = this.onChangeValidPassword.bind(this);
+
+        this.onSubmit = this.onSubmit.bind(this);
+    
+        this.state = {
+          user:{} ,
+          oldPassword: &#039;&#039;,
+          password: &#039;&#039;,
+          validPassword: &#039;&#039;,
+
+          oldPasswordError:&#039;&#039;,
+          passwordError1: &#039;&#039;,
+          passwordError2: &#039;&#039;,
+          passwordError3: &#039;&#039;,
+          passwordError4: &#039;&#039;,
+          validPasswordError: &#039;&#039;
+        }
+    }
+
+    onChangeOldPassword(e) {
+        this.setState({
+            oldPassword: e.target.value
+        })
+    }
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        })
+    }
+    onChangeValidPassword(e) {
+        this.setState({
+            validPassword: e.target.value
+        })
+    }
+
+    getID (){
+        let User = JSON.parse(localStorage.getItem(&#039;profile&#039;));
+        try {return User.result._id;}
+        catch(error){
+            console.log(&#039;Please sign in to enable function&#039;);
+            window.location = &#039;/login&#039;;
+            alert(&#039;Please sign in to enable member function&#039;);
+            return undefined;
+        }
+    }
+
+    componentDidMount() {
+        const userId = this.getID();
+        axios.get(`http://localhost:5000/users/${userId}`)
+          .then(res =&gt; {
+            this.setState({ user: res.data });
+          })
+          .catch(error =&gt; { console.log(error);})
+      }
+
+    validate = () =&gt; {
+        let oldPasswordError = &quot;&quot;;
+
+        let passwordError1 = &quot;&quot;;
+        let passwordError2 = &quot;&quot;;
+        let passwordError3 = &quot;&quot;;
+        let passwordError4 = &quot;&quot;;
+
+        let validPasswordError = &quot;&quot;;
+
+        if (this.state.oldPassword !== this.state.user.password) {
+            oldPasswordError = &quot;The old password is incorrect.&quot;
+        }
+
+        if (this.state.password.length &lt; 8) {
+            passwordError1 = &quot;Passwords need to be at least 8 characters long.&quot;
+        }
+        if (! /\d/.test(this.state.password)) {
+            passwordError2 = &quot;Passwords need to contain a number.&quot;
+        }
+        if (! /[a-z]/.test(this.state.password)) {
+            passwordError3 = &quot;Passwords need to contain a lowercase letter.&quot;
+        }
+        if (! /[A-Z]/.test(this.state.password)) {
+            passwordError4 = &quot;Passwords need to contain a uppercase letter.&quot;
+        }
+
+        if (this.state.password !== this.state.validPassword) {
+            validPasswordError = &quot;Passwords do not match. Please re-enter it.&quot;
+        }
+
+        if (oldPasswordError||passwordError1||passwordError2||passwordError3||passwordError4||validPasswordError) {
+            this.setState({oldPasswordError,passwordError1,passwordError2,passwordError3,passwordError4, validPasswordError});
+            return false;
+        }
+
+        return true;
+    }
+
+    onSubmit(e) {
+    e.preventDefault();
+
+    const user = {
+        password: this.state.password,
+      }
+
+    const isValid = this.validate();
+
+    if(isValid) {
+        const url = &#039;http://localhost:5000/users/changePW/&#039;;
+        const id = this.state.user._id;
+        console.log(user);
+        axios.post(url + id, user)
+            .then(res =&gt; console.log(res.data));
+        alert(&#039;Password Changed!&#039;);
+
+        /* clear form and error */
+        this.setState({
+            oldPassword: &#039;&#039;,
+            password: &#039;&#039;,
+            validPassword: &#039;&#039;,
+      
+            oldPasswordError:&#039;&#039;,
+            passwordError1: &#039;&#039;,
+            passwordError2: &#039;&#039;,
+            passwordError3: &#039;&#039;,
+            passwordError4: &#039;&#039;,
+            validPasswordError: &#039;&#039;
+        });
+        // window.location = &#039;/login&#039;;
+      }
+    }
+
+  render() {
+    const {isPasswordShown} = this.state;
+    const {isPasswordShown2} = this.state;
+    const {isPasswordShown3} = this.state;
+
+    return (
+      &lt;div className=&quot;registration-container&quot;&gt;
+      &lt;div className=&quot;main-area&quot;&gt;
+          &lt;div className=&quot;form-container&quot;&gt;
+              &lt;form onSubmit={this.onSubmit}&gt;
+                  &lt;div className=&quot;text-field&quot;&gt;
+                      &lt;label htmlFor=&quot;user&quot;&gt;Old Password&lt;/label&gt;
+                      &lt;input type={(isPasswordShown)? &quot;text&quot; : &quot;password&quot;}
+                          required
+                          placeholder=&#039;Enter old password&#039;
+                          className=&quot;form-control form-group&quot;
+                          value={this.state.oldPassword}
+                          onChange={this.onChangeOldPassword}
+                      /&gt; 
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.oldPasswordError}
+                      &lt;/div&gt; 
+                      &lt;i className = {`fa ${isPasswordShown? &quot;fa-eye-slash&quot; : &quot;fa-eye&quot;} password-icon`} onClick={this.togglePasswordVisiblity}/&gt;
+                  &lt;/div&gt;
+
+                  &lt;div className=&quot;text-field&quot;&gt;
+                      &lt;label htmlFor=&quot;user&quot;&gt;New Password&lt;/label&gt;
+                      &lt;input type={(isPasswordShown2)? &quot;text&quot; : &quot;password&quot;}
+                          required
+                          placeholder=&#039;Enter New Password&#039;
+                          className=&quot;form-control form-group&quot;
+                          value={this.state.password}
+                          onChange={this.onChangePassword}
+                      /&gt;
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.passwordError1}
+                      &lt;/div&gt; 
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.passwordError2}
+                      &lt;/div&gt; 
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.passwordError3}
+                      &lt;/div&gt; 
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.passwordError4}
+                      &lt;/div&gt; 
+                      &lt;i className = {`fa ${isPasswordShown2? &quot;fa-eye-slash&quot; : &quot;fa-eye&quot;} password-icon`} onClick={this.togglePasswordVisiblity2}/&gt;
+                  &lt;/div&gt;
+
+                  &lt;div className=&quot;text-field&quot;&gt;
+                      &lt;label htmlFor=&quot;user&quot;&gt;Re-type New Password &lt;/label&gt;
+                      &lt;input type={(isPasswordShown3)? &quot;text&quot; : &quot;password&quot;}
+                          required
+                          placeholder=&#039;Re-type New Password&#039;
+                          className=&quot;form-control form-group&quot;
+                          value={this.state.validPassword}
+                          onChange={this.onChangeValidPassword}
+                      /&gt;
+                      &lt;div style={{fontSize:12, color: &quot;red&quot;, fontWeight: &quot;bold&quot;}}&gt;
+                          {this.state.validPasswordError}
+                      &lt;/div&gt; 
+                  &lt;i className = {`fa ${isPasswordShown3? &quot;fa-eye-slash&quot; : &quot;fa-eye&quot;} re-password-icon`} onClick={this.togglePasswordVisiblity3}/&gt;
+                  &lt;/div&gt;
+
+                  &lt;div className=&quot;button&quot;&gt;
+                      &lt;button type=&quot;submit&quot;&gt;Change new password!&lt;/button&gt;
+                  &lt;/div&gt;
+              &lt;/form&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+    );
+  }
+}</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ cyclomatic }} <br>
+    Length : {{ halstead.length }} <br>
+    Difficulty : {{ halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>
