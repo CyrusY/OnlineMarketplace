@@ -7,17 +7,14 @@ class Product extends Component {
   constructor(props) {
     super(props);
 
+    this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       product: {},
       productId: '',
       show: false
     }
     console.log(this.props.show)
-  }
-
-  getID() {
-    var pathname = window.location.pathname.split('/');
-    return pathname[2]
   }
 
   timeSince(date) {
@@ -63,9 +60,19 @@ class Product extends Component {
     console.log(this.state.show)
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log('button clicked');
+      // axios.post('http://localhost:5000/users/add', user)
+      // .then(res => console.log(res.data));
+      // alert('Email has been sent, please check your email box, ' + this.state.displayName + '!');
+  }
+
   render() {
     const { product, show } = this.state
     console.log(this.state.product.ownId);
+    let User = JSON.parse(localStorage.getItem('profile'));
     return (
 
       <div id="flyoutMenu" style={{ top: show ? '0vw' : '-300vw' }}
@@ -78,17 +85,21 @@ class Product extends Component {
               <span id="id" className="tag">{product.condition}</span>
             </span>
             <div id="postDate">posted at: {this.timeSince(product.postDate)}</div>
-            <div id="owner">By: {product.ownerDisName} </div>
+            <div id="owner">By: {product.ownerDisName} </div><br/>
+            <div id="description">description: {product.productDescription} </div>
             
-            <Link onClick={e => (!product.productName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${product.productName}&room=${product.price}`}>
-            <i className="fas fa-comments-dollar"></i>
-            
-            </Link>
-             
-             
-           
+            <div onSubmit={this.onSubmit}>
+              <Link onClick={e => (!User.result.displayName || !product.price) ? e.preventDefault() : null} to={`/chat?name=${User.result.displayName}&room=${product.productName}`}>
+              <i className="fas fa-comments-dollar"></i>
+              
+              </Link>
+            </div>
+            {/* 
+            <Link onClick={e => (!product.ownerDisName || !product.ownerId || !User.result._id)
+              ?  e.preventDefault() : null}
+              to={`/chat?name=${product.ownerDisName}&room=${product.ownerId}+${User.result._id}`}>
+            */}         
           </div>
-
 
           <img id="image" src={`/uploads/${product.productPhoto}`} alt="..."></img>
         </div>

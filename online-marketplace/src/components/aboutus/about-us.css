@@ -10,6 +10,7 @@
     left: 0;
     right: 0;
     height:92vh;
+    color: rgb(0, 0, 0);
 }
 
 .about-us-container .content-container{
@@ -23,7 +24,7 @@
 }
 
 .about-us-container .row{
-     display: flex;
+    display: flex;
     justify-content: space-between;
     flex-wrap: wrap-reverse;
     align-items: flex-start;

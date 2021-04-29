@@ -14,31 +14,37 @@
 }
 
 .info-container .icon {
-
     width: 13vw;
     height: auto;
     margin-bottom: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    align-items: center;
   }
 
 .info-container .form-container {
     float: middle;
-    margin-left: 25%;
-    margin-right: 25%;
-    max-width: 600px;
+    margin-left: 35%;
+    margin-right: 35%;
+    max-width: 400px;
     width: auto;
     padding: 1vh 3vh;
-    background: rgba(255, 255, 255, 0.836);
+    background: rgba(255, 255, 255, 0.552);
     box-shadow: 2px 2px 5px #666;
     align-items: center;
 }
 
 .info-container button{
-    width: 20vw;
+    width: 90%;
 
     color: white;
-    background: rgba(95, 216, 140, 0.454);
+    background: rgba(109, 125, 218, 0.454);
     border-radius:1vw;
     text-transform: uppercase;
     margin-right: 1%;
     margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    align-items: center;
+
 }

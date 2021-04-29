@@ -9,7 +9,7 @@ export const signin = (formData, router) => async (dispatch) => {
   
       dispatch({ type: AUTH, data });
       alert('Login success, Welcome!');
-      router.push('/product');
+      window.open('/product','_top');
     } catch (error) {
       console.log(error);
       alert('Wrong email or password ,please fill in again');

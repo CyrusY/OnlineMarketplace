@@ -30,6 +30,7 @@ router.post("/add", upload.single("productPhoto"), (req, res) => {   // post req
     productDescription: req.body.productDescription,
     ownerId: req.body.ownerId,
     ownerDisName: req.body.ownerDisName,
+    ownerEmail: req.body.ownerEmail,
     productPhoto: req.file.originalname,
   });
 

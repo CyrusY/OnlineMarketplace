@@ -10,6 +10,7 @@ const productSchema = new Schema({     //product schema with one field
     productDescription: { type: String, default: "No description."},
     ownerId: { type: Schema.Types.ObjectId, required: true},
     ownerDisName: { type: String, required: true},
+    ownerEmail: {type: String, required: true},
     productPhoto: {type: String},
 });
 

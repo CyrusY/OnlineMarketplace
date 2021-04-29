@@ -48,23 +48,31 @@ export default class Info extends Component {
             <b>Display name:</b> {this.state.users.displayName}<br />
             <b>Email:</b> {this.state.users.email}<br />
             <b>Description:</b> {this.state.users.description}<br />
-            <b>Rating:</b> {this.state.users.rating}<br />
+            {/* <b>Rating:</b> {this.state.users.rating}<br /> */}
 
             <div className="button">
-         
- 
-             
-                <Button  onClick={<Link to={{pathname: `/edit`}} >
-                    
-                </Link>}> Edit display name/ Description</Button>
-        
-                
-
-                <Button  onClick={<Link to={{pathname: `/changePW`}} >
-                    
-                </Link>}>Change Password</Button>
-     
+              <button>
+                <Link to={{pathname: `/edit`}} >
+                    Edit display name/ Description
+                </Link>
+              </button>
+              <button>
+                <Link to={{pathname: `/changePW`}} >
+                    Change Password
+                </Link>
+              </button>
             </div>
+
+            {/*
+            <div className="button">
+              <Button  onClick={<Link to={{pathname: `/edit`}} >
+                </Link>}> Edit display name/ Description</Button>
+
+              <Button  onClick={<Link to={{pathname: `/changePW`}} >
+                </Link>}>Change Password</Button>
+            </div> 
+            */}
+
           </div>
         </div>
       </div>      

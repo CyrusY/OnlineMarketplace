@@ -168,7 +168,7 @@ export default class Registration extends Component {
                 passwordError4: '',
                 validPasswordError: ''
             });
-            // window.location = '/login';
+            window.location = '/login';
         }
     }
 
@@ -261,7 +261,7 @@ export default class Registration extends Component {
 
                             <div className="button">
                                 <button type="submit">Register</button><br/><br/>
-                                <div style = {{fontWeight: "bold", margin: "auto", width: "30vw"}}>
+                                <div style = {{fontWeight: "bold", margin: "auto", width: "65%"}}>
                                     <Link to="./login">Have an Account Already?</Link>
                                 </div>
                             </div>
