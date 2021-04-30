@@ -13,6 +13,14 @@
     height: 91vh;
 }
 
+.registration-container .main-area {
+    width: 50vh;
+    max-width: 500px;
+    margin: auto;
+    color: #333;
+    font-size: 12px;
+}
+
 .info-container .icon {
     width: 13vw;
     height: auto;
@@ -47,4 +55,21 @@
     margin-right: 5%;
     align-items: center;
 
+}
+@media screen and (max-width: 960px) {
+    .info-container {
+        padding: 20vh 3vw 0vh 2vw  ;
+        margin-top: 0;
+        height: 91vh;
+        
+    }
+    .info-container .main-area {
+        width:100vw;
+    }
+    
+    .info-container .form-container {
+        width: 80vw;
+        margin: 0 auto;
+        float: none;
+    }
 }
