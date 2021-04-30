@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 */
 let User = require('../models/user.model');     // required models
 // const { eventNames } = require('../models/user.model');
-const DOMAIN = 'hereeee';
+const DOMAIN = 'HERE';
 
 const mg = mailgun({apiKey: process.env.API_KEY, domain: DOMAIN});
 /* Middleware *//*
@@ -91,8 +91,8 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
         return res.status(400).json({msg: "Email is in incorrect format."})
     }
 
-    if (password.length < 5) {
-       return res.status(400).json({msg: "The password need to be at least 5 characters long."})
+    if (password.length < 8) {
+       return res.status(400).json({msg: "The password need to be at least 8 characters long."})
     }
 
     if (password != validPassword) {
@@ -130,7 +130,6 @@ router.route('/add').post((req, res) => {  // post request ,  could be tested in
           message : error.message
         })
       }
-      console.log("ssssssssssss")
       return res.json({message :'email has been sent'})
 
 
@@ -182,16 +181,9 @@ router.route('/notice').post((req, res) => {  // post request ,  could be tested
         message : error.message
       })
     }
-    console.log("ssssssssssss")
-    return res.json({message :'email has been sent'})
-
-
-    
+    return res.json({message :'email has been sent'})    
   });
 
-
-
- 
 });
 
 
@@ -259,10 +251,6 @@ activateEmail: async (req, res) => {
         const newUser = new User({username, email, password, displayName, description/*, rating*/});     // create new user
 
         newUser.save()        // save the new user to DB
-      
-
-    
-        
     
       })
       return res.json({msg: "Account has been activated!"})
@@ -296,7 +284,6 @@ router.route('/update/:id').post((req, res) => {    //update data of the object 
     User.findById(req.params.id)
     .then(user => {
         /* start of the update from the post request, received from route('/update/:id') */
-      
       
       user.displayName = req.body.displayName;
       user.description = req.body.description;
